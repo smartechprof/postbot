@@ -69,13 +69,12 @@ def validate_metadata(video_id: str) -> list[dict]:
     results = []
 
     for platform, field, limit in PLATFORM_LIMITS:
-        platform_data = video_meta.get(platform)
+        platform_data = video_meta.get("platforms", {}).get(platform)
         if not platform_data:
             continue
         value = platform_data.get(field)
         if value is None:
             continue
-
         length = len(str(value))
         ok = length <= limit
         results.append({
@@ -85,7 +84,6 @@ def validate_metadata(video_id: str) -> list[dict]:
             "limit":    limit,
             "ok":       ok,
         })
-
         if not ok:
             log.warning(
                 "Metadata %s / %s / %s: %d chars exceeds limit of %d (over by %d)",
@@ -99,12 +97,10 @@ def validate_metadata(video_id: str) -> list[dict]:
 
 def get_metadata(video_id: str) -> dict:
     """
-    Return the full metadata dict for a given video ID (e.g. "001").
+    Return the full metadata dict for video_id.
 
-    Automatically runs validate_metadata() and logs warnings for any fields
-    that exceed platform character limits.
-
-    Raises KeyError if the video ID is not present in metadata.json.
+    Raises KeyError if the video ID is not found.
+    Also runs validate_metadata() and logs any limit warnings.
     """
     data = _load()
     if video_id not in data:
@@ -118,25 +114,12 @@ def get_metadata(video_id: str) -> dict:
 
 def get_platform_data(video_id: str, platform: str) -> Optional[dict]:
     """
-    Return the platform-specific dict for a given video ID and platform name.
-
-    Returns None if the platform key is absent in that video's metadata.
-    Raises KeyError (via get_metadata) if the video ID itself is not found.
-
-    Example:
-        get_platform_data("001", "instagram")
-        # -> {"caption": "...", "hashtags": [...]} or None
+    Return the platform-specific metadata dict for video_id, or None if absent.
     """
     meta = get_metadata(video_id)
-    return meta.get(platform)
+    return meta.get("platforms", {}).get(platform)
 
 
 def list_video_ids() -> list[str]:
-    """
-    Return a sorted list of all video IDs present in metadata.json.
-
-    Example:
-        list_video_ids()
-        # -> ["001", "002", "003"]
-    """
+    """Return a sorted list of all video IDs in metadata.json."""
     return sorted(_load().keys())
