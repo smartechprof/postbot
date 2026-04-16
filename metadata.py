@@ -1,0 +1,142 @@
+import json
+import logging
+import os
+from typing import Optional
+
+import config
+
+log = logging.getLogger(__name__)
+
+_cache: Optional[dict] = None
+
+# ── Platform character limits ─────────────────────────────────────────────────
+# Each entry: (platform, field_in_metadata, limit)
+PLATFORM_LIMITS = [
+    ("instagram",  "caption",     2200),
+    ("facebook",   "message",     63206),
+    ("youtube",    "title",       100),
+    ("youtube",    "description", 5000),
+    ("linkedin",   "text",        3000),
+    ("telegram",   "caption",     1024),
+    ("tiktok",     "caption",     2200),
+    ("pinterest",  "title",       100),
+    ("pinterest",  "description", 500),
+    ("x",          "text",        280),
+    ("gmaps",      "summary",     1500),
+]
+
+
+# ── Internal loader ───────────────────────────────────────────────────────────
+
+def _load() -> dict:
+    """Load metadata.json into memory (once) and return it."""
+    global _cache
+    if _cache is not None:
+        return _cache
+
+    path = config.METADATA_FILE
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Metadata file not found: '{path}'")
+
+    with open(path, encoding="utf-8") as fh:
+        _cache = json.load(fh)
+
+    log.info("Loaded metadata from '%s' (%d video(s))", path, len(_cache))
+    return _cache
+
+
+# ── Validation ────────────────────────────────────────────────────────────────
+
+def validate_metadata(video_id: str) -> list[dict]:
+    """
+    Check all text fields for video_id against PLATFORM_LIMITS.
+
+    Logs a WARNING for each field that exceeds its limit but does NOT raise
+    or block publishing. Returns a list of result dicts, one per checked field:
+
+        {
+            "platform": str,
+            "field":    str,
+            "length":   int,
+            "limit":    int,
+            "ok":       bool,
+        }
+
+    Fields absent from the metadata are skipped silently.
+    """
+    data = _load()
+    video_meta = data.get(video_id, {})
+    results = []
+
+    for platform, field, limit in PLATFORM_LIMITS:
+        platform_data = video_meta.get(platform)
+        if not platform_data:
+            continue
+        value = platform_data.get(field)
+        if value is None:
+            continue
+
+        length = len(str(value))
+        ok = length <= limit
+        results.append({
+            "platform": platform,
+            "field":    field,
+            "length":   length,
+            "limit":    limit,
+            "ok":       ok,
+        })
+
+        if not ok:
+            log.warning(
+                "Metadata %s / %s / %s: %d chars exceeds limit of %d (over by %d)",
+                video_id, platform, field, length, limit, length - limit,
+            )
+
+    return results
+
+
+# ── Public API ────────────────────────────────────────────────────────────────
+
+def get_metadata(video_id: str) -> dict:
+    """
+    Return the full metadata dict for a given video ID (e.g. "001").
+
+    Automatically runs validate_metadata() and logs warnings for any fields
+    that exceed platform character limits.
+
+    Raises KeyError if the video ID is not present in metadata.json.
+    """
+    data = _load()
+    if video_id not in data:
+        raise KeyError(
+            f"Video '{video_id}' not found in metadata. "
+            f"Available IDs: {sorted(data.keys())}"
+        )
+    validate_metadata(video_id)
+    return data[video_id]
+
+
+def get_platform_data(video_id: str, platform: str) -> Optional[dict]:
+    """
+    Return the platform-specific dict for a given video ID and platform name.
+
+    Returns None if the platform key is absent in that video's metadata.
+    Raises KeyError (via get_metadata) if the video ID itself is not found.
+
+    Example:
+        get_platform_data("001", "instagram")
+        # -> {"caption": "...", "hashtags": [...]} or None
+    """
+    meta = get_metadata(video_id)
+    return meta.get(platform)
+
+
+def list_video_ids() -> list[str]:
+    """
+    Return a sorted list of all video IDs present in metadata.json.
+
+    Example:
+        list_video_ids()
+        # -> ["001", "002", "003"]
+    """
+    return sorted(_load().keys())
