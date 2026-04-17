@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import subprocess
+import time
 
 import requests
 
@@ -40,7 +41,7 @@ def publish(video_path: str, metadata: dict) -> dict:
 
     log.info(
         "Telegram publish | channel=%s | file=%s | caption=%r",
-        channel, os.path.basename(video_path), caption[:80],
+        channel, os.path.basename(video_path), f"caption ({len(caption)} chars)",
     )
 
     if config.SAFE_MODE:
@@ -69,39 +70,68 @@ def publish(video_path: str, metadata: dict) -> dict:
         log.warning("ffprobe failed, sending without dimensions: %s", exc)
 
     try:
-        post_data = {
-            "chat_id":            channel,
-            "caption":            caption,
-            "parse_mode":         "HTML",
-            "supports_streaming": True,
-        }
-        if width:
-            post_data["width"] = width
-        if height:
-            post_data["height"] = height
+        last_error = "unknown error"
+        for attempt in range(3):
+            try:
+                post_data = {
+                    "chat_id":            channel,
+                    "caption":            caption,
+                    "parse_mode":         "HTML",
+                    "supports_streaming": True,
+                }
+                if width:
+                    post_data["width"] = width
+                if height:
+                    post_data["height"] = height
 
-        with open(mp4_path, "rb") as video_fh:
-            response = requests.post(
-                url,
-                data=post_data,
-                files={"video": (os.path.basename(mp4_path), video_fh, "video/mp4")},
-                timeout=120,
-            )
+                with open(mp4_path, "rb") as video_fh:
+                    response = requests.post(
+                        url,
+                        data=post_data,
+                        files={"video": (os.path.basename(mp4_path), video_fh, "video/mp4")},
+                        timeout=120,
+                    )
 
-        payload = response.json()
+                if not response.ok:
+                    last_error = f"HTTP {response.status_code}: {response.text[:200]}"
+                    log.error("Telegram API error. Check bot token and channel access.")
+                    if attempt < 2:
+                        wait_time = 2 ** attempt * 10
+                        log.warning("Retrying in %ds...", wait_time)
+                        time.sleep(wait_time)
+                    continue
 
-        if response.ok and payload.get("ok"):
-            message_id = payload["result"]["message_id"]
-            log.info("Telegram OK | message_id=%s", message_id)
-            return {"ok": True, "message_id": message_id}
+                try:
+                    payload = response.json()
+                except ValueError:
+                    last_error = f"Invalid JSON response: {response.text[:200]}"
+                    if attempt < 2:
+                        wait_time = 2 ** attempt * 10
+                        log.warning("Retrying in %ds...", wait_time)
+                        time.sleep(wait_time)
+                    continue
 
-        error = payload.get("description", response.text)
-        log.error("Telegram API error: %s", error)
-        return {"ok": False, "error": error}
+                if payload.get("ok"):
+                    message_id = payload["result"]["message_id"]
+                    log.info("Telegram OK | message_id=%s", message_id)
+                    return {"ok": True, "message_id": message_id}
 
-    except requests.RequestException as exc:
-        log.error("Telegram request failed: %s", exc)
-        return {"ok": False, "error": str(exc)}
+                last_error = payload.get("description", response.text)
+                log.error("Telegram API error. Check bot token and channel access.")
+                if attempt < 2:
+                    wait_time = 2 ** attempt * 10
+                    log.warning("Retrying in %ds...", wait_time)
+                    time.sleep(wait_time)
+
+            except requests.RequestException as exc:
+                last_error = str(exc)
+                log.error("Telegram request failed. Check network connection.")
+                if attempt < 2:
+                    wait_time = 2 ** attempt * 10
+                    log.warning("Retrying in %ds...", wait_time)
+                    time.sleep(wait_time)
+
+        return {"ok": False, "error": last_error}
 
     finally:
         delete_temp(mp4_path)

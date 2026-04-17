@@ -54,8 +54,8 @@ def publish(video_path: str, metadata: dict) -> dict:
         return {"ok": False, "error": f"Video file not found: '{video_path}'"}
 
     log.info(
-        "Facebook publish | page=%s | file=%s | message=%r",
-        page_id, os.path.basename(video_path), message[:80],
+        "Facebook publish | page=%s | file=%s | post=%s",
+        page_id, os.path.basename(video_path), f"post ({len(message)} chars)",
     )
 
     if config.SAFE_MODE:
@@ -81,9 +81,18 @@ def publish(video_path: str, metadata: dict) -> dict:
                         timeout=300,
                     )
 
-                payload = response.json()
+                if not response.ok:
+                    last_error = f"HTTP {response.status_code}: {response.text[:200]}"
+                    log.error("Facebook API error (attempt %d/3): %s", attempt + 1, last_error)
+                    continue
+                try:
+                    payload = response.json()
+                except ValueError:
+                    last_error = f"Invalid JSON response: {response.text[:200]}"
+                    log.error("Facebook JSON error (attempt %d/3): %s", attempt + 1, last_error)
+                    continue
 
-                if response.ok and payload.get("id"):
+                if payload.get("id"):
                     post_id = payload["id"]
                     log.info("Facebook OK | post_id=%s", post_id)
                     return {"ok": True, "post_id": post_id}
@@ -96,8 +105,9 @@ def publish(video_path: str, metadata: dict) -> dict:
                 log.error("Facebook request failed (attempt %d/3): %s", attempt + 1, last_error)
 
             if attempt < 2:
-                log.info("Retrying in 30 seconds...")
-                time.sleep(30)
+                wait_time = 2 ** attempt * 10
+                log.warning("Retrying in %ds...", wait_time)
+                time.sleep(wait_time)
 
         return {"ok": False, "error": last_error}
 

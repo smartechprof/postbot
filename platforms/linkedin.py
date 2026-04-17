@@ -9,7 +9,7 @@ Upload flow:
   5. Create a post referencing the uploaded video URN.
 
 Metadata keys (from metadata.json → "linkedin"):
-  text  (str, required) — post commentary text
+  post  (str, required) — post commentary text
   title (str, optional) — video title shown in the post
 """
 
@@ -173,7 +173,7 @@ def _create_post(token: str, person_urn: str, video_urn: str, text: str, title: 
 def _publish_to(author_urn: str, video_path: str, text: str, title: str, token: str) -> dict:
     """Upload video and create a post for one author URN. Returns result dict."""
     file_size = os.path.getsize(video_path)
-    log.info("LinkedIn upload for %s | file=%s | size=%d bytes", author_urn, os.path.basename(video_path), file_size)
+    log.info("LinkedIn upload | file=%s | size=%d bytes", os.path.basename(video_path), file_size)
 
     upload_value = _initialize_upload(token, author_urn, file_size)
     video_urn           = upload_value["video"]
@@ -219,7 +219,7 @@ def publish(video_path: str, metadata: dict) -> dict:
 
     log.info(
         "LinkedIn publish | file=%s | text=%r",
-        os.path.basename(video_path), text[:80],
+        os.path.basename(video_path), f"post ({len(text)} chars)",
     )
 
     if config.SAFE_MODE:
@@ -238,14 +238,15 @@ def publish(video_path: str, metadata: dict) -> dict:
                 r = _publish_to(person_urn, upload_path, text, title, token)
                 log.info("LinkedIn person OK | post_id=%s", r["post_id"])
                 return {"ok": True, "post_id": r["post_id"]}
-            except (requests.Timeout, requests.ConnectionError) as exc:
+            except (requests.Timeout, requests.ConnectionError, requests.exceptions.ConnectionError, ConnectionError) as exc:
                 last_error = str(exc)
-                log.error("LinkedIn person network error (attempt %d/3): %s", attempt + 1, last_error)
+                log.error("LinkedIn network error (attempt %d/3). Retrying...", attempt + 1)
                 if attempt < 2:
-                    log.info("Retrying in 30 seconds...")
-                    time.sleep(30)
+                    wait_time = 2 ** attempt * 10
+                    log.warning("Retrying in %ds...", wait_time)
+                    time.sleep(wait_time)
             except Exception as exc:
-                log.error("LinkedIn person failed: %s", exc)
+                log.error("LinkedIn publish failed. Check credentials and network.")
                 return {"ok": False, "error": str(exc)}
         return {"ok": False, "error": last_error}
     finally:

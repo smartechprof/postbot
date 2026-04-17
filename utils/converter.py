@@ -22,6 +22,15 @@ def _ffmpeg_available() -> bool:
     return shutil.which("ffmpeg") is not None
 
 
+def _validate_video_path(path: str) -> None:
+    """Raise ValueError if path is not a supported video file."""
+    ext = os.path.splitext(path)[1].lower()
+    if ext not in _VIDEO_FORMATS:
+        raise ValueError(f"Unsupported file extension '{ext}': {os.path.basename(path)}")
+    if not os.path.isfile(path):
+        raise FileNotFoundError(f"Video file not found: {os.path.basename(path)}")
+
+
 def _run(cmd: list) -> subprocess.CompletedProcess:
     """Run a shell command, capture output."""
     log.debug("ffmpeg cmd: %s", " ".join(cmd))
@@ -97,6 +106,8 @@ def compress_for_telegram(input_path: str) -> str:
         Path to the compressed .mp4 temp file, or original path if
         compression was skipped or ffmpeg is unavailable.
     """
+    _validate_video_path(input_path)
+
     if not _ffmpeg_available():
         log.warning("ffmpeg not found — skipping Telegram compression, using original: %s", input_path)
         return input_path
@@ -158,6 +169,8 @@ def compress_for_platform(input_path: str) -> str:
         Path to the compressed .mp4 temp file, or original path if
         compression was skipped or ffmpeg is unavailable.
     """
+    _validate_video_path(input_path)
+
     if not _ffmpeg_available():
         log.warning("ffmpeg not found — skipping platform compression, using original: %s", input_path)
         return input_path
@@ -216,6 +229,8 @@ def convert_to_mp4(input_path: str) -> str:
     Returns:
         Path to the converted .mp4 file, or original path if ffmpeg unavailable.
     """
+    _validate_video_path(input_path)
+
     if not _ffmpeg_available():
         log.warning("ffmpeg not found — skipping conversion, using original: %s", input_path)
         return input_path

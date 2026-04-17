@@ -9,7 +9,7 @@ Upload flow:
   5. TWEET  — create tweet via API v2 referencing the media_id.
 
 Metadata keys (from metadata.json → "x"):
-  text  (str, required) — tweet text (max 280 chars)
+  post  (str, required) — tweet post (max 280 chars)
 """
 
 import logging
@@ -182,7 +182,7 @@ def publish(video_path: str, metadata: dict) -> dict:
 
     log.info(
         "X publish | file=%s | text=%r",
-        os.path.basename(video_path), text[:80],
+        os.path.basename(video_path), f"post ({len(text)} chars)",
     )
 
     if config.SAFE_MODE:
@@ -192,23 +192,32 @@ def publish(video_path: str, metadata: dict) -> dict:
     upload_path = compress_for_platform(video_path)
 
     try:
-        session   = _session()
-        file_size = os.path.getsize(upload_path)
+        last_error = "unknown error"
+        for attempt in range(3):
+            try:
+                session   = _session()
+                file_size = os.path.getsize(upload_path)
 
-        media_id      = _init_upload(session, file_size)
-        _append_chunks(session, media_id, upload_path)
-        finalize_data = _finalize_upload(session, media_id)
+                media_id      = _init_upload(session, file_size)
+                _append_chunks(session, media_id, upload_path)
+                finalize_data = _finalize_upload(session, media_id)
 
-        # Poll only if Twitter says processing is pending
-        if finalize_data.get("processing_info", {}).get("state") not in (None, "succeeded"):
-            _poll_processing(session, media_id)
+                # Poll only if Twitter says processing is pending
+                if finalize_data.get("processing_info", {}).get("state") not in (None, "succeeded"):
+                    _poll_processing(session, media_id)
 
-        tweet_id = _create_tweet(session, text, media_id)
-        return {"ok": True, "post_id": tweet_id}
+                tweet_id = _create_tweet(session, text, media_id)
+                return {"ok": True, "post_id": tweet_id}
 
-    except Exception as exc:
-        log.error("X publish failed: %s", exc)
-        return {"ok": False, "error": str(exc)}
+            except Exception as exc:
+                last_error = str(exc)
+                log.error("X publish failed. Check credentials and network.")
+                if attempt < 2:
+                    wait_time = 2 ** attempt * 10
+                    log.warning("Retrying in %ds...", wait_time)
+                    time.sleep(wait_time)
+
+        return {"ok": False, "error": last_error}
 
     finally:
         if upload_path != video_path:

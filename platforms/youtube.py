@@ -13,6 +13,7 @@ Metadata keys (from metadata.json → "youtube"):
 
 import logging
 import os
+import time
 
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
@@ -70,53 +71,63 @@ def publish(video_path: str, metadata: dict) -> dict:
         return {"ok": False, "error": f"Video file not found: '{video_path}'"}
 
     log.info(
-        "YouTube publish | file=%s | title=%r",
-        os.path.basename(video_path), title,
+        "YouTube publish | file=%s | title=%s",
+        os.path.basename(video_path), f"title ({len(title)} chars)",
     )
 
     if config.SAFE_MODE:
         log.info("SAFE_MODE — skipping actual upload to YouTube.")
         return {"ok": True, "video_id": None}
 
-    try:
-        service = _get_service()
+    last_error = "unknown error"
+    for attempt in range(3):
+        try:
+            service = _get_service()
 
-        log.info("Uploading video to YouTube (public)...")
-        body = {
-            "snippet": {
-                "title":       title,
-                "description": description,
-                "tags":        tags,
-                "categoryId":  "22",  # People & Blogs
-            },
-            "status": {
-                "privacyStatus": "public",
-            },
-        }
+            log.info("Uploading video to YouTube (public)...")
+            body = {
+                "snippet": {
+                    "title":       title,
+                    "description": description,
+                    "tags":        tags,
+                    "categoryId":  "22",  # People & Blogs
+                },
+                "status": {
+                    "privacyStatus": "public",
+                },
+            }
 
-        media = MediaFileUpload(
-            video_path,
-            mimetype="video/quicktime",
-            resumable=True,
-            chunksize=8 * 1024 * 1024,
-        )
+            media = MediaFileUpload(
+                video_path,
+                mimetype="video/quicktime",
+                resumable=True,
+                chunksize=8 * 1024 * 1024,
+            )
 
-        insert_request = service.videos().insert(
-            part="snippet,status",
-            body=body,
-            media_body=media,
-        )
+            insert_request = service.videos().insert(
+                part="snippet,status",
+                body=body,
+                media_body=media,
+            )
 
-        response = None
-        while response is None:
-            status, response = insert_request.next_chunk()
-            if status:
-                log.info("Upload progress: %d%%", int(status.progress() * 100))
+            response = None
+            while response is None:
+                status, response = insert_request.next_chunk()
+                if status:
+                    log.info("Upload progress: %d%%", int(status.progress() * 100))
 
-        video_id = response["id"]
-        log.info("Upload complete. video_id=%s", video_id)
-        return {"ok": True, "video_id": video_id}
+            video_id = response.get("id")
+            if not video_id:
+                return {"ok": False, "error": "No video ID returned from YouTube"}
+            log.info("Upload complete. video_id=%s", video_id)
+            return {"ok": True, "video_id": video_id}
 
-    except Exception as exc:
-        log.error("YouTube publish failed: %s", exc)
-        return {"ok": False, "error": str(exc)}
+        except Exception as exc:
+            last_error = str(exc)
+            log.error("YouTube publish failed. Check credentials and network.")
+            if attempt < 2:
+                wait_time = 2 ** attempt * 10
+                log.warning("Retrying in %ds...", wait_time)
+                time.sleep(wait_time)
+
+    return {"ok": False, "error": last_error}
