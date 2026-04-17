@@ -211,7 +211,7 @@ def publish(video_path: str, metadata: dict) -> dict:
 
     try:
         last_error = "unknown error"
-        for attempt in range(3):
+        for attempt in range(config.MAX_RETRY_ATTEMPTS):
             # Step 1: create container
             if video_url:
                 container_data = _create_container_url(video_url, caption, token, user_id)
@@ -221,7 +221,7 @@ def publish(video_path: str, metadata: dict) -> dict:
             if "error" in container_data:
                 last_error = container_data["error"].get("message", str(container_data["error"]))
                 log.error("Failed to create container (attempt %d/3): %s", attempt + 1, last_error)
-                if attempt < 2:
+                if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                     log.info("Retrying in 30 seconds...")
                     time.sleep(30)
                 continue
@@ -230,7 +230,7 @@ def publish(video_path: str, metadata: dict) -> dict:
             if not container_id:
                 last_error = "No container ID returned from Graph API."
                 log.error("(attempt %d/3): %s", attempt + 1, last_error)
-                if attempt < 2:
+                if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                     log.info("Retrying in 30 seconds...")
                     time.sleep(30)
                 continue
@@ -241,7 +241,7 @@ def publish(video_path: str, metadata: dict) -> dict:
             if not _poll_container(container_id, token):
                 last_error = f"Container {container_id} did not reach FINISHED state."
                 log.error("(attempt %d/3): %s", attempt + 1, last_error)
-                if attempt < 2:
+                if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                     log.info("Retrying in 30 seconds...")
                     time.sleep(30)
                 continue
@@ -252,7 +252,7 @@ def publish(video_path: str, metadata: dict) -> dict:
             if "error" in publish_data:
                 last_error = publish_data["error"].get("message", str(publish_data["error"]))
                 log.error("Failed to publish container (attempt %d/3): %s", attempt + 1, last_error)
-                if attempt < 2:
+                if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                     log.info("Retrying in 30 seconds...")
                     time.sleep(30)
                 continue

@@ -233,7 +233,7 @@ def publish(video_path: str, metadata: dict) -> dict:
     log.info("── Publishing to LinkedIn as person (%s)...", person_urn)
     try:
         last_error = "unknown error"
-        for attempt in range(3):
+        for attempt in range(config.MAX_RETRY_ATTEMPTS):
             try:
                 r = _publish_to(person_urn, upload_path, text, title, token)
                 log.info("LinkedIn person OK | post_id=%s", r["post_id"])
@@ -241,7 +241,7 @@ def publish(video_path: str, metadata: dict) -> dict:
             except (requests.Timeout, requests.ConnectionError, requests.exceptions.ConnectionError, ConnectionError) as exc:
                 last_error = str(exc)
                 log.error("LinkedIn network error (attempt %d/3). Retrying...", attempt + 1)
-                if attempt < 2:
+                if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                     wait_time = 2 ** attempt * 10
                     log.warning("Retrying in %ds...", wait_time)
                     time.sleep(wait_time)

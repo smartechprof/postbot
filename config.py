@@ -80,3 +80,9 @@ _REQUIRED = {
 _missing = [name for name, value in _REQUIRED.items() if not value]
 if _missing:
     log.warning("Missing %d required environment variables. Check deployment guide.", len(_missing))
+
+# ── Retry settings ────────────────────────────────────────────────────────────
+MAX_RETRY_ATTEMPTS = int(os.getenv("MAX_RETRY_ATTEMPTS", "5"))
+if MAX_RETRY_ATTEMPTS > 8:
+    MAX_RETRY_ATTEMPTS = 8
+    log.warning("MAX_RETRY_ATTEMPTS capped at 8 for safety")

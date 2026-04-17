@@ -80,7 +80,7 @@ def publish(video_path: str, metadata: dict) -> dict:
         return {"ok": True, "video_id": None}
 
     last_error = "unknown error"
-    for attempt in range(3):
+    for attempt in range(config.MAX_RETRY_ATTEMPTS):
         try:
             service = _get_service()
 
@@ -125,7 +125,7 @@ def publish(video_path: str, metadata: dict) -> dict:
         except Exception as exc:
             last_error = str(exc)
             log.error("YouTube publish failed. Check credentials and network.")
-            if attempt < 2:
+            if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                 wait_time = 2 ** attempt * 10
                 log.warning("Retrying in %ds...", wait_time)
                 time.sleep(wait_time)

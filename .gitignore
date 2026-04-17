@@ -6,3 +6,4 @@ state.txt
 *.log
 .env
 *.env
+.env.test

@@ -71,7 +71,7 @@ def publish(video_path: str, metadata: dict) -> dict:
 
     try:
         last_error = "unknown error"
-        for attempt in range(3):
+        for attempt in range(config.MAX_RETRY_ATTEMPTS):
             try:
                 post_data = {
                     "chat_id":            channel,
@@ -95,7 +95,7 @@ def publish(video_path: str, metadata: dict) -> dict:
                 if not response.ok:
                     last_error = f"HTTP {response.status_code}: {response.text[:200]}"
                     log.error("Telegram API error. Check bot token and channel access.")
-                    if attempt < 2:
+                    if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                         wait_time = 2 ** attempt * 10
                         log.warning("Retrying in %ds...", wait_time)
                         time.sleep(wait_time)
@@ -105,7 +105,7 @@ def publish(video_path: str, metadata: dict) -> dict:
                     payload = response.json()
                 except ValueError:
                     last_error = f"Invalid JSON response: {response.text[:200]}"
-                    if attempt < 2:
+                    if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                         wait_time = 2 ** attempt * 10
                         log.warning("Retrying in %ds...", wait_time)
                         time.sleep(wait_time)
@@ -118,7 +118,7 @@ def publish(video_path: str, metadata: dict) -> dict:
 
                 last_error = payload.get("description", response.text)
                 log.error("Telegram API error. Check bot token and channel access.")
-                if attempt < 2:
+                if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                     wait_time = 2 ** attempt * 10
                     log.warning("Retrying in %ds...", wait_time)
                     time.sleep(wait_time)
@@ -126,7 +126,7 @@ def publish(video_path: str, metadata: dict) -> dict:
             except requests.RequestException as exc:
                 last_error = str(exc)
                 log.error("Telegram request failed. Check network connection.")
-                if attempt < 2:
+                if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                     wait_time = 2 ** attempt * 10
                     log.warning("Retrying in %ds...", wait_time)
                     time.sleep(wait_time)

@@ -193,7 +193,7 @@ def publish(video_path: str, metadata: dict) -> dict:
 
     try:
         last_error = "unknown error"
-        for attempt in range(3):
+        for attempt in range(config.MAX_RETRY_ATTEMPTS):
             try:
                 session   = _session()
                 file_size = os.path.getsize(upload_path)
@@ -212,7 +212,7 @@ def publish(video_path: str, metadata: dict) -> dict:
             except Exception as exc:
                 last_error = str(exc)
                 log.error("X publish failed. Check credentials and network.")
-                if attempt < 2:
+                if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                     wait_time = 2 ** attempt * 10
                     log.warning("Retrying in %ds...", wait_time)
                     time.sleep(wait_time)

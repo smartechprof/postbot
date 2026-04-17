@@ -67,7 +67,7 @@ def publish(video_path: str, metadata: dict) -> dict:
 
     try:
         last_error = "unknown error"
-        for attempt in range(3):
+        for attempt in range(config.MAX_RETRY_ATTEMPTS):
             try:
                 with open(upload_path, "rb") as video_fh:
                     response = requests.post(
@@ -104,7 +104,7 @@ def publish(video_path: str, metadata: dict) -> dict:
                 last_error = str(exc)
                 log.error("Facebook request failed (attempt %d/3): %s", attempt + 1, last_error)
 
-            if attempt < 2:
+            if attempt < config.MAX_RETRY_ATTEMPTS - 1:
                 wait_time = 2 ** attempt * 10
                 log.warning("Retrying in %ds...", wait_time)
                 time.sleep(wait_time)
