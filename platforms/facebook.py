@@ -40,7 +40,7 @@ def publish(video_path: str, metadata: dict) -> dict:
         {"ok": True,  "post_id": str}   on success.
         {"ok": False, "error": str}      on failure.
     """
-    message     = metadata.get("message", "")
+    message     = metadata.get("post", "")
     title       = metadata.get("title", "")
     description = metadata.get("description", "")
     page_id     = config.FB_PAGE_ID

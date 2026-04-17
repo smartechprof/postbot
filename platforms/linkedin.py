@@ -207,7 +207,7 @@ def publish(video_path: str, metadata: dict) -> dict:
         {"ok": True,  "post_id": str}   on success (person post ID).
         {"ok": False, "error": str}      on failure.
     """
-    text   = metadata.get("text", "")
+    text   = metadata.get("post", "")
     title  = metadata.get("title", "")
     token  = config.LI_ACCESS_TOKEN
     org_id = config.LI_ORGANIZATION_ID

@@ -167,7 +167,7 @@ def publish(video_path: str, metadata: dict) -> dict:
         {"ok": True,  "post_id": str}   on success.
         {"ok": False, "error": str}      on failure.
     """
-    text = metadata.get("text", "")
+    text = metadata.get("post", "")
 
     if not config.X_API_KEY:
         return {"ok": False, "error": "X_API_KEY is not set."}
