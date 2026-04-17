@@ -79,4 +79,4 @@ _REQUIRED = {
 
 _missing = [name for name, value in _REQUIRED.items() if not value]
 if _missing:
-    log.warning("Missing required environment variables: %s", ", ".join(_missing))
+    log.warning("Missing %d required environment variables. Check deployment guide.", len(_missing))

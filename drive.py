@@ -145,7 +145,11 @@ def download_file(file_name: str, folder_name: str = None) -> str:
 
     log.info("Downloading '%s' (id=%s)...", file_name, file_id)
 
-    local_path = os.path.join(tempfile.gettempdir(), file_name)
+    # Sanitize file name to prevent path traversal
+    safe_name = os.path.basename(file_name).replace("..", "")
+    if not safe_name or safe_name.startswith("."):
+        safe_name = f"video_{file_id}"
+    local_path = os.path.join(tempfile.gettempdir(), safe_name)
 
     request = service.files().get_media(fileId=file_id)
     with open(local_path, "wb") as fh:

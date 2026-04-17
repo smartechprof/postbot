@@ -25,7 +25,7 @@ def get_last_published() -> Optional[str]:
         log.warning("State file '%s' is empty — treating as first run.", path)
         return None
 
-    log.info("Last published video ID: '%s'", value)
+    log.info("Found last published video ID in state file.")
     return value
 
 
@@ -50,10 +50,7 @@ def get_next_video_id(metadata_ids: list[str]) -> str:
         return next_id
 
     if last not in metadata_ids:
-        log.warning(
-            "Last published ID '%s' not found in metadata — starting from the beginning.",
-            last,
-        )
+        log.warning("Last published ID not found in metadata — starting from the beginning.")
         return metadata_ids[0]
 
     current_index = metadata_ids.index(last)

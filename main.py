@@ -176,7 +176,7 @@ def main() -> None:
         try:
             video_path = drive.download_file(file_name)
         except Exception as exc:
-            log.error("Drive download failed: %s", exc)
+            log.error("Drive download failed. Check credentials and network.")
             sys.exit(1)
         log.info("Downloaded to: %s", video_path)
 
@@ -185,7 +185,7 @@ def main() -> None:
     try:
         md.get_metadata(video_id)   # triggers validation + warnings
     except KeyError as exc:
-        log.error("Metadata error: %s", exc)
+        log.error("Metadata validation failed. Check metadata.json format.")
         sys.exit(1)
 
     # ── Publish to each platform ──────────────────────────────────────────────
@@ -209,7 +209,7 @@ def main() -> None:
         try:
             result = module.publish(video_path, platform_meta)
         except Exception as exc:
-            log.error("Unexpected error on %s: %s", platform_name, exc)
+            log.error("Unexpected error on %s. Check platform credentials.", platform_name)
             result = {"ok": False, "error": str(exc)}
 
         ok     = result.get("ok", False)

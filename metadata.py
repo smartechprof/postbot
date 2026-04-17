@@ -13,15 +13,16 @@ _cache: Optional[dict] = None
 # Each entry: (platform, field_in_metadata, limit)
 PLATFORM_LIMITS = [
     ("instagram",  "caption",     2200),
-    ("facebook",   "message",     63206),
+    ("facebook",   "post",     63206),
     ("youtube",    "title",       100),
     ("youtube",    "description", 5000),
-    ("linkedin",   "text",        3000),
+    ("youtube",    "tags",        500),
+    ("linkedin",   "post",        3000),
     ("telegram",   "caption",     1024),
     ("tiktok",     "caption",     2200),
     ("pinterest",  "title",       100),
     ("pinterest",  "description", 500),
-    ("x",          "text",        280),
+    ("x",          "post",        280),
     ("gmaps",      "summary",     1500),
 ]
 
@@ -75,7 +76,10 @@ def validate_metadata(video_id: str) -> list[dict]:
         value = platform_data.get(field)
         if value is None:
             continue
-        length = len(str(value))
+        if isinstance(value, list):
+            length = sum(len(str(tag)) for tag in value)
+        else:
+            length = len(str(value))
         ok = length <= limit
         results.append({
             "platform": platform,
