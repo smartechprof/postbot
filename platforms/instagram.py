@@ -36,14 +36,24 @@ def _graph_post(endpoint: str, **kwargs) -> dict:
     """POST to Graph API endpoint, return parsed JSON."""
     url = f"{_GRAPH}/{endpoint}"
     resp = requests.post(url, timeout=60, **kwargs)
-    return resp.json()
+    if not resp.ok:
+        return {"error": {"message": f"HTTP {resp.status_code}: {resp.text[:200]}"}}
+    try:
+        return resp.json()
+    except ValueError:
+        return {"error": {"message": f"Invalid JSON response: {resp.text[:200]}"}}
 
 
 def _graph_get(endpoint: str, params: dict) -> dict:
     """GET from Graph API endpoint, return parsed JSON."""
     url = f"{_GRAPH}/{endpoint}"
     resp = requests.get(url, params=params, timeout=30)
-    return resp.json()
+    if not resp.ok:
+        return {"error": {"message": f"HTTP {resp.status_code}: {resp.text[:200]}"}}
+    try:
+        return resp.json()
+    except ValueError:
+        return {"error": {"message": f"Invalid JSON response: {resp.text[:200]}"}}
 
 
 def _poll_container(container_id: str, token: str) -> bool:
@@ -188,7 +198,7 @@ def publish(video_path: str, metadata: dict) -> dict:
 
     log.info(
         "Instagram publish | user=%s | file=%s | caption=%r",
-        user_id, os.path.basename(video_path), caption[:80],
+        user_id, os.path.basename(video_path), f"caption ({len(caption)} chars)",
     )
 
     if config.SAFE_MODE:
