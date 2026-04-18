@@ -161,3 +161,71 @@ grep -r "subprocess\|os.system" . --exclude-dir=.git
 ```
 
 Last Updated: 2026-04-17
+
+## Web Application Security (Future Requirements)
+
+### SQL Injection Prevention
+**Applies to:** Future web interface, user database, analytics
+- Use parameterized queries/prepared statements
+- Never concatenate user input into SQL strings
+- Validate all input types and ranges
+- Use ORM with built-in protection (SQLAlchemy, Django ORM)
+- Example: `cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))`
+
+### Cross-Site Scripting (XSS) Prevention  
+**Applies to:** Future web dashboard, user content display
+- Escape all user output in templates
+- Use Content Security Policy (CSP) headers
+- Validate and sanitize all form inputs
+- Never use `innerHTML` with user data
+- Example: `escape(user_input)` before display
+
+### API Security & Authorization
+**Applies to:** Future REST API, webhook endpoints, user accounts
+- Implement proper authentication (JWT, OAuth)
+- Authorize every endpoint based on user permissions
+- Rate limiting on all public endpoints
+- API key rotation and expiration
+- Never expose internal IDs or system details
+- Example: `@require_auth` decorator on all routes
+
+### Current PostBot Security (Apply Now)
+
+#### Encrypted Token Storage
+**Status:** NOT IMPLEMENTED - tokens in plaintext `/etc/igbot.env`
+- Encrypt tokens at rest using system keyring
+- Use environment variables only in development
+- Production: use AWS Secrets Manager, HashiCorp Vault, or similar
+- Rotate tokens regularly
+
+#### Complete Secrets Audit  
+**Status:** PARTIALLY COMPLETE - needs deeper review
+- Scan entire codebase for hardcoded secrets
+- Check logs for accidental token exposure
+- Verify no secrets in Git history
+- Check temporary files and error dumps
+
+
+## Lessons Learned (Real Incidents)
+
+### YouTube Tags Length — Real Limit Is Stricter
+YouTube API counts tag length **including quotes around multi-word tags**, not raw character count. A tag like `spray foam` is counted as `"spray foam"` = 12 chars, not 10.
+- **Empirically verified working limit:** ~460 chars (computed with quotes)
+- **API rejects** `invalidTags` / HTTP 400 when total exceeds the internal threshold (observed failure at 546 "chars-with-quotes")
+- **Formula for validation:** `sum(len(tag) + (2 if ' ' in tag else 0) for tag in tags)`
+- Our `PLATFORM_LIMITS` entry uses 460 as safe ceiling
+
+### OAuth Refresh Tokens — Match Scopes To Actual API Usage
+When generating a refresh token, the scope list must include **every scope** the application uses at runtime. A common trap:
+- App calls `channels.list(mine=True)` → needs `youtube.readonly` (or `youtube`)
+- App calls `videos.insert(...)` → needs `youtube.upload`
+- Token with only `youtube.upload` fails with HTTP 403 `insufficientPermissions` on the first call
+- **Scopes cannot be added to an existing token** — must regenerate
+- **Google Testing mode:** refresh tokens can be revoked unpredictably (official rule: 7 days of inactivity, but in practice triggers happen sooner). Plan for Production verification to avoid weekly token rotation.
+
+### Token Rotation Runbook
+If `invalid_grant: Token has been expired or revoked`:
+1. Open OAuth consent page in Google Cloud Console, confirm `polynor.geo@gmail.com` is listed as test user
+2. Run local script (e.g. `get_youtube_token.py`) on Mac to open browser OAuth flow
+3. Replace only the `*_REFRESH_TOKEN` value in `/etc/igbot.env` — keep `CLIENT_ID` and `CLIENT_SECRET` unchanged
+4. Verify with a direct API call before running bot in production mode
