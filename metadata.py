@@ -16,7 +16,7 @@ PLATFORM_LIMITS = [
     ("facebook",   "post",     63206),
     ("youtube",    "title",       100),
     ("youtube",    "description", 5000),
-    ("youtube",    "tags",        500),
+    ("youtube",    "tags",        460),
     ("linkedin",   "post",        3000),
     ("telegram",   "caption",     1024),
     ("tiktok",     "caption",     2200),
@@ -77,7 +77,11 @@ def validate_metadata(video_id: str) -> list[dict]:
         if value is None:
             continue
         if isinstance(value, list):
-            length = sum(len(str(tag)) for tag in value)
+            if platform == "youtube" and field == "tags":
+                # YouTube wraps multi-word tags in quotes, adding 2 chars per such tag
+                length = sum(len(str(tag)) + (2 if " " in str(tag) else 0) for tag in value)
+            else:
+                length = sum(len(str(tag)) for tag in value)
         else:
             length = len(str(value))
         ok = length <= limit

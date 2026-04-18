@@ -7,3 +7,6 @@ state.txt
 .env
 *.env
 .env.test
+get_drive_token.py
+get_youtube_token.py
+.DS_Store
