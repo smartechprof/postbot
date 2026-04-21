@@ -38,8 +38,10 @@ LI_ORGANIZATION_ID = os.getenv("LI_ORGANIZATION_ID")  # optional: publish to org
 # ── TikTok (placeholder for future) ──────────────────────────────────────────
 TIKTOK_ACCESS_TOKEN = os.getenv("TIKTOK_ACCESS_TOKEN")
 
-# ── Google Business Profile (placeholder for future) ─────────────────────────
-GBP_ACCESS_TOKEN = os.getenv("GBP_ACCESS_TOKEN")
+# ── Google Business Profile ───────────────────────────────────────────────────
+GBP_ACCOUNT_ID    = os.getenv("GBP_ACCOUNT_ID")
+GBP_LOCATION_ID   = os.getenv("GBP_LOCATION_ID")
+GBP_REFRESH_TOKEN = os.getenv("GBP_REFRESH_TOKEN")
 
 # ── X / Twitter (placeholder for future) ─────────────────────────────────────
 X_API_KEY              = os.getenv("X_API_KEY")
@@ -75,6 +77,9 @@ _REQUIRED = {
     "LI_ACCESS_TOKEN":     LI_ACCESS_TOKEN,
     "LI_CLIENT_ID":        LI_CLIENT_ID,
     "LI_CLIENT_SECRET":    LI_CLIENT_SECRET,
+    "GBP_ACCOUNT_ID":    GBP_ACCOUNT_ID,
+    "GBP_LOCATION_ID":   GBP_LOCATION_ID,
+    "GBP_REFRESH_TOKEN": GBP_REFRESH_TOKEN,
 }
 
 _missing = [name for name, value in _REQUIRED.items() if not value]
