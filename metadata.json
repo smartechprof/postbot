@@ -1,359 +1,404 @@
 {
   "001": {
-    "telegram": {
-      "caption": "You can DIY this. And it will last half a century. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
-    },
-    "instagram": {
-      "caption": "You can DIY this. And it will last half a century. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #satisfyingvideo #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #sprayfoamvideos #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub"
-    },
-    "facebook": {
-      "message": "You can DIY this. And it will last half a century.\n\nSpray polyurethane foam insulation — applied with a foam gun and fan nozzle. Seamless, doesn't absorb moisture, zero gaps. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #homeimprovement"
-    },
-    "youtube": {
-      "title": "You can DIY this. And it will last half a century. | Spray Foam Insulation",
-      "description": "Watch the process of applying spray polyurethane foam insulation using a professional foam gun with a fan nozzle attachment.\n\nSpray foam insulation creates a seamless, doesn't absorb moisture thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any surface\n\nKeywords: spray foam insulation, spray polyurethane foam, one component spray foam, foam in a can, DIY spray foam, thermal insulation foam, foam gun insulation\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
-      "tags": [
-        "spray foam insulation",
-        "spray polyurethane foam",
-        "one component spray foam",
-        "foam in a can",
-        "DIY spray foam",
-        "thermal insulation foam",
-        "foam gun insulation",
-        "wall insulation DIY",
-        "energy efficient insulation",
-        "seamless insulation",
-        "doesn't absorb moisture insulation",
-        "satisfying spray foam",
-        "spray foam videos",
-        "sprayfoamhub"
-      ]
-    },
-    "linkedin": {
-      "text": "You can DIY this. And it will last half a century.\n\nSpray polyurethane foam insulation applied with a foam gun and fan nozzle — seamless, doesn't absorb moisture, and built to last 50 years. No seams, no gaps, no moisture damage. One application. A lifetime of thermal performance.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
-      "title": "You can DIY this. And it will last half a century. | Spray Foam Insulation"
-    },
-    "x": {
-      "text": "You can DIY this. And it will last half a century. 🔥 #sprayfoam #insulation #satisfying #fyp #DIYinsulation #sprayfoaminsulation #satisfyingvideo #sprayfoamvideos #polyurethanefoam #foamgun #homeimprovement #construction"
-    },
-    "gmaps": {
-      "summary": "You can DIY this. And it will last half a century. / ამის გაკეთება შეგიძლია თვითონ. და გაძლებს ნახევარ საუკუნეს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
-      "call_to_action_type": "CALL"
+    "platforms": {
+      "telegram": {
+        "caption": "You can DIY this. And it will last half a century. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
+      },
+      "instagram": {
+        "caption": "You can DIY this. And it will last half a century. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #satisfyingvideo #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #sprayfoamvideos #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub"
+      },
+      "facebook": {
+        "message": "You can DIY this. And it will last half a century.\n\nSpray polyurethane foam insulation — applied with a foam gun and fan nozzle. Seamless, doesn't absorb moisture, zero gaps. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #homeimprovement"
+      },
+      "youtube": {
+        "title": "You can DIY this. And it will last half a century. | Spray Foam Insulation",
+        "description": "Watch the process of applying spray polyurethane foam insulation using a professional foam gun with a fan nozzle attachment.\n\nSpray foam insulation creates a seamless, doesn't absorb moisture thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any surface\n\nKeywords: spray foam insulation, spray polyurethane foam, one component spray foam, foam in a can, DIY spray foam, thermal insulation foam, foam gun insulation\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
+        "tags": [
+          "spray foam insulation",
+          "spray polyurethane foam",
+          "one component spray foam",
+          "foam in a can",
+          "DIY spray foam",
+          "thermal insulation foam",
+          "foam gun insulation",
+          "wall insulation DIY",
+          "energy efficient insulation",
+          "seamless insulation",
+          "doesn't absorb moisture insulation",
+          "satisfying spray foam",
+          "spray foam videos",
+          "sprayfoamhub"
+        ]
+      },
+      "linkedin": {
+        "text": "You can DIY this. And it will last half a century.\n\nSpray polyurethane foam insulation applied with a foam gun and fan nozzle — seamless, doesn't absorb moisture, and built to last 50 years. No seams, no gaps, no moisture damage. One application. A lifetime of thermal performance.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
+        "title": "You can DIY this. And it will last half a century. | Spray Foam Insulation"
+      },
+      "x": {
+        "text": "You can DIY this. And it will last half a century. 🔥 #sprayfoam #insulation #satisfying #fyp #DIYinsulation #sprayfoaminsulation #satisfyingvideo #sprayfoamvideos #polyurethanefoam #foamgun #homeimprovement #construction"
+      },
+      "gmaps": {
+        "summary": "You can DIY this. And it will last half a century. / ამის გაკეთება შეგიძლია თვითონ. და გაძლებს ნახევარ საუკუნეს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
+        "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "You can DIY this. And it will last half a century.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
+      }
     }
   },
   "002": {
-    "telegram": {
-      "caption": "Weird angles, tight corners, complex curves — foam wins. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
-    },
-    "instagram": {
-      "caption": "Weird angles, tight corners, complex curves — foam wins. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #satisfyingvideo #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #sprayfoamvideos #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub"
-    },
-    "facebook": {
-      "message": "Weird angles, tight corners, complex curves — foam wins.\n\nSpray polyurethane foam insulation — applied with a foam gun and fan nozzle. Seamless, doesn't absorb moisture, zero gaps. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #homeimprovement"
-    },
-    "youtube": {
-      "title": "Weird angles, tight corners, complex curves — foam wins. | Spray Foam Insulation",
-      "description": "Watch the process of applying spray polyurethane foam insulation using a professional foam gun.\n\nWeird angles, tight corners, complex curves — foam wins.\n\nSpray foam insulation creates a seamless, doesn't absorb moisture thermal barrier on any surface — no gaps, no joints, no moisture problems.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
-      "tags": [
-        "spray foam insulation",
-        "spray polyurethane foam",
-        "one component spray foam",
-        "foam in a can",
-        "DIY spray foam",
-        "thermal insulation foam",
-        "foam gun insulation",
-        "wall insulation DIY",
-        "energy efficient insulation",
-        "seamless insulation",
-        "doesn't absorb moisture insulation",
-        "satisfying spray foam",
-        "spray foam videos",
-        "sprayfoamhub"
-      ]
-    },
-    "linkedin": {
-      "text": "Weird angles, tight corners, complex curves — foam wins.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
-      "title": "Weird angles, tight corners, complex curves — foam wins. | Spray Foam Insulation"
-    },
-    "x": {
-      "text": "Weird angles, tight corners, complex curves — foam wins. 🔥 #sprayfoam #insulation #satisfying #fyp #DIYinsulation #sprayfoaminsulation #satisfyingvideo #sprayfoamvideos #polyurethanefoam #foamgun #homeimprovement #construction"
-    },
-    "gmaps": {
-      "summary": "Weird angles, tight corners, complex curves — foam wins. / რთული კუთხეები, ვიწრო ადგილები, მოხრილი ფორმები — ქაფი ყველაფერთან გამოდის. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
-      "call_to_action_type": "CALL"
+    "platforms": {
+      "telegram": {
+        "caption": "Weird angles, tight corners, complex curves — foam wins. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
+      },
+      "instagram": {
+        "caption": "Weird angles, tight corners, complex curves — foam wins. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #satisfyingvideo #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #sprayfoamvideos #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub"
+      },
+      "facebook": {
+        "message": "Weird angles, tight corners, complex curves — foam wins.\n\nSpray polyurethane foam insulation — applied with a foam gun and fan nozzle. Seamless, doesn't absorb moisture, zero gaps. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #homeimprovement"
+      },
+      "youtube": {
+        "title": "Weird angles, tight corners, complex curves — foam wins. | Spray Foam Insulation",
+        "description": "Watch the process of applying spray polyurethane foam insulation using a professional foam gun.\n\nWeird angles, tight corners, complex curves — foam wins.\n\nSpray foam insulation creates a seamless, doesn't absorb moisture thermal barrier on any surface — no gaps, no joints, no moisture problems.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
+        "tags": [
+          "spray foam insulation",
+          "spray polyurethane foam",
+          "one component spray foam",
+          "foam in a can",
+          "DIY spray foam",
+          "thermal insulation foam",
+          "foam gun insulation",
+          "wall insulation DIY",
+          "energy efficient insulation",
+          "seamless insulation",
+          "doesn't absorb moisture insulation",
+          "satisfying spray foam",
+          "spray foam videos",
+          "sprayfoamhub"
+        ]
+      },
+      "linkedin": {
+        "text": "Weird angles, tight corners, complex curves — foam wins.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
+        "title": "Weird angles, tight corners, complex curves — foam wins. | Spray Foam Insulation"
+      },
+      "x": {
+        "text": "Weird angles, tight corners, complex curves — foam wins. 🔥 #sprayfoam #insulation #satisfying #fyp #DIYinsulation #sprayfoaminsulation #satisfyingvideo #sprayfoamvideos #polyurethanefoam #foamgun #homeimprovement #construction"
+      },
+      "gmaps": {
+        "summary": "Weird angles, tight corners, complex curves — foam wins. / რთული კუთხეები, ვიწრო ადგილები, მოხრილი ფორმები — ქაფი ყველაფერთან გამოდის. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
+        "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Weird angles, tight corners, complex curves — foam wins.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
+      }
     }
   },
   "004": {
-    "telegram": {
-      "caption": "No gaps. No joints. No moisture. No problem. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
-    },
-    "instagram": {
-      "caption": "No gaps. No joints. No moisture. No problem. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
-    },
-    "facebook": {
-      "message": "No gaps. No joints. No moisture. No problem.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
-    },
-    "youtube": {
-      "title": "No gaps. No joints. No moisture. No problem. | Spray Foam Insulation",
-      "description": "Spray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
-      "tags": [
-        "spray foam insulation",
-        "spray polyurethane foam",
-        "one component spray foam",
-        "DIY spray foam",
-        "thermal insulation foam",
-        "foam gun insulation",
-        "seamless insulation",
-        "doesn't absorb moisture insulation",
-        "satisfying spray foam",
-        "spray foam videos",
-        "sprayfoamhub"
-      ]
-    },
-    "linkedin": {
-      "text": "No gaps. No joints. No moisture. No problem.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
-      "title": "No gaps. No joints. No moisture. No problem. | Spray Foam Insulation"
-    },
-    "x": {
-      "text": "No gaps. No joints. No moisture. No problem. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
-    },
-    "gmaps": {
-      "summary": "No gaps. No joints. No moisture. No problem. / ნაპრალი — არა. ნაკერი — არა. ტენი — არა. პრობლემა — არა. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
-      "call_to_action_type": "CALL"
+    "platforms": {
+      "telegram": {
+        "caption": "No gaps. No joints. No moisture. No problem. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
+      },
+      "instagram": {
+        "caption": "No gaps. No joints. No moisture. No problem. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
+      },
+      "facebook": {
+        "message": "No gaps. No joints. No moisture. No problem.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
+      },
+      "youtube": {
+        "title": "No gaps. No joints. No moisture. No problem. | Spray Foam Insulation",
+        "description": "Spray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
+        "tags": [
+          "spray foam insulation",
+          "spray polyurethane foam",
+          "one component spray foam",
+          "DIY spray foam",
+          "thermal insulation foam",
+          "foam gun insulation",
+          "seamless insulation",
+          "doesn't absorb moisture insulation",
+          "satisfying spray foam",
+          "spray foam videos",
+          "sprayfoamhub"
+        ]
+      },
+      "linkedin": {
+        "text": "No gaps. No joints. No moisture. No problem.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
+        "title": "No gaps. No joints. No moisture. No problem. | Spray Foam Insulation"
+      },
+      "x": {
+        "text": "No gaps. No joints. No moisture. No problem. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
+      },
+      "gmaps": {
+        "summary": "No gaps. No joints. No moisture. No problem. / ნაპრალი — არა. ნაკერი — არა. ტენი — არა. პრობლემა — არა. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
+        "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "No gaps. No joints. No moisture. No problem.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
+      }
     }
   },
   "005": {
-    "telegram": {
-      "caption": "Most insulation fights moisture. This one ignores it. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
-    },
-    "instagram": {
-      "caption": "Most insulation fights moisture. This one ignores it. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
-    },
-    "facebook": {
-      "message": "Most insulation fights moisture. This one ignores it.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
-    },
-    "youtube": {
-      "title": "Most insulation fights moisture. This one ignores it. | Spray Foam Insulation",
-      "description": "Most insulation fights moisture. This one ignores it.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
-      "tags": [
-        "spray foam insulation",
-        "spray polyurethane foam",
-        "one component spray foam",
-        "DIY spray foam",
-        "thermal insulation foam",
-        "foam gun insulation",
-        "seamless insulation",
-        "doesn't absorb moisture insulation",
-        "satisfying spray foam",
-        "spray foam videos",
-        "sprayfoamhub"
-      ]
-    },
-    "linkedin": {
-      "text": "Most insulation fights moisture. This one ignores it.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
-      "title": "Most insulation fights moisture. This one ignores it. | Spray Foam Insulation"
-    },
-    "x": {
-      "text": "Most insulation fights moisture. This one ignores it. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
-    },
-    "gmaps": {
-      "summary": "Most insulation fights moisture. This one ignores it. / სხვა იზოლაცია ტენს ებრძვის. ეს — უგულებელყოფს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
-      "call_to_action_type": "CALL"
+    "platforms": {
+      "telegram": {
+        "caption": "Most insulation fights moisture. This one ignores it. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
+      },
+      "instagram": {
+        "caption": "Most insulation fights moisture. This one ignores it. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
+      },
+      "facebook": {
+        "message": "Most insulation fights moisture. This one ignores it.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
+      },
+      "youtube": {
+        "title": "Most insulation fights moisture. This one ignores it. | Spray Foam Insulation",
+        "description": "Most insulation fights moisture. This one ignores it.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
+        "tags": [
+          "spray foam insulation",
+          "spray polyurethane foam",
+          "one component spray foam",
+          "DIY spray foam",
+          "thermal insulation foam",
+          "foam gun insulation",
+          "seamless insulation",
+          "doesn't absorb moisture insulation",
+          "satisfying spray foam",
+          "spray foam videos",
+          "sprayfoamhub"
+        ]
+      },
+      "linkedin": {
+        "text": "Most insulation fights moisture. This one ignores it.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
+        "title": "Most insulation fights moisture. This one ignores it. | Spray Foam Insulation"
+      },
+      "x": {
+        "text": "Most insulation fights moisture. This one ignores it. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
+      },
+      "gmaps": {
+        "summary": "Most insulation fights moisture. This one ignores it. / სხვა იზოლაცია ტენს ებრძვის. ეს — უგულებელყოფს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
+        "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Most insulation fights moisture. This one ignores it.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
+      }
     }
   },
   "006": {
-    "telegram": {
-      "caption": "Set it once. Forget it for 50 years. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
-    },
-    "instagram": {
-      "caption": "Set it once. Forget it for 50 years. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
-    },
-    "facebook": {
-      "message": "Set it once. Forget it for 50 years.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
-    },
-    "youtube": {
-      "title": "Set it once. Forget it for 50 years. | Spray Foam Insulation",
-      "description": "Set it once. Forget it for 50 years.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
-      "tags": [
-        "spray foam insulation",
-        "spray polyurethane foam",
-        "one component spray foam",
-        "DIY spray foam",
-        "thermal insulation foam",
-        "foam gun insulation",
-        "seamless insulation",
-        "doesn't absorb moisture insulation",
-        "satisfying spray foam",
-        "spray foam videos",
-        "sprayfoamhub"
-      ]
-    },
-    "linkedin": {
-      "text": "Set it once. Forget it for 50 years.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
-      "title": "Set it once. Forget it for 50 years. | Spray Foam Insulation"
-    },
-    "x": {
-      "text": "Set it once. Forget it for 50 years. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
-    },
-    "gmaps": {
-      "summary": "Set it once. Forget it for 50 years. / ერთხელ დაიდე. 50 წლით დაივიწყე. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
-      "call_to_action_type": "CALL"
+    "platforms": {
+      "telegram": {
+        "caption": "Set it once. Forget it for 50 years. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
+      },
+      "instagram": {
+        "caption": "Set it once. Forget it for 50 years. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
+      },
+      "facebook": {
+        "message": "Set it once. Forget it for 50 years.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
+      },
+      "youtube": {
+        "title": "Set it once. Forget it for 50 years. | Spray Foam Insulation",
+        "description": "Set it once. Forget it for 50 years.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
+        "tags": [
+          "spray foam insulation",
+          "spray polyurethane foam",
+          "one component spray foam",
+          "DIY spray foam",
+          "thermal insulation foam",
+          "foam gun insulation",
+          "seamless insulation",
+          "doesn't absorb moisture insulation",
+          "satisfying spray foam",
+          "spray foam videos",
+          "sprayfoamhub"
+        ]
+      },
+      "linkedin": {
+        "text": "Set it once. Forget it for 50 years.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
+        "title": "Set it once. Forget it for 50 years. | Spray Foam Insulation"
+      },
+      "x": {
+        "text": "Set it once. Forget it for 50 years. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
+      },
+      "gmaps": {
+        "summary": "Set it once. Forget it for 50 years. / ერთხელ დაიდე. 50 წლით დაივიწყე. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
+        "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Set it once. Forget it for 50 years.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
+      }
     }
   },
   "007": {
-    "telegram": {
-      "caption": "This foam fills what other insulation can't even reach. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
-    },
-    "instagram": {
-      "caption": "This foam fills what other insulation can't even reach. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
-    },
-    "facebook": {
-      "message": "This foam fills what other insulation can't even reach.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
-    },
-    "youtube": {
-      "title": "This foam fills what other insulation can't even reach. | Spray Foam Insulation",
-      "description": "This foam fills what other insulation can't even reach.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
-      "tags": [
-        "spray foam insulation",
-        "spray polyurethane foam",
-        "one component spray foam",
-        "DIY spray foam",
-        "thermal insulation foam",
-        "foam gun insulation",
-        "seamless insulation",
-        "doesn't absorb moisture insulation",
-        "satisfying spray foam",
-        "spray foam videos",
-        "sprayfoamhub"
-      ]
-    },
-    "linkedin": {
-      "text": "This foam fills what other insulation can't even reach.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
-      "title": "This foam fills what other insulation can't even reach. | Spray Foam Insulation"
-    },
-    "x": {
-      "text": "This foam fills what other insulation can't even reach. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
-    },
-    "gmaps": {
-      "summary": "This foam fills what other insulation can't even reach. / ეს ქაფი ავსებს იქაც, სადაც სხვა იზოლაციას მიღწევა არ შეუძლია. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
-      "call_to_action_type": "CALL"
+    "platforms": {
+      "telegram": {
+        "caption": "This foam fills what other insulation can't even reach. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
+      },
+      "instagram": {
+        "caption": "This foam fills what other insulation can't even reach. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
+      },
+      "facebook": {
+        "message": "This foam fills what other insulation can't even reach.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
+      },
+      "youtube": {
+        "title": "This foam fills what other insulation can't even reach. | Spray Foam Insulation",
+        "description": "This foam fills what other insulation can't even reach.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
+        "tags": [
+          "spray foam insulation",
+          "spray polyurethane foam",
+          "one component spray foam",
+          "DIY spray foam",
+          "thermal insulation foam",
+          "foam gun insulation",
+          "seamless insulation",
+          "doesn't absorb moisture insulation",
+          "satisfying spray foam",
+          "spray foam videos",
+          "sprayfoamhub"
+        ]
+      },
+      "linkedin": {
+        "text": "This foam fills what other insulation can't even reach.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
+        "title": "This foam fills what other insulation can't even reach. | Spray Foam Insulation"
+      },
+      "x": {
+        "text": "This foam fills what other insulation can't even reach. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
+      },
+      "gmaps": {
+        "summary": "This foam fills what other insulation can't even reach. / ეს ქაფი ავსებს იქაც, სადაც სხვა იზოლაციას მიღწევა არ შეუძლია. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
+        "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "This foam fills what other insulation can't even reach.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
+      }
     }
   },
   "008": {
-    "telegram": {
-      "caption": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
-    },
-    "instagram": {
-      "caption": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
-    },
-    "facebook": {
-      "message": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
-    },
-    "youtube": {
-      "title": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. | Spray Foam Insulation",
-      "description": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
-      "tags": [
-        "spray foam insulation",
-        "spray polyurethane foam",
-        "one component spray foam",
-        "DIY spray foam",
-        "thermal insulation foam",
-        "foam gun insulation",
-        "seamless insulation",
-        "doesn't absorb moisture insulation",
-        "satisfying spray foam",
-        "spray foam videos",
-        "sprayfoamhub"
-      ]
-    },
-    "linkedin": {
-      "text": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
-      "title": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. | Spray Foam Insulation"
-    },
-    "x": {
-      "text": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
-    },
-    "gmaps": {
-      "summary": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. / ტენს არ იწოვს. უნაკერო. სამუდამო. ეს პოლიურეთანია. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
-      "call_to_action_type": "CALL"
+    "platforms": {
+      "telegram": {
+        "caption": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
+      },
+      "instagram": {
+        "caption": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
+      },
+      "facebook": {
+        "message": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
+      },
+      "youtube": {
+        "title": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. | Spray Foam Insulation",
+        "description": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
+        "tags": [
+          "spray foam insulation",
+          "spray polyurethane foam",
+          "one component spray foam",
+          "DIY spray foam",
+          "thermal insulation foam",
+          "foam gun insulation",
+          "seamless insulation",
+          "doesn't absorb moisture insulation",
+          "satisfying spray foam",
+          "spray foam videos",
+          "sprayfoamhub"
+        ]
+      },
+      "linkedin": {
+        "text": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
+        "title": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. | Spray Foam Insulation"
+      },
+      "x": {
+        "text": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
+      },
+      "gmaps": {
+        "summary": "Doesn't absorb moisture. Seamless. Permanent. That's polyurethane. / ტენს არ იწოვს. უნაკერო. სამუდამო. ეს პოლიურეთანია. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
+        "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Doesn't absorb moisture. Neither does time.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
+      }
     }
   },
   "009": {
-    "telegram": {
-      "caption": "One application. A lifetime of thermal performance. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
-    },
-    "instagram": {
-      "caption": "One application. A lifetime of thermal performance. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
-    },
-    "facebook": {
-      "message": "One application. A lifetime of thermal performance.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
-    },
-    "youtube": {
-      "title": "One application. A lifetime of thermal performance. | Spray Foam Insulation",
-      "description": "One application. A lifetime of thermal performance.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
-      "tags": [
-        "spray foam insulation",
-        "spray polyurethane foam",
-        "one component spray foam",
-        "DIY spray foam",
-        "thermal insulation foam",
-        "foam gun insulation",
-        "seamless insulation",
-        "doesn't absorb moisture insulation",
-        "satisfying spray foam",
-        "spray foam videos",
-        "sprayfoamhub"
-      ]
-    },
-    "linkedin": {
-      "text": "One application. A lifetime of thermal performance.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
-      "title": "One application. A lifetime of thermal performance. | Spray Foam Insulation"
-    },
-    "x": {
-      "text": "One application. A lifetime of thermal performance. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
-    },
-    "gmaps": {
-      "summary": "One application. A lifetime of thermal performance. / ერთი გამოყენება. მთელი სიცოცხლის სითბო. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
-      "call_to_action_type": "CALL"
+    "platforms": {
+      "telegram": {
+        "caption": "One application. A lifetime of thermal performance. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
+      },
+      "instagram": {
+        "caption": "One application. A lifetime of thermal performance. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
+      },
+      "facebook": {
+        "message": "One application. A lifetime of thermal performance.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
+      },
+      "youtube": {
+        "title": "One application. A lifetime of thermal performance. | Spray Foam Insulation",
+        "description": "One application. A lifetime of thermal performance.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
+        "tags": [
+          "spray foam insulation",
+          "spray polyurethane foam",
+          "one component spray foam",
+          "DIY spray foam",
+          "thermal insulation foam",
+          "foam gun insulation",
+          "seamless insulation",
+          "doesn't absorb moisture insulation",
+          "satisfying spray foam",
+          "spray foam videos",
+          "sprayfoamhub"
+        ]
+      },
+      "linkedin": {
+        "text": "One application. A lifetime of thermal performance.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
+        "title": "One application. A lifetime of thermal performance. | Spray Foam Insulation"
+      },
+      "x": {
+        "text": "One application. A lifetime of thermal performance. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
+      },
+      "gmaps": {
+        "summary": "One application. A lifetime of thermal performance. / ერთი გამოყენება. მთელი სიცოცხლის სითბო. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
+        "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "One application. A lifetime of thermal performance.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
+      }
     }
   },
   "010": {
-    "telegram": {
-      "caption": "45 years from now, this foam will still be working. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
-    },
-    "instagram": {
-      "caption": "45 years from now, this foam will still be working. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
-    },
-    "facebook": {
-      "message": "45 years from now, this foam will still be working.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
-    },
-    "youtube": {
-      "title": "45 years from now, this foam will still be working. | Spray Foam Insulation",
-      "description": "45 years from now, this foam will still be working.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
-      "tags": [
-        "spray foam insulation",
-        "spray polyurethane foam",
-        "one component spray foam",
-        "DIY spray foam",
-        "thermal insulation foam",
-        "foam gun insulation",
-        "seamless insulation",
-        "doesn't absorb moisture insulation",
-        "satisfying spray foam",
-        "spray foam videos",
-        "sprayfoamhub"
-      ]
-    },
-    "linkedin": {
-      "text": "45 years from now, this foam will still be working.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
-      "title": "45 years from now, this foam will still be working. | Spray Foam Insulation"
-    },
-    "x": {
-      "text": "45 years from now, this foam will still be working. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
-    },
-    "gmaps": {
-      "summary": "45 years from now, this foam will still be working. / 45 წლის შემდეგაც — ეს ქაფი კვლავ მუშაობს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
-      "call_to_action_type": "CALL"
+    "platforms": {
+      "telegram": {
+        "caption": "45 years from now, this foam will still be working. 🔥\n\n#sprayfoam #insulation #DIY #polyurethanefoam #foamgun #satisfying #construction"
+      },
+      "instagram": {
+        "caption": "45 years from now, this foam will still be working. 🔥\n\n#sprayfoam #insulation #satisfying #construction #homeimprovement #sprayfoaminsulation #foaminsulation #thermalinsulation #DIYinsulation #homeinsulation #polyurethanefoam #foamgun #energyefficiency #sprayfoamhub #satisfyingvideo #sprayfoamvideos"
+      },
+      "facebook": {
+        "message": "45 years from now, this foam will still be working.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, zero gaps. Applied with a foam gun and fan nozzle. No contractor needed.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #homeimprovement"
+      },
+      "youtube": {
+        "title": "45 years from now, this foam will still be working. | Spray Foam Insulation",
+        "description": "45 years from now, this foam will still be working.\n\nSpray polyurethane foam insulation creates a seamless, thermal barrier on any surface — no gaps, no joints, no moisture problems. One application. A lifetime of thermal performance.\n\n✅ DIY friendly\n✅ Doesn't absorb moisture & seamless\n✅ 45-50 year lifespan\n✅ Works on any complicated geometry surface\n\n#sprayfoam #sprayfoaminsulation #DIYinsulation #polyurethanefoam #thermalinsulation #foamgun #homeinsulation #energyefficiency #satisfying #construction",
+        "tags": [
+          "spray foam insulation",
+          "spray polyurethane foam",
+          "one component spray foam",
+          "DIY spray foam",
+          "thermal insulation foam",
+          "foam gun insulation",
+          "seamless insulation",
+          "doesn't absorb moisture insulation",
+          "satisfying spray foam",
+          "spray foam videos",
+          "sprayfoamhub"
+        ]
+      },
+      "linkedin": {
+        "text": "45 years from now, this foam will still be working.\n\nSpray polyurethane foam insulation — seamless, doesn't absorb moisture, built to last 50 years. No seams, no gaps, no moisture damage.\n\nAt SMARTECH we supply professional SPF equipment and materials in Georgia.\n\n#SprayFoam #Insulation #Construction #BuildingMaterials #EnergyEfficiency",
+        "title": "45 years from now, this foam will still be working. | Spray Foam Insulation"
+      },
+      "x": {
+        "text": "45 years from now, this foam will still be working. 🔥 #sprayfoam #insulation #satisfying #DIYinsulation #polyurethanefoam #foamgun #construction #sprayfoamhub"
+      },
+      "gmaps": {
+        "summary": "45 years from now, this foam will still be working. / 45 წლის შემდეგაც — ეს ქაფი კვლავ მუშაობს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
+        "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "45 years from now, this foam will still be working.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
+      }
     }
   },
   "011": {
@@ -408,6 +453,9 @@
       "gmaps": {
         "summary": "Seamless from edge to edge. / კიდიდან კიდემდე — უნაკერო. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Seamless from edge to edge. That's the point.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -463,6 +511,9 @@
       "gmaps": {
         "summary": "80% closed cells. Zero moisture entry. / 80% დახურული ჯიბეები. ტენი — ნული. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "80% closed cells. Zero moisture entry.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -518,6 +569,9 @@
       "gmaps": {
         "summary": "Complex geometry? Foam doesn't care. / რთული გეომეტრია? ქაფს სულ ერთია. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Complex geometry? Foam doesn't care.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -573,6 +627,9 @@
       "gmaps": {
         "summary": "Hypoallergenic after cure. Safe for the long run. / გამაგრების შემდეგ — ჰიპოალერგიული. უსაფრთხო წლობით. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Hypoallergenic after cure. Safe for the long run.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -628,6 +685,9 @@
       "gmaps": {
         "summary": "No cold bridges. No hot spots. Just even warmth. / სიცივის ხიდები — არა. ცხელი წერტილები — არა. თანაბარი სითბო — კი. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "No cold bridges. No hot spots. Just even warmth.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -683,6 +743,9 @@
       "gmaps": {
         "summary": "Spray it once. It moves in for good. / ერთხელ შეასხი — სამუდამოდ დარჩება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Spray it once. It moves in for good.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -738,6 +801,9 @@
       "gmaps": {
         "summary": "Covers what flat panels never could. / ფარავს იმასაც, რასაც ბრტყელი პანელები ვერ შეძლებდნენ. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Covers what flat panels never could.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -793,6 +859,9 @@
       "gmaps": {
         "summary": "Tight spaces, odd angles — this is where foam excels. / ვიწრო სივრცეები, უცნაური კუთხეები — სწორედ აქ ჩანს ქაფის ძალა. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Tight spaces, odd angles — this is where foam excels.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -848,6 +917,9 @@
       "gmaps": {
         "summary": "The thermal gap-killer. Applied in seconds. / თბური ნაპრალების მკვლელი. წამებში ირფინება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "The thermal gap-killer. Applied in seconds.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -903,6 +975,9 @@
       "gmaps": {
         "summary": "Ships compact. Insulates like a wall. / კომპაქტურია მიტანისას. კედლივით ათბობს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Ships compact. Insulates like a wall.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -958,6 +1033,9 @@
       "gmaps": {
         "summary": "One coat. Half a century of silence. / ერთი ფენა. ნახევარი საუკუნე სიჩუმისა. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "One coat. Half a century of silence.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1013,6 +1091,9 @@
       "gmaps": {
         "summary": "Every curve covered. Every gap sealed. / ყველა მოხვევა — დაფარული. ყველა ნაპრალი — დახშული. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Every curve covered. Every gap sealed.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1068,6 +1149,9 @@
       "gmaps": {
         "summary": "DIY insulation that actually lasts. / DIY იზოლაცია, რომელიც ნამდვილად გძლება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "DIY insulation that actually lasts.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1123,6 +1207,9 @@
       "gmaps": {
         "summary": "No joints to fail. No edges to lift. / შეერთება — არ არის. კიდე — არ სდება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "No joints to fail. No edges to lift.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1178,6 +1265,9 @@
       "gmaps": {
         "summary": "Foam follows the surface. Heat follows the foam. / ქაფი ზედაპირს მიყვება. სითბო — ქაფს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Foam follows the surface. Heat follows the foam.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1233,6 +1323,9 @@
       "gmaps": {
         "summary": "Applied once. Performs for generations. / ერთხელ დაიტანება. თაობებს ემსახურება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Applied once. Performs for generations.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1288,6 +1381,9 @@
       "gmaps": {
         "summary": "Zero moisture absorption. Full thermal protection. / ტენის შეწოვა — ნული. თბური დაცვა — სრული. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Zero moisture absorption. Full thermal protection.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1343,6 +1439,9 @@
       "gmaps": {
         "summary": "Doesn't shrink. Doesn't shift. Doesn't fail. / არ იჭმუხნება. არ ძრწება. არ მტყდება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Doesn't shrink. Doesn't shift. Doesn't fail.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1398,6 +1497,9 @@
       "gmaps": {
         "summary": "The geometry of warmth — seamless. / სითბოს გეომეტრია — უნაკერო. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "The geometry of warmth — seamless.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1453,6 +1555,9 @@
       "gmaps": {
         "summary": "Compact on delivery. Permanent on application. / მიტანისას — კომპაქტური. გამოყენებისას — სამუდამო. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Compact on delivery. Permanent on application.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1508,6 +1613,9 @@
       "gmaps": {
         "summary": "Where other insulation gives up, foam begins. / სადაც სხვა იზოლაცია ნებდება, ქაფი იწყება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Where other insulation gives up, foam begins.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1563,6 +1671,9 @@
       "gmaps": {
         "summary": "50 years of thermal performance in a single spray. / 50 წლის სითბო — ერთ შესხურებაში. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "50 years of thermal performance in a single spray.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1618,6 +1729,9 @@
       "gmaps": {
         "summary": "Closed-cell means moisture stays out — permanently. / დახურული ჯიბეები ნიშნავს — ტენი სამუდამოდ გარეთ. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Closed-cell means moisture stays out — permanently.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1673,6 +1787,9 @@
       "gmaps": {
         "summary": "Any shape. Any surface. One solution. / ნებისმიერი ფორმა. ნებისმიერი ზედაპირი. ერთი გამოსავალი. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Any shape. Any surface. One solution.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1728,6 +1845,9 @@
       "gmaps": {
         "summary": "After cure, it's inert. Safe, stable, silent. / გამაგრების შემდეგ — ინერტულია. უსაფრთხო, სტაბილური, მდუმარე. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "After cure, it's inert. Safe, stable, silent.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1783,6 +1903,9 @@
       "gmaps": {
         "summary": "No gaps means no cold. Simple math. / ნაპრალი არ არის — სიცივე არ შედის. მარტივი მათემატიკა. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "No gaps means no cold. Simple math.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1838,6 +1961,9 @@
       "gmaps": {
         "summary": "Locks in warmth. Locks out moisture. Forever. / სითბოს ჩაკეტავს. ტენს გარეთ ტოვებს. სამუდამოდ. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Locks in warmth. Locks out moisture. Forever.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1893,6 +2019,9 @@
       "gmaps": {
         "summary": "The insulation that adapts — not the other way around. / იზოლაცია, რომელიც ადაპტირდება — არა პირიქით. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "The insulation that adapts — not the other way around.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -1948,6 +2077,9 @@
       "gmaps": {
         "summary": "Full coverage. Full performance. / სრული დაფარვა. სრული შედეგი. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Full teflon. Full coverage. Full performance.\n\nFull teflon-coated gun for consistent flow and long service life. The foam it delivers: seamless, moisture-resistant, 80% closed cells, 45–50 years. One spray.\n\n#sprayfoam #foamgun #sprayfoaminsulation #polyurethanefoam #thermalinsulation"
       }
     }
   },
@@ -2003,6 +2135,9 @@
       "gmaps": {
         "summary": "Applied today. Still working in 2075. / დღეს ირფინება. 2075-შიც მუშაობს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Applied today. Still working in 2075.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2058,6 +2193,9 @@
       "gmaps": {
         "summary": "Foam doesn't need straight lines to do its job. / ქაფს სამუშაოდ სწორი ხაზები არ სჭირდება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Foam doesn't need straight lines to do its job.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2113,6 +2251,9 @@
       "gmaps": {
         "summary": "Closed cells. Open performance. / დახურული ჯიბეები. ღია შესაძლებლობები. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Closed cells. Open performance.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2168,6 +2309,9 @@
       "gmaps": {
         "summary": "No seams. No weak points. No compromise. / ნაკერები — არა. სუსტი წერტილები — არა. კომპრომისი — არა. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "No seams. No weak points. No compromise.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2223,6 +2367,9 @@
       "gmaps": {
         "summary": "From complex to covered in minutes. / რთულიდან დაფარულამდე — წუთებში. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "From complex to covered in minutes.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2278,6 +2425,9 @@
       "gmaps": {
         "summary": "This isn't just insulation. It's a 50-year commitment. / ეს მხოლოდ იზოლაცია არ არის. ეს 50 წლის ვალდებულებაა. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "This isn't just insulation. It's a 50-year commitment.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2333,6 +2483,9 @@
       "gmaps": {
         "summary": "Hard-to-reach doesn't mean uninsulated anymore. / ძნელად მისაწვდომი — უკვე არ ნიშნავს დაუცველს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Hard-to-reach doesn't mean uninsulated anymore.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2388,6 +2541,9 @@
       "gmaps": {
         "summary": "Once it cures, it's part of the structure. / გამაგრებისთანავე კონსტრუქციის ნაწილი ხდება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Once it cures, it's part of the structure.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2443,6 +2599,9 @@
       "gmaps": {
         "summary": "30 degrees in any direction. No surface is out of reach. / 30 გრადუსი ნებისმიერი მიმართულებით. მიუწვდომელი ზედაპირი — არ არსებობს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "30 degrees in any direction. No surface is out of reach.\n\nPivoting barrel rotates up to 30° in all directions — no corner too tight, no angle too awkward. Paired with polyurethane foam that doesn't absorb moisture and lasts 45–50 years.\n\n#sprayfoam #foamgun #sprayfoaminsulation #polyurethanefoam #thermalinsulation"
       }
     }
   },
@@ -2498,6 +2657,9 @@
       "gmaps": {
         "summary": "Foam is the insulation that never needs replacing. / ქაფი — იზოლაცია, რომელსაც შეცვლა არ სჭირდება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Foam is the insulation that never needs replacing.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2553,6 +2715,9 @@
       "gmaps": {
         "summary": "Built for DIY. Engineered to last decades. / DIY-სთვის შექმნილი. ათწლეულებზე გათვლილი. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Built for DIY. Engineered to last decades.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2608,6 +2773,9 @@
       "gmaps": {
         "summary": "Tight spots. Odd angles. Foam handles both. / ვიწრო ადგილები. უცნაური კუთხეები. ქაფი ორივეს გაართმევს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Tight spots. Odd angles. Foam handles both.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2663,6 +2831,9 @@
       "gmaps": {
         "summary": "Polyurethane foam: where coverage meets longevity. / პოლიურეთანის ქაფი: სადაც დაფარვა გამძლეობას ხვდება. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Polyurethane foam: where coverage meets longevity.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2718,6 +2889,9 @@
       "gmaps": {
         "summary": "The thermal barrier that outlasts the building trend. / თბური ბარიერი, რომელიც სამშენებლო ტრენდებს სჯობია. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "The thermal barrier that outlasts the building trend.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2773,6 +2947,9 @@
       "gmaps": {
         "summary": "Pivots to any angle. Covers every corner. / ნებისმიერ კუთხეზე ტრიალდება. ყველა კუთხეს ფარავს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Pivots to any angle. Covers every corner.\n\nPivoting barrel rotates up to 30° in all directions — no corner too tight, no angle too awkward. Paired with polyurethane foam that doesn't absorb moisture and lasts 45–50 years.\n\n#sprayfoam #foamgun #sprayfoaminsulation #polyurethanefoam #thermalinsulation"
       }
     }
   },
@@ -2828,6 +3005,9 @@
       "gmaps": {
         "summary": "Bonds to any surface. Performs on every one. / ყველა ზედაპირს ეწებება. ყველაზე მუშაობს. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "Bonds to any surface. Performs on every one.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   },
@@ -2883,6 +3063,9 @@
       "gmaps": {
         "summary": "One spray. Decades of thermal peace. / ერთი შესხურება. ათწლეულები სითბოში. 🔥\n\n❓ სად ვიყიდო?\n📍 ჩვენს მაღაზიაში ამ მისამართზე, ან საწყობიდან თბილისში — დარეკეთ: +995 593 587 746\n\n❓ რა ღირს?\n💰 მაღაზიაში — 30 ლარი / ბალონი. საბითუმო შეკვეთისას — მნიშვნელოვანი ფასდაკლება. დარეკეთ: +995 593 587 746\n\n❓ რა არის ხარჯი?\n📐 1 ბალონი = 1 მ², სისქე 4.5–5 სმ, ბრტყელ ზედაპირზე.\n\nSMARTECH 🇬🇪",
         "call_to_action_type": "CALL"
+      },
+      "threads": {
+        "text": "One spray. Decades of thermal peace.\n\nPolyurethane foam conforms to any geometry, seals every gap, and doesn't absorb moisture. 80% closed cells. 45–50 year lifespan. One application.\n\n#sprayfoam #sprayfoaminsulation #polyurethanefoam #DIYinsulation #thermalinsulation"
       }
     }
   }

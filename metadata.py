@@ -22,6 +22,7 @@ PLATFORM_LIMITS = [
     ("tiktok",     "caption",     2200),
     ("pinterest",  "title",       100),
     ("pinterest",  "description", 500),
+    ("threads",    "text",        440),
     ("x",          "post",        280),
     ("gmaps",      "summary",     1500),
 ]
