@@ -204,6 +204,8 @@ def publish(video_path: str, metadata: dict) -> dict:
                     uploaded_file_id, call_to_action_type, call_to_action_url,
                 )
                 log.info("GBP OK | post_name=%s", post_name)
+                log.info("Waiting 10 min for Google to fetch video before closing access...")
+                time.sleep(600)
                 return {"ok": True, "post_id": post_name}
 
             except Exception as exc:
