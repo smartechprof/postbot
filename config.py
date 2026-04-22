@@ -14,6 +14,10 @@ DRIVE_WEB_CLIENT_SECRET = os.getenv("DRIVE_WEB_CLIENT_SECRET")
 IG_USER_ID   = os.getenv("IG_USER_ID")
 IG_PAGE_TOKEN = os.getenv("IG_PAGE_TOKEN")
 
+# ── Threads ───────────────────────────────────────────────────────────────────
+THREADS_USER_ID      = os.getenv("THREADS_USER_ID")
+THREADS_ACCESS_TOKEN = os.getenv("THREADS_ACCESS_TOKEN")
+
 # ── Facebook ──────────────────────────────────────────────────────────────────
 FB_PAGE_TOKEN = os.getenv("FB_PAGE_TOKEN")
 FB_PAGE_ID    = os.getenv("FB_PAGE_ID")
@@ -66,6 +70,8 @@ _REQUIRED = {
     "DRIVE_WEB_CLIENT_SECRET": DRIVE_WEB_CLIENT_SECRET,
     "IG_USER_ID":          IG_USER_ID,
     "IG_PAGE_TOKEN":       IG_PAGE_TOKEN,
+    "THREADS_USER_ID":      THREADS_USER_ID,
+    "THREADS_ACCESS_TOKEN": THREADS_ACCESS_TOKEN,
     "FB_PAGE_TOKEN":       FB_PAGE_TOKEN,
     "FB_PAGE_ID":          FB_PAGE_ID,
     "YT_REFRESH_TOKEN":    YT_REFRESH_TOKEN,

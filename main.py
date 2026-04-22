@@ -56,7 +56,7 @@ import config
 import drive
 import metadata as md
 import scheduler
-from platforms import telegram, instagram, facebook, youtube, linkedin, gbp
+from platforms import telegram, instagram, facebook, youtube, linkedin, gbp, threads
 from platforms import x as x_platform
 from utils.converter import delete_temp
 
@@ -69,6 +69,7 @@ PLATFORMS = [
     ("youtube",   youtube,     "youtube"),
     ("linkedin",  linkedin,    "linkedin"),
     ("x",         x_platform,  "x"),
+    ("threads",   threads,     "threads"),
     ("facebook",  facebook,    "facebook"),
     ("gbp",       gbp,         "gmaps"),
 ]
