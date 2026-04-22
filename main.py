@@ -198,6 +198,8 @@ def main() -> None:
 
         platform_meta = md.get_platform_data(video_id, meta_key)
         if platform_meta is None:
+            platform_meta = md.get_metadata(video_id).get(meta_key)
+        if platform_meta is None:
             log.warning("No metadata for platform '%s' — skipping.", platform_name)
             results.append({
                 "platform": platform_name,
