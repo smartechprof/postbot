@@ -18,14 +18,16 @@ import time
 import requests
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
 from typing import Optional
 
 import config
 
 log = logging.getLogger(__name__)
 
-_SCOPES   = ["https://www.googleapis.com/auth/business.manage"]
-_API_BASE = "https://mybusiness.googleapis.com/v4"
+_SCOPES       = ["https://www.googleapis.com/auth/business.manage"]
+_DRIVE_SCOPES = ["https://www.googleapis.com/auth/drive"]
+_API_BASE     = "https://mybusiness.googleapis.com/v4"
 
 
 def _get_access_token() -> str:
@@ -40,6 +42,20 @@ def _get_access_token() -> str:
     )
     creds.refresh(Request())
     return creds.token
+
+
+def _get_drive_service():
+    """Build and return an authenticated Drive service client with full drive scope."""
+    creds = Credentials(
+        token=None,
+        refresh_token=config.DRIVE_REFRESH_TOKEN,
+        client_id=config.DRIVE_WEB_CLIENT_ID,
+        client_secret=config.DRIVE_WEB_CLIENT_SECRET,
+        token_uri="https://oauth2.googleapis.com/token",
+        scopes=_DRIVE_SCOPES,
+    )
+    creds.refresh(Request())
+    return build("drive", "v3", credentials=creds)
 
 
 def _create_post(token: str, account_id: str, location_id: str, summary: str,
@@ -136,24 +152,45 @@ def publish(video_path: str, metadata: dict) -> dict:
     if not location_id:
         return {"ok": False, "error": "GBP_LOCATION_ID is not set."}
 
-    last_error = "unknown error"
-    for attempt in range(config.MAX_RETRY_ATTEMPTS):
-        try:
-            token     = _get_access_token()
-            post_name = _create_post(
-                token, account_id, location_id, summary, drive_file_id, call_to_action_url
-            )
-            log.info("GBP OK | post_name=%s", post_name)
-            return {"ok": True, "post_id": post_name}
+    drive_svc = None
+    if drive_file_id:
+        drive_svc = _get_drive_service()
+        drive_svc.permissions().create(
+            fileId=drive_file_id,
+            body={"type": "anyone", "role": "reader"},
+        ).execute()
+        log.info("Drive: opened public access for %s", drive_file_id)
 
-        except Exception as exc:
-            last_error = str(exc)
-            log.error("GBP publish failed (attempt %d/%d): %s",
-                      attempt + 1, config.MAX_RETRY_ATTEMPTS, last_error)
+    try:
+        last_error = "unknown error"
+        for attempt in range(config.MAX_RETRY_ATTEMPTS):
+            try:
+                token     = _get_access_token()
+                post_name = _create_post(
+                    token, account_id, location_id, summary, drive_file_id, call_to_action_url
+                )
+                log.info("GBP OK | post_name=%s", post_name)
+                return {"ok": True, "post_id": post_name}
 
-        if attempt < config.MAX_RETRY_ATTEMPTS - 1:
-            wait_time = 2 ** attempt * 10
-            log.warning("Retrying in %ds...", wait_time)
-            time.sleep(wait_time)
+            except Exception as exc:
+                last_error = str(exc)
+                log.error("GBP publish failed (attempt %d/%d): %s",
+                          attempt + 1, config.MAX_RETRY_ATTEMPTS, last_error)
 
-    return {"ok": False, "error": last_error}
+            if attempt < config.MAX_RETRY_ATTEMPTS - 1:
+                wait_time = 2 ** attempt * 10
+                log.warning("Retrying in %ds...", wait_time)
+                time.sleep(wait_time)
+
+        return {"ok": False, "error": last_error}
+
+    finally:
+        if drive_file_id and drive_svc:
+            try:
+                drive_svc.permissions().delete(
+                    fileId=drive_file_id,
+                    permissionId="anyoneWithLink",
+                ).execute()
+                log.info("Drive: closed public access for %s", drive_file_id)
+            except Exception as exc:
+                log.warning("Drive: failed to close access for %s: %s", drive_file_id, exc)
