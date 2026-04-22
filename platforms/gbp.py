@@ -90,7 +90,8 @@ def _upload_to_drive(drive_svc, local_path: str) -> str:
 
 
 def _create_post(token: str, account_id: str, location_id: str, summary: str,
-                 uploaded_file_id: str, call_to_action_url: Optional[str]) -> str:
+                 uploaded_file_id: str, call_to_action_type: Optional[str],
+                 call_to_action_url: Optional[str]) -> str:
     """
     Create a STANDARD localPost with video via public Drive URL.
 
@@ -106,11 +107,11 @@ def _create_post(token: str, account_id: str, location_id: str, summary: str,
         "media":     [{"mediaFormat": "VIDEO", "sourceUrl": source_url}],
     }
 
-    if call_to_action_url:
-        body["callToAction"] = {
-            "actionType": "LEARN_MORE",
-            "url":        call_to_action_url,
-        }
+    if call_to_action_type:
+        cta: dict = {"actionType": call_to_action_type}
+        if call_to_action_type != "CALL" and call_to_action_url:
+            cta["url"] = call_to_action_url
+        body["callToAction"] = cta
 
     session = requests.Session()
     session.headers.update({"Authorization": f"Bearer {token}"})
@@ -147,9 +148,10 @@ def publish(video_path: str, metadata: dict) -> dict:
         {"ok": True,  "post_id": str}   on success.
         {"ok": False, "error": str}      on failure.
     """
-    summary            = metadata.get("summary", "")
-    call_to_action_url = metadata.get("call_to_action_url")
-    account_id         = config.GBP_ACCOUNT_ID
+    summary              = metadata.get("summary", "")
+    call_to_action_type  = metadata.get("call_to_action_type")
+    call_to_action_url   = metadata.get("call_to_action_url")
+    account_id           = config.GBP_ACCOUNT_ID
     location_id        = config.GBP_LOCATION_ID
 
     if not os.path.exists(video_path):
@@ -199,7 +201,7 @@ def publish(video_path: str, metadata: dict) -> dict:
                 token     = _get_access_token()
                 post_name = _create_post(
                     token, account_id, location_id, summary,
-                    uploaded_file_id, call_to_action_url,
+                    uploaded_file_id, call_to_action_type, call_to_action_url,
                 )
                 log.info("GBP OK | post_name=%s", post_name)
                 return {"ok": True, "post_id": post_name}
