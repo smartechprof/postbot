@@ -17,6 +17,7 @@ Metadata keys (from metadata.json → "threads"):
 
 import logging
 import os
+import re
 import shutil
 import time
 
@@ -175,7 +176,8 @@ def publish(video_path: str, metadata: dict) -> dict:
         return {"ok": False, "error": "THREADS_USER_ID is not set."}
 
     compressed_path = compress_for_telegram(video_path)
-    filename        = os.path.basename(compressed_path)
+    vid_prefix = re.match(r'\d+', os.path.basename(video_path))
+    filename   = f"{vid_prefix.group() if vid_prefix else 'video'}_threads.mp4"
     media_path: Optional[str] = None
 
     try:
