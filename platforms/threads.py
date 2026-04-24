@@ -25,7 +25,7 @@ import requests
 from typing import Optional
 
 import config
-from utils.converter import compress_for_telegram, delete_temp
+from utils.converter import compress_for_platform, delete_temp
 
 log = logging.getLogger(__name__)
 
@@ -175,7 +175,7 @@ def publish(video_path: str, metadata: dict) -> dict:
     if not user_id:
         return {"ok": False, "error": "THREADS_USER_ID is not set."}
 
-    compressed_path = compress_for_telegram(video_path)
+    compressed_path = compress_for_platform(video_path)
     vid_prefix = re.match(r'\d+', os.path.basename(video_path))
     filename   = f"{vid_prefix.group() if vid_prefix else 'video'}_threads.mp4"
     media_path: Optional[str] = None

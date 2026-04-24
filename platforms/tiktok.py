@@ -3,12 +3,10 @@ TikTok video publisher using TikTok Content Posting API v2.
 
 Publish flow:
   1. Refresh access token via refresh_token
-  2. compress_for_telegram(video_path) → 720p mp4 in /tmp/
-  3. Initialize upload: POST /v2/post/publish/video/init/
+  2. Initialize upload: POST /v2/post/publish/video/init/
        → publish_id + upload_url
-  4. Upload video binary via PUT to upload_url
-  5. Poll publish status every 5s until PUBLISH_COMPLETE (timeout 5 min)
-  6. Clean up /tmp/ compressed file
+  3. Upload video binary via PUT to upload_url
+  4. Poll publish status every 5s until PUBLISH_COMPLETE (timeout 5 min)
 
 Metadata keys (from metadata.json → "tiktok"):
   caption        (str, required) — post caption (max 2200 chars)
@@ -22,20 +20,19 @@ Metadata keys (from metadata.json → "tiktok"):
 import logging
 import os
 import time
-from typing import Optional
 
 import requests
 
 import config
-from utils.converter import compress_for_telegram, delete_temp
 
 log = logging.getLogger(__name__)
 
 _TOKEN_URL     = "https://open.tiktokapis.com/v2/oauth/token/"
 _INIT_URL      = "https://open.tiktokapis.com/v2/post/publish/video/init/"
 _STATUS_URL    = "https://open.tiktokapis.com/v2/post/publish/status/fetch/"
-_POLL_INTERVAL = 5     # seconds between status checks
-_POLL_TIMEOUT  = 300   # 5 minutes max
+_POLL_INTERVAL  = 5              # seconds between status checks
+_POLL_TIMEOUT   = 300            # 5 minutes max
+_MAX_CHUNK_SIZE = 64 * 1024 * 1024  # 64 MB
 
 
 def _refresh_access_token() -> str:
@@ -74,13 +71,20 @@ def _refresh_access_token() -> str:
 
 
 def _init_upload(token: str, file_size: int, caption: str, privacy_level: str,
-                 disable_duet: bool, disable_stitch: bool, disable_comment: bool) -> tuple[str, str]:
+                 disable_duet: bool, disable_stitch: bool, disable_comment: bool) -> tuple[str, str, int]:
     """
     Initialize a video upload via Content Posting API.
 
-    Returns (publish_id, upload_url).
+    Returns (publish_id, upload_url, chunk_size).
     Raises RuntimeError on failure.
     """
+    if file_size <= _MAX_CHUNK_SIZE:
+        chunk_size        = file_size
+        total_chunk_count = 1
+    else:
+        chunk_size        = _MAX_CHUNK_SIZE
+        total_chunk_count = file_size // _MAX_CHUNK_SIZE
+
     resp = requests.post(
         _INIT_URL,
         headers={
@@ -96,10 +100,10 @@ def _init_upload(token: str, file_size: int, caption: str, privacy_level: str,
                 "disable_comment": disable_comment,
             },
             "source_info": {
-                "source":          "FILE_UPLOAD",
-                "video_size":      file_size,
-                "chunk_size":      file_size,
-                "total_chunk_count": 1,
+                "source":            "FILE_UPLOAD",
+                "video_size":        file_size,
+                "chunk_size":        chunk_size,
+                "total_chunk_count": total_chunk_count,
             },
         },
         timeout=30,
@@ -123,32 +127,47 @@ def _init_upload(token: str, file_size: int, caption: str, privacy_level: str,
     if not publish_id or not upload_url:
         raise RuntimeError(f"Missing publish_id or upload_url: {data}")
 
-    log.info("TikTok upload initialized | publish_id=%s", publish_id)
-    return publish_id, upload_url
+    log.info("TikTok upload initialized | publish_id=%s | chunks=%d", publish_id, total_chunk_count)
+    return publish_id, upload_url, chunk_size
 
 
-def _upload_video(upload_url: str, video_path: str, file_size: int) -> None:
+def _upload_video(upload_url: str, video_path: str, file_size: int, chunk_size: int) -> None:
     """
-    Upload video binary to TikTok's upload URL (single chunk).
+    Upload video binary to TikTok's upload URL.
+
+    Sends a single PUT when file fits in one chunk; otherwise streams
+    chunk_size-sized pieces with correct Content-Range per chunk.
+    The last chunk absorbs any remainder.
 
     Raises RuntimeError on failure.
     """
     with open(video_path, "rb") as fh:
-        resp = requests.put(
-            upload_url,
-            headers={
-                "Content-Type":  "video/mp4",
-                "Content-Range": f"bytes 0-{file_size - 1}/{file_size}",
-                "Content-Length": str(file_size),
-            },
-            data=fh,
-            timeout=300,
-        )
+        offset = 0
+        chunk_index = 0
+        while offset < file_size:
+            chunk = fh.read(chunk_size)
+            if not chunk:
+                break
+            end = offset + len(chunk) - 1
+            resp = requests.put(
+                upload_url,
+                headers={
+                    "Content-Type":   "video/mp4",
+                    "Content-Range":  f"bytes {offset}-{end}/{file_size}",
+                    "Content-Length": str(len(chunk)),
+                },
+                data=chunk,
+                timeout=300,
+            )
+            if not resp.ok:
+                raise RuntimeError(
+                    f"Video upload chunk {chunk_index} HTTP {resp.status_code}: {resp.text[:300]}"
+                )
+            log.info("TikTok chunk %d uploaded (bytes %d-%d)", chunk_index, offset, end)
+            offset += len(chunk)
+            chunk_index += 1
 
-    if not resp.ok:
-        raise RuntimeError(f"Video upload HTTP {resp.status_code}: {resp.text[:300]}")
-
-    log.info("TikTok video uploaded (%d bytes)", file_size)
+    log.info("TikTok video upload complete (%d bytes, %d chunk(s))", file_size, chunk_index)
 
 
 def _poll_status(publish_id: str, token: str) -> None:
@@ -199,7 +218,7 @@ def _poll_status(publish_id: str, token: str) -> None:
 
 def publish(video_path: str, metadata: dict) -> dict:
     """
-    Refresh token, compress, upload, and publish a video to TikTok.
+    Refresh token, upload, and publish a video to TikTok.
 
     Args:
         video_path: Absolute local path to the source video file.
@@ -236,37 +255,28 @@ def publish(video_path: str, metadata: dict) -> dict:
     if not os.path.exists(video_path):
         return {"ok": False, "error": f"Video file not found: '{video_path}'"}
 
-    compressed_path: Optional[str] = None
+    token = _refresh_access_token()
+    file_size = os.path.getsize(video_path)
 
-    try:
-        token = _refresh_access_token()
+    last_error = "unknown error"
+    for attempt in range(config.MAX_RETRY_ATTEMPTS):
+        try:
+            publish_id, upload_url, chunk_size = _init_upload(
+                token, file_size, caption, privacy_level,
+                disable_duet, disable_stitch, disable_comment,
+            )
+            _upload_video(upload_url, video_path, file_size, chunk_size)
+            _poll_status(publish_id, token)
+            return {"ok": True, "post_id": publish_id}
 
-        compressed_path = compress_for_telegram(video_path)
-        file_size = os.path.getsize(compressed_path)
+        except Exception as exc:
+            last_error = str(exc)
+            log.error("TikTok publish failed (attempt %d/%d): %s",
+                      attempt + 1, config.MAX_RETRY_ATTEMPTS, last_error)
 
-        last_error = "unknown error"
-        for attempt in range(config.MAX_RETRY_ATTEMPTS):
-            try:
-                publish_id, upload_url = _init_upload(
-                    token, file_size, caption, privacy_level,
-                    disable_duet, disable_stitch, disable_comment,
-                )
-                _upload_video(upload_url, compressed_path, file_size)
-                _poll_status(publish_id, token)
-                return {"ok": True, "post_id": publish_id}
+        if attempt < config.MAX_RETRY_ATTEMPTS - 1:
+            wait_time = 2 ** attempt * 10
+            log.warning("Retrying in %ds...", wait_time)
+            time.sleep(wait_time)
 
-            except Exception as exc:
-                last_error = str(exc)
-                log.error("TikTok publish failed (attempt %d/%d): %s",
-                          attempt + 1, config.MAX_RETRY_ATTEMPTS, last_error)
-
-            if attempt < config.MAX_RETRY_ATTEMPTS - 1:
-                wait_time = 2 ** attempt * 10
-                log.warning("Retrying in %ds...", wait_time)
-                time.sleep(wait_time)
-
-        return {"ok": False, "error": last_error}
-
-    finally:
-        if compressed_path and compressed_path != video_path:
-            delete_temp(compressed_path)
+    return {"ok": False, "error": last_error}

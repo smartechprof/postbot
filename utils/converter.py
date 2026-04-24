@@ -77,6 +77,7 @@ def _encode(input_path: str, output_path: str) -> bool:
         "-crf",       "18",
         "-preset",    "fast",
         "-c:a",       "aac",
+        "-ar",        "48000",
         "-movflags",  "+faststart",
         "-vf",        "scale=trunc(iw/2)*2:trunc(ih/2)*2",
         output_path,
