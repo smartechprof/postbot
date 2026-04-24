@@ -18,6 +18,7 @@ Metadata keys (from metadata.json → "tiktok"):
 """
 
 import logging
+import math
 import os
 import time
 
@@ -82,8 +83,8 @@ def _init_upload(token: str, file_size: int, caption: str, privacy_level: str,
         chunk_size        = file_size
         total_chunk_count = 1
     else:
-        chunk_size        = _MAX_CHUNK_SIZE
         total_chunk_count = (file_size + _MAX_CHUNK_SIZE - 1) // _MAX_CHUNK_SIZE
+        chunk_size        = math.ceil(file_size / total_chunk_count)
 
     resp = requests.post(
         _INIT_URL,
