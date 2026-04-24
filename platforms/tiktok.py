@@ -83,7 +83,7 @@ def _init_upload(token: str, file_size: int, caption: str, privacy_level: str,
         total_chunk_count = 1
     else:
         chunk_size        = _MAX_CHUNK_SIZE
-        total_chunk_count = file_size // _MAX_CHUNK_SIZE
+        total_chunk_count = (file_size + _MAX_CHUNK_SIZE - 1) // _MAX_CHUNK_SIZE
 
     resp = requests.post(
         _INIT_URL,
