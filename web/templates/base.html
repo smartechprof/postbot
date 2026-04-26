@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}PostBot{% endblock %}</title>
+<link rel="apple-touch-icon" href="/static/postbot_icon.png">
+<link rel="icon" type="image/png" href="/static/postbot_icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: #1e1e2e;
+    --accent: #00e5a0;
+    --accent2: #5b6af0;
+    --text: #e8e8f0;
+    --muted: #6b6b88;
+    --white: #ffffff;
+    --danger: #ff4d6a;
+    --warning: #ffb347;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px; font-weight: 800;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  nav a.nav-link {
+    color: var(--muted); text-decoration: none; font-size: 14px;
+    transition: color .2s;
+  }
+  nav a.nav-link:hover { color: var(--text); }
+  .btn-nav {
+    background: var(--accent); color: var(--black);
+    padding: 9px 22px; border-radius: 6px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
+    text-decoration: none; transition: opacity .2s;
+  }
+  .btn-nav:hover { opacity: 0.85; }
+  .main-content { padding-top: 80px; min-height: calc(100vh - 80px); }
+  footer {
+    background: var(--black); border-top: 1px solid var(--border);
+    padding: 40px; display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  }
+  footer a { color: var(--muted); text-decoration: none; font-size: 13px; }
+  footer a:hover { color: var(--text); }
+  .footer-copy { color: var(--muted); font-size: 13px; }
+  {% block extra_css %}{% endblock %}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Post<span>Bot</span></a>
+  <div class="nav-links">
+    <a href="/#features" class="nav-link">Features</a>
+    <a href="/#pricing" class="nav-link">Pricing</a>
+    <a href="/tos.html" class="nav-link">Terms</a>
+    {% if session.get('user') %}
+      <a href="/dashboard" class="btn-nav">Dashboard</a>
+    {% else %}
+      <a href="/login.html" class="btn-nav">Sign In</a>
+    {% endif %}
+  </div>
+</nav>
+
+<div class="main-content">
+  {% block content %}{% endblock %}
+</div>
+
+<footer>
+  <a href="/" class="logo">Post<span>Bot</span></a>
+  <div style="display:flex;gap:20px;">
+    <a href="/tos.html">Terms of Service</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="mailto:hello@botshub.io">Contact</a>
+  </div>
+  <span class="footer-copy">&copy; 2026 PostBot &middot; botshub.io</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy — PostBot{% endblock %}
+
+{% block extra_css %}
+.container { max-width: 760px; margin: 0 auto; padding: 80px 24px; }
+.doc-header { margin-bottom: 60px; }
+.doc-header h1 {
+  font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800;
+  letter-spacing: -1.5px; color: white; margin-bottom: 12px;
+}
+.meta { color: var(--muted); font-size: 13px; }
+.container h2 {
+  font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700;
+  color: white; margin: 44px 0 14px; letter-spacing: -0.5px;
+}
+.container p { color: #b0b0c8; margin-bottom: 16px; font-size: 15px; }
+.container ul { padding-left: 20px; margin-bottom: 16px; }
+.container li { color: #b0b0c8; font-size: 15px; margin-bottom: 8px; }
+.container a { color: var(--accent); }
+.container hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+.highlight-box {
+  background: rgba(0,229,160,0.06); border: 1px solid rgba(0,229,160,0.2);
+  border-radius: 10px; padding: 20px 24px; margin: 24px 0;
+}
+.highlight-box p { color: var(--text); margin: 0; font-size: 14px; }
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="doc-header">
+    <h1>Privacy Policy</h1>
+    <p class="meta">PostBot · botshub.io · Last updated: June 1, 2025</p>
+  </div>
+
+  <div class="highlight-box">
+    <p>🔒 <strong>Short version:</strong> PostBot never sells your data. We never store your social media passwords — only encrypted OAuth tokens. You can delete your account and all associated data at any time.</p>
+  </div>
+
+  <p>This Privacy Policy describes how PostBot ("PostBot," "we," "us," or "our") collects, uses, and protects information about you when you use our service at <strong>botshub.io</strong> (the "Service"). By using PostBot, you agree to the practices described in this policy.</p>
+
+  <h2>1. Information We Collect</h2>
+
+  <p><strong>Account Information:</strong> When you register, we collect your name, email address, and password (stored as a secure hash, never in plaintext).</p>
+
+  <p><strong>Social Media Platform Connections:</strong> When you connect a social media account (e.g., TikTok, Instagram, YouTube), we receive and store OAuth access tokens issued by that platform. We never receive or store your passwords for those platforms.</p>
+
+  <p><strong>Content You Publish:</strong> We temporarily process video files and associated metadata (captions, hashtags, scheduling information) that you submit for publishing. Files are processed in memory and are not permanently stored on our servers after publication.</p>
+
+  <p><strong>Google Drive Integration:</strong> If you connect Google Drive, we request read access to specific folders you designate. We access only the files you explicitly configure for publishing.</p>
+
+  <p><strong>Usage Data:</strong> We collect technical information about how you use the Service, including browser type, IP address, pages visited, and feature usage. This data is used to improve the Service.</p>
+
+  <p><strong>Payment Information:</strong> If you subscribe to a paid plan, payment processing is handled by our third-party payment processor. PostBot does not store your credit card numbers.</p>
+
+  <h2>2. How We Use Your Information</h2>
+  <ul>
+    <li>To provide and operate the Service, including publishing content to connected platforms on your behalf</li>
+    <li>To authenticate your identity and maintain your account</li>
+    <li>To send transactional emails (account confirmation, password reset, publishing status notifications)</li>
+    <li>To analyze usage patterns and improve the Service</li>
+    <li>To detect, prevent, and respond to fraud, abuse, and security incidents</li>
+    <li>To comply with legal obligations</li>
+  </ul>
+
+  <h2>3. OAuth and Third-Party Platforms</h2>
+  <p>PostBot uses OAuth 2.0 to connect to social media platforms. This means:</p>
+  <ul>
+    <li>You authorize PostBot through the official login flow of each platform</li>
+    <li>We receive access tokens scoped to the specific permissions required for publishing</li>
+    <li>We store these tokens in encrypted form</li>
+    <li>You can revoke PostBot's access at any time through your social media account's security settings or through your PostBot dashboard</li>
+    <li>Revoking access immediately prevents PostBot from publishing to that platform on your behalf</li>
+  </ul>
+
+  <p>PostBot's use of data received from TikTok APIs complies with TikTok's Platform Terms and Developer Policies.</p>
+
+  <h2>4. Data Sharing and Disclosure</h2>
+  <p>We do not sell, rent, or trade your personal information. We may share information in the following limited circumstances:</p>
+  <ul>
+    <li><strong>Service Providers:</strong> Trusted third-party vendors who assist in operating the Service (hosting, analytics, payment processing) under strict data protection agreements</li>
+    <li><strong>Legal Requirements:</strong> When required by law, court order, or governmental authority</li>
+    <li><strong>Protection of Rights:</strong> When necessary to protect the rights, property, or safety of PostBot, our users, or the public</li>
+    <li><strong>Business Transfer:</strong> In connection with a merger, acquisition, or sale of assets, with appropriate notice to users</li>
+  </ul>
+
+  <h2>5. Data Retention</h2>
+  <p>We retain your account data for as long as your account is active. You may request deletion of your account and all associated data at any time by contacting <a href="mailto:hello@botshub.io">hello@botshub.io</a> or using the account deletion feature in your dashboard. Upon deletion, your personal information will be permanently removed within 30 days, except where retention is required by law.</p>
+
+  <h2>6. Security</h2>
+  <p>We implement industry-standard security measures to protect your information:</p>
+  <ul>
+    <li>All data transmitted between your browser and our servers is encrypted using TLS/HTTPS</li>
+    <li>OAuth access tokens are encrypted at rest</li>
+    <li>Passwords are hashed using industry-standard algorithms and are never stored in plaintext</li>
+    <li>Access to user data is restricted to authorized personnel with a legitimate need</li>
+    <li>We conduct regular security reviews and vulnerability assessments</li>
+  </ul>
+
+  <h2>7. TikTok API Data Practices</h2>
+  <p>Specifically regarding data obtained through the TikTok API:</p>
+  <ul>
+    <li>We use TikTok API data exclusively for the purpose of publishing content on your behalf as directed by you</li>
+    <li>We do not use TikTok data for advertising, profiling, or any purpose beyond Service functionality</li>
+    <li>We do not share TikTok user data with third parties except as required to provide the publishing service</li>
+    <li>TikTok access tokens are stored encrypted and used only for API requests you initiate</li>
+    <li>You can disconnect your TikTok account at any time, which immediately revokes our access</li>
+  </ul>
+
+  <h2>8. Cookies and Tracking</h2>
+  <p>We use essential cookies necessary to operate the Service (session management, authentication). We may use analytics cookies to understand usage patterns — you may opt out of analytics cookies in your account settings. We do not use advertising or tracking cookies.</p>
+
+  <h2>9. Children's Privacy</h2>
+  <p>PostBot is not directed to individuals under 18 years of age. We do not knowingly collect personal information from children under 18. If we become aware that a child under 18 has provided personal information, we will delete it promptly.</p>
+
+  <h2>10. Your Rights</h2>
+  <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+  <ul>
+    <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+    <li><strong>Correction:</strong> Request correction of inaccurate or incomplete data</li>
+    <li><strong>Deletion:</strong> Request deletion of your personal data</li>
+    <li><strong>Portability:</strong> Request your data in a portable format</li>
+    <li><strong>Objection:</strong> Object to certain types of processing</li>
+  </ul>
+  <p>To exercise these rights, contact us at <a href="mailto:hello@botshub.io">hello@botshub.io</a>. We will respond within 30 days.</p>
+
+  <h2>11. International Data Transfers</h2>
+  <p>PostBot operates globally. Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place for such transfers in accordance with applicable data protection law.</p>
+
+  <h2>12. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. We will notify you of material changes by updating the "Last updated" date and, where required, by sending an email notification. Your continued use of the Service after changes take effect constitutes acceptance of the updated policy.</p>
+
+  <h2>13. Contact Us</h2>
+  <p>If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:<br><br>
+  <strong>PostBot</strong><br>
+  Email: <a href="mailto:hello@botshub.io">hello@botshub.io</a><br>
+  Website: <a href="https://botshub.io">https://botshub.io</a></p>
+
+  <hr>
+  <p style="font-size:13px;color:var(--muted);">This Privacy Policy is effective as of the date stated at the top of this document and applies to all users of PostBot at botshub.io.</p>
+</div>
+{% endblock %}

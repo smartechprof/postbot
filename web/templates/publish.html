@@ -1,0 +1,480 @@
+{% extends "base.html" %}
+{% block title %}Auto-Publishing Setup — PostBot{% endblock %}
+
+{% block extra_css %}
+.publish-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+.publish-page h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.publish-page .page-subtitle {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 52px;
+}
+/* Timeline */
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.step {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom: 40px;
+}
+.step:last-child { margin-bottom: 0; }
+.step-number {
+  position: absolute;
+  left: 0; top: 0;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--muted);
+  z-index: 1;
+}
+.step.active .step-number {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(0,229,160,0.08);
+}
+.step-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 28px 32px;
+}
+.step-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+/* Drive step */
+.drive-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.drive-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  flex-shrink: 0;
+}
+.drive-dot.on { background: var(--accent); }
+.drive-status-text { font-size: 14px; color: var(--muted); }
+.drive-status-text.on { color: var(--accent); }
+/* Form controls */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 500px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+.form-group { margin-bottom: 20px; }
+.form-group:last-child { margin-bottom: 0; }
+.form-label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.form-select,
+.form-input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color .2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-select:focus,
+.form-input:focus { border-color: var(--accent); }
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b6b88' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+/* Checkboxes */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text);
+  transition: border-color .2s;
+  user-select: none;
+}
+.checkbox-label:hover { border-color: var(--muted); }
+.checkbox-label input[type=checkbox] { display: none; }
+.checkbox-label.checked {
+  border-color: var(--accent);
+  background: rgba(0,229,160,0.06);
+  color: var(--accent);
+}
+.checkbox-check {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.checkbox-label.checked .checkbox-check {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--black);
+  font-size: 10px;
+  font-weight: 800;
+}
+/* Queue table */
+.queue-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.queue-table th {
+  text-align: left;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 0 12px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.queue-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  vertical-align: middle;
+}
+.queue-table tr:last-child td { border-bottom: none; }
+.queue-table .file-name { color: var(--text); font-weight: 500; }
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge.scheduled { background: rgba(91,106,240,0.15); color: #8b9af8; }
+.badge.published  { background: rgba(0,229,160,0.12); color: var(--accent); }
+.btn-skip {
+  padding: 5px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+.btn-skip:hover { border-color: var(--danger); color: var(--danger); }
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: opacity .2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-outline {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--muted); }
+.btn-activate {
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent);
+  color: var(--black);
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity .2s;
+  margin-top: 48px;
+}
+.btn-activate:hover { opacity: 0.85; }
+/* Modal */
+.modal-backdrop {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px 36px;
+  max-width: 460px;
+  width: 100%;
+}
+.modal h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+.modal p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+{% endblock %}
+
+{% block content %}
+<div class="publish-page">
+  <h1>Auto-Publishing Setup</h1>
+  <p class="page-subtitle">Configure PostBot to publish your videos automatically on a schedule.</p>
+
+  <div class="timeline">
+
+    <!-- Step 1: Google Drive -->
+    <div class="step active">
+      <div class="step-number">1</div>
+      <div class="step-card">
+        <div class="step-title">Connect Google Drive</div>
+        <div class="drive-status">
+          <div class="drive-dot" id="drive-dot"></div>
+          <span class="drive-status-text" id="drive-status-text">Not connected</span>
+        </div>
+        <button class="btn btn-outline" onclick="connectDrive()">Connect Google Drive</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Schedule -->
+    <div class="step active">
+      <div class="step-number">2</div>
+      <div class="step-card">
+        <div class="step-title">Publishing Schedule</div>
+
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label">Frequency</label>
+            <select class="form-select" id="frequency">
+              <option value="1">Every day</option>
+              <option value="2">Every 2 days</option>
+              <option value="3">Every 3 days</option>
+              <option value="7">Weekly</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <label class="form-label">Publish time</label>
+            <input class="form-input" type="time" id="publish-time" value="17:00">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" style="margin-bottom:12px;">Platforms</label>
+          <div class="checkbox-grid" id="platform-checkboxes">
+            <label class="checkbox-label checked" onclick="toggleCheck(this)">
+              <input type="checkbox" checked>
+              <span class="checkbox-check">✓</span>
+              TikTok
+            </label>
+            <label class="checkbox-label checked" onclick="toggleCheck(this)">
+              <input type="checkbox" checked>
+              <span class="checkbox-check">✓</span>
+              YouTube
+            </label>
+            <label class="checkbox-label checked" onclick="toggleCheck(this)">
+              <input type="checkbox" checked>
+              <span class="checkbox-check">✓</span>
+              Instagram
+            </label>
+            <label class="checkbox-label" onclick="toggleCheck(this)">
+              <input type="checkbox">
+              <span class="checkbox-check"></span>
+              Facebook
+            </label>
+            <label class="checkbox-label" onclick="toggleCheck(this)">
+              <input type="checkbox">
+              <span class="checkbox-check"></span>
+              LinkedIn
+            </label>
+            <label class="checkbox-label" onclick="toggleCheck(this)">
+              <input type="checkbox">
+              <span class="checkbox-check"></span>
+              Telegram
+            </label>
+            <label class="checkbox-label" onclick="toggleCheck(this)">
+              <input type="checkbox">
+              <span class="checkbox-check"></span>
+              Threads
+            </label>
+            <label class="checkbox-label" onclick="toggleCheck(this)">
+              <input type="checkbox">
+              <span class="checkbox-check"></span>
+              X (Twitter)
+            </label>
+            <label class="checkbox-label" onclick="toggleCheck(this)">
+              <input type="checkbox">
+              <span class="checkbox-check"></span>
+              Google Business
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Privacy level</label>
+          <select class="form-select" id="privacy-level">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Queue -->
+    <div class="step active">
+      <div class="step-number">3</div>
+      <div class="step-card">
+        <div class="step-title">Publishing Queue</div>
+        <table class="queue-table">
+          <thead>
+            <tr>
+              <th>File</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="file-name">video_001.mp4</td>
+              <td><span class="badge scheduled">Scheduled</span></td>
+              <td><button class="btn-skip" onclick="skipVideo(this, 'video_001')">Skip</button></td>
+            </tr>
+            <tr>
+              <td class="file-name">video_002.mp4</td>
+              <td><span class="badge scheduled">Scheduled</span></td>
+              <td><button class="btn-skip" onclick="skipVideo(this, 'video_002')">Skip</button></td>
+            </tr>
+            <tr>
+              <td class="file-name">video_003.mp4</td>
+              <td><span class="badge published">Published</span></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="btn-activate" onclick="openModal()">Activate Auto-Publishing</button>
+</div>
+
+<!-- Confirmation modal -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal">
+    <h3>Activate Auto-Publishing?</h3>
+    <p>PostBot will automatically publish videos from your Google Drive folder to selected platforms on your schedule. You can pause or stop at any time.</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn" style="background:var(--accent);color:var(--black);" onclick="confirmActivate()">Confirm &amp; Activate</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function connectDrive() {
+    alert('Coming soon — Google Drive connection will be available shortly.');
+  }
+
+  function toggleCheck(label) {
+    const cb = label.querySelector('input[type=checkbox]');
+    const check = label.querySelector('.checkbox-check');
+    cb.checked = !cb.checked;
+    if (cb.checked) {
+      label.classList.add('checked');
+      check.textContent = '✓';
+    } else {
+      label.classList.remove('checked');
+      check.textContent = '';
+    }
+  }
+
+  function skipVideo(btn, name) {
+    if (confirm('Skip ' + name + '? It will be moved to the end of the queue.')) {
+      btn.closest('tr').style.opacity = '0.4';
+      btn.disabled = true;
+    }
+  }
+
+  function openModal() {
+    document.getElementById('modal-backdrop').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('modal-backdrop').classList.remove('open');
+  }
+
+  function confirmActivate() {
+    closeModal();
+    alert('Coming soon — auto-publishing activation will be available shortly.');
+  }
+
+  document.getElementById('modal-backdrop').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+</script>
+{% endblock %}

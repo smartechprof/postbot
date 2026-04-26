@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Connecting… — PostBot{% endblock %}
+
+{% block extra_css %}
+.callback-container {
+  max-width: 480px;
+  margin: 100px auto;
+  padding: 0 24px;
+}
+.callback-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 48px 40px;
+  text-align: center;
+}
+.callback-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 28px;
+}
+.callback-icon.success { background: rgba(0,229,160,0.12); }
+.callback-icon.error   { background: rgba(255,77,106,0.12); }
+.callback-icon.warning { background: rgba(255,179,71,0.12); }
+.callback-card h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.callback-message {
+  font-size: 15px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.callback-message.success { color: var(--accent); }
+.callback-message.error   { color: var(--danger); }
+.callback-message.warning { color: var(--warning); }
+.btn-back {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.btn-back.primary {
+  background: var(--accent);
+  color: var(--black);
+}
+.btn-back.primary:hover { opacity: 0.85; }
+.btn-back.secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-back.secondary:hover { border-color: var(--muted); }
+{% endblock %}
+
+{% block content %}
+<div class="callback-container">
+  <div class="callback-card">
+
+    {% if error %}
+
+      <div class="callback-icon error">✕</div>
+      <h2>Connection Failed</h2>
+      <p class="callback-message error">{{ error }}</p>
+      <a href="/dashboard" class="btn-back secondary">Back to Dashboard</a>
+
+    {% elif code %}
+
+      {% set platform_names = {
+        'tiktok':    'TikTok',
+        'youtube':   'YouTube',
+        'instagram': 'Instagram',
+        'facebook':  'Facebook',
+        'linkedin':  'LinkedIn',
+        'telegram':  'Telegram',
+        'threads':   'Threads'
+      } %}
+      {% set platform_label = platform_names.get(state, state|title if state else 'Platform') %}
+
+      <div class="callback-icon success">✓</div>
+      <h2>Successfully Connected!</h2>
+      <p class="callback-message success">
+        {{ platform_label }} has been linked to your PostBot account.
+      </p>
+      <a href="/dashboard" class="btn-back primary">Go to Dashboard</a>
+
+    {% else %}
+
+      <div class="callback-icon warning">?</div>
+      <h2>Invalid Callback</h2>
+      <p class="callback-message warning">No authorization code was received. Please try connecting again.</p>
+      <a href="/dashboard" class="btn-back secondary">Back to Dashboard</a>
+
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}
