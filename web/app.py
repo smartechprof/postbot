@@ -15,7 +15,7 @@ if Path(ENV_PATH).exists():
 import firebase_admin
 import firebase_admin.auth
 import firebase_admin.credentials
-from flask import Flask, jsonify, render_template, redirect, request, session, url_for
+from flask import Flask, jsonify, render_template, redirect, request, send_from_directory, session, url_for
 
 log = logging.getLogger("postbot-web")
 logging.basicConfig(level=logging.INFO)
@@ -36,6 +36,12 @@ except Exception as exc:
 
 
 # ── Routes ─────────────────────────────────────────────────────────────────
+
+@app.route("/apple-touch-icon.png")
+@app.route("/apple-touch-icon-precomposed.png")
+def apple_touch_icon():
+    return send_from_directory(app.static_folder, "postbot_icon.png")
+
 
 @app.route("/")
 def index():
