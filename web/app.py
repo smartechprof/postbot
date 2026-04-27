@@ -61,6 +61,7 @@ def dashboard():
         "dashboard.html",
         tiktok_client_key=os.getenv("TIKTOK_CLIENT_KEY", ""),
         youtube_client_id=os.getenv("YT_WEB_CLIENT_ID", ""),
+        connected_platforms=session.get("connected_platforms", []),
     )
 
 
@@ -76,6 +77,11 @@ def oauth_callback():
     code = request.args.get("code")
     state = request.args.get("state")
     error = request.args.get("error")
+    if code and state and not error:
+        connected = session.get("connected_platforms", [])
+        if state not in connected:
+            connected.append(state)
+        session["connected_platforms"] = connected
     return render_template("oauth_callback.html", code=code, state=state, error=error)
 
 
