@@ -213,14 +213,16 @@
 
   function friendlyError(code) {
     const map = {
-      'auth/user-not-found':       'No account found with this email.',
-      'auth/wrong-password':       'Incorrect password. Please try again.',
-      'auth/email-already-in-use': 'An account with this email already exists.',
-      'auth/weak-password':        'Password must be at least 6 characters.',
-      'auth/invalid-email':        'Please enter a valid email address.',
-      'auth/too-many-requests':    'Too many attempts. Please wait a moment and try again.',
-      'auth/popup-closed-by-user': 'Sign-in popup was closed. Please try again.',
-      'auth/network-request-failed': 'Network error. Check your connection and try again.',
+      'auth/user-not-found':                           'No account found with this email.',
+      'auth/wrong-password':                           'Incorrect password. Please try again.',
+      'auth/invalid-credential':                       'This email uses Google Sign-In. Click Continue with Google above.',
+      'auth/account-exists-with-different-credential': 'This email is linked to Google Sign-In. Please use Continue with Google.',
+      'auth/email-already-in-use':                     'An account with this email already exists.',
+      'auth/weak-password':                            'Password must be at least 6 characters.',
+      'auth/invalid-email':                            'Please enter a valid email address.',
+      'auth/too-many-requests':                        'Too many attempts. Please wait a moment and try again.',
+      'auth/popup-closed-by-user':                     'Sign-in popup was closed. Please try again.',
+      'auth/network-request-failed':                   'Network error. Check your connection and try again.',
     };
     return map[code] || 'Something went wrong. Please try again.';
   }
