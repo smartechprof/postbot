@@ -155,7 +155,7 @@
         {% endif %}
       </div>
       {% if 'tiktok' in connected_platforms %}
-        <button class="btn-connect disconnect" onclick="comingSoon()">Disconnect</button>
+        <a class="btn-connect disconnect" href="/oauth/disconnect?platform=tiktok">Disconnect</a>
       {% elif tiktok_client_key %}
         <a class="btn-connect active"
            href="https://www.tiktok.com/v2/auth/authorize/?client_key={{ tiktok_client_key }}&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback&response_type=code&scope=user.info.basic%2Cvideo.publish%2Cvideo.upload&state=tiktok">
@@ -180,7 +180,7 @@
         {% endif %}
       </div>
       {% if 'youtube' in connected_platforms %}
-        <button class="btn-connect disconnect" onclick="comingSoon()">Disconnect</button>
+        <a class="btn-connect disconnect" href="/oauth/disconnect?platform=youtube">Disconnect</a>
       {% elif youtube_client_id %}
         <a class="btn-connect active"
            href="https://accounts.google.com/o/oauth2/v2/auth?client_id={{ youtube_client_id }}&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.upload+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fyoutube.readonly&access_type=offline&prompt=consent&state=youtube">

@@ -58,6 +58,30 @@ def get_connected_platforms(uid: str) -> list:
         return []
 
 
+def remove_connected_platform(uid: str, platform: str) -> None:
+    path = Path(USER_DATA_PATH)
+    if not path.exists():
+        return
+    try:
+        with open(path, "a+") as f:
+            fcntl.flock(f, fcntl.LOCK_EX)
+            try:
+                f.seek(0)
+                content = f.read()
+                data = json.loads(content) if content.strip() else {}
+                platforms = data.get(uid, [])
+                if platform in platforms:
+                    platforms.remove(platform)
+                data[uid] = platforms
+                f.seek(0)
+                f.truncate()
+                json.dump(data, f, indent=2)
+            finally:
+                fcntl.flock(f, fcntl.LOCK_UN)
+    except Exception as exc:
+        log.warning("remove_connected_platform failed: %s", exc)
+
+
 def save_connected_platform(uid: str, platform: str) -> None:
     path = Path(USER_DATA_PATH)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -137,6 +161,21 @@ def oauth_callback():
             connected.append(state)
         session["connected_platforms"] = connected
     return render_template("oauth_callback.html", code=code, state=state, error=error)
+
+
+@app.route("/oauth/disconnect")
+def oauth_disconnect():
+    if not session.get("user"):
+        return redirect(url_for("login"))
+    platform = request.args.get("platform", "").strip()
+    if platform:
+        uid = session["user"]["uid"]
+        remove_connected_platform(uid, platform)
+        connected = session.get("connected_platforms", [])
+        if platform in connected:
+            connected.remove(platform)
+        session["connected_platforms"] = connected
+    return redirect(url_for("dashboard"))
 
 
 @app.route("/auth/verify", methods=["POST"])
