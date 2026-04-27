@@ -114,6 +114,47 @@
   border-color: var(--danger);
   color: var(--danger);
 }
+.section-header {
+  margin-bottom: 20px;
+}
+.section-header h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.section-header p {
+  color: var(--muted);
+  font-size: 14px;
+}
+.source-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 48px;
+  transition: border-color .2s, background .2s;
+}
+.source-card:hover {
+  border-color: var(--muted);
+  background: #1a1a25;
+}
+.source-info { flex: 1; min-width: 0; }
+.source-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.source-desc {
+  font-size: 13px;
+  color: var(--muted);
+}
 .publish-cta {
   text-align: center;
 }
@@ -134,8 +175,53 @@
 
 {% block content %}
 <div class="dashboard">
-  <div class="dashboard-header">
-    <h1>Your Platforms</h1>
+
+  <!-- Content Source -->
+  <div class="section-header">
+    <h2>Content Source</h2>
+    <p>Connect your Google Drive folder with video content</p>
+  </div>
+
+  <div class="source-card">
+    <div class="platform-icon" style="background:#1a1a2e;">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+        <path d="M4.5 20.249l4-6.928H22l-4 6.928H4.5z" fill="#0066DA"/>
+        <path d="M2 16.321L6 9.393l4 6.928-4 6.928L2 16.321z" fill="#00AC47"/>
+        <path d="M10.5 3.393h8L14 16.321H6L10.5 3.393z" fill="#EA4335"/>
+        <path d="M14 16.321h8l-4 6.928h-8l4-6.928z" fill="#00832D"/>
+        <path d="M6 16.321l4-6.928 4 6.928H6z" fill="#2684FC"/>
+        <path d="M14.5 3.393l4 6.928H10.5L14.5 3.393z" fill="#FFBA00"/>
+      </svg>
+    </div>
+    <div class="source-info">
+      <div class="source-name">Google Drive</div>
+      <div class="source-desc">
+        {% if 'google_drive' in connected_platforms %}
+          Folder connected — PostBot will pick up new videos automatically
+        {% else %}
+          Not connected — connect a Drive folder to enable auto-publishing
+        {% endif %}
+      </div>
+    </div>
+    <div class="platform-status {% if 'google_drive' in connected_platforms %}connected{% else %}disconnected{% endif %}" style="margin-right:12px;">
+      <span class="status-dot"></span>
+      {% if 'google_drive' in connected_platforms %}Connected{% else %}Not connected{% endif %}
+    </div>
+    {% if 'google_drive' in connected_platforms %}
+      <a class="btn-connect disconnect" href="/oauth/disconnect?platform=google_drive">Disconnect</a>
+    {% elif google_drive_client_id %}
+      <a class="btn-connect active"
+         href="https://accounts.google.com/o/oauth2/v2/auth?client_id={{ google_drive_client_id }}&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly&access_type=offline&prompt=consent&state=google_drive">
+        Connect
+      </a>
+    {% else %}
+      <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% endif %}
+  </div>
+
+  <!-- Platforms -->
+  <div class="section-header">
+    <h2>Your Platforms</h2>
     <p>Connect your social accounts to start publishing everywhere at once.</p>
   </div>
 

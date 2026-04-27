@@ -136,6 +136,7 @@ def dashboard():
         "dashboard.html",
         tiktok_client_key=os.getenv("TIKTOK_CLIENT_KEY", ""),
         youtube_client_id=os.getenv("YT_WEB_CLIENT_ID", ""),
+        google_drive_client_id=os.getenv("YT_WEB_CLIENT_ID", ""),
         connected_platforms=connected,
     )
 
