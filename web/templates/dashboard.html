@@ -155,6 +155,50 @@
   font-size: 13px;
   color: var(--muted);
 }
+.drive-folder-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.drive-folder-input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color .2s;
+}
+.drive-folder-input:focus { border-color: var(--accent); }
+.btn-save-folder {
+  padding: 8px 14px;
+  border-radius: 7px;
+  border: none;
+  background: var(--accent);
+  color: var(--black);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity .2s;
+}
+.btn-save-folder:hover { opacity: 0.85; }
+.drive-save-check {
+  display: none;
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1;
+}
+.drive-hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+}
 @media (max-width: 768px) {
   .source-card {
     flex-direction: column;
@@ -169,6 +213,8 @@
   }
   .source-card .platform-status { margin-right: 0 !important; }
   .source-card .btn-connect { width: 100%; text-align: center; }
+  .drive-folder-row { flex-wrap: wrap; }
+  .drive-folder-input { min-width: 0; }
 }
 .publish-cta {
   text-align: center;
@@ -217,13 +263,23 @@
           Not connected — connect a Drive folder to enable auto-publishing
         {% endif %}
       </div>
+      {% if 'google_drive' in connected_platforms %}
+        <div class="drive-folder-row">
+          <input class="drive-folder-input" id="drive-folder-input" type="text"
+                 placeholder="e.g. PostBot Videos"
+                 value="{{ drive_folder or '' }}">
+          <button class="btn-save-folder" onclick="saveDriveFolder()">Save</button>
+          <span class="drive-save-check" id="drive-save-check">✓</span>
+        </div>
+        <div class="drive-hint">Name your video files like: 001_title.mp4, 002_title.mp4, 003_title.mp4</div>
+      {% endif %}
     </div>
-    <div class="platform-status {% if 'google_drive' in connected_platforms %}connected{% else %}disconnected{% endif %}" style="margin-right:12px;">
+    <div class="platform-status {% if 'google_drive' in connected_platforms %}connected{% else %}disconnected{% endif %}" style="margin-right:12px; align-self:flex-start; margin-top:2px;">
       <span class="status-dot"></span>
       {% if 'google_drive' in connected_platforms %}Connected{% else %}Not connected{% endif %}
     </div>
     {% if 'google_drive' in connected_platforms %}
-      <a class="btn-connect disconnect" href="/oauth/disconnect?platform=google_drive">Disconnect</a>
+      <a class="btn-connect disconnect" href="/oauth/disconnect?platform=google_drive" style="align-self:flex-start;">Disconnect</a>
     {% elif google_drive_client_id %}
       <a class="btn-connect active"
          href="https://accounts.google.com/o/oauth2/v2/auth?client_id={{ google_drive_client_id }}&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.readonly&access_type=offline&prompt=consent&state=google_drive">
@@ -411,6 +467,23 @@
 <script>
   function comingSoon() {
     alert('Coming soon — stay tuned!');
+  }
+
+  async function saveDriveFolder() {
+    const input = document.getElementById('drive-folder-input');
+    const check = document.getElementById('drive-save-check');
+    const folderName = input.value.trim();
+    try {
+      const resp = await fetch('/drive/folder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ folder_name: folderName }),
+      });
+      if (resp.ok) {
+        check.style.display = 'inline';
+        setTimeout(() => { check.style.display = 'none'; }, 2500);
+      }
+    } catch (e) {}
   }
 </script>
 {% endblock %}

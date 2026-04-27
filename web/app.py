@@ -41,21 +41,35 @@ except Exception as exc:
 USER_DATA_PATH = os.getenv("USER_DATA_PATH", "user_data.json")
 
 
-def get_connected_platforms(uid: str) -> list:
+def _read_data() -> dict:
     path = Path(USER_DATA_PATH)
     if not path.exists():
-        return []
+        return {}
     try:
         with open(path, "r") as f:
             fcntl.flock(f, fcntl.LOCK_SH)
             try:
-                data = json.load(f)
+                return json.load(f)
             finally:
                 fcntl.flock(f, fcntl.LOCK_UN)
-        return data.get(uid, [])
     except Exception as exc:
-        log.warning("get_connected_platforms failed: %s", exc)
-        return []
+        log.warning("_read_data failed: %s", exc)
+        return {}
+
+
+def _user_record(data: dict, uid: str) -> dict:
+    record = data.get(uid, {})
+    if isinstance(record, list):
+        return {"platforms": record}
+    return record
+
+
+def get_connected_platforms(uid: str) -> list:
+    return _user_record(_read_data(), uid).get("platforms", [])
+
+
+def get_drive_folder(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("drive_folder", "")
 
 
 def remove_connected_platform(uid: str, platform: str) -> None:
@@ -69,10 +83,12 @@ def remove_connected_platform(uid: str, platform: str) -> None:
                 f.seek(0)
                 content = f.read()
                 data = json.loads(content) if content.strip() else {}
-                platforms = data.get(uid, [])
+                record = _user_record(data, uid)
+                platforms = record.get("platforms", [])
                 if platform in platforms:
                     platforms.remove(platform)
-                data[uid] = platforms
+                record["platforms"] = platforms
+                data[uid] = record
                 f.seek(0)
                 f.truncate()
                 json.dump(data, f, indent=2)
@@ -80,6 +96,28 @@ def remove_connected_platform(uid: str, platform: str) -> None:
                 fcntl.flock(f, fcntl.LOCK_UN)
     except Exception as exc:
         log.warning("remove_connected_platform failed: %s", exc)
+
+
+def save_drive_folder(uid: str, folder_name: str) -> None:
+    path = Path(USER_DATA_PATH)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with open(path, "a+") as f:
+            fcntl.flock(f, fcntl.LOCK_EX)
+            try:
+                f.seek(0)
+                content = f.read()
+                data = json.loads(content) if content.strip() else {}
+                record = _user_record(data, uid)
+                record["drive_folder"] = folder_name
+                data[uid] = record
+                f.seek(0)
+                f.truncate()
+                json.dump(data, f, indent=2)
+            finally:
+                fcntl.flock(f, fcntl.LOCK_UN)
+    except Exception as exc:
+        log.warning("save_drive_folder failed: %s", exc)
 
 
 def save_connected_platform(uid: str, platform: str) -> None:
@@ -92,10 +130,12 @@ def save_connected_platform(uid: str, platform: str) -> None:
                 f.seek(0)
                 content = f.read()
                 data = json.loads(content) if content.strip() else {}
-                platforms = data.get(uid, [])
+                record = _user_record(data, uid)
+                platforms = record.get("platforms", [])
                 if platform not in platforms:
                     platforms.append(platform)
-                data[uid] = platforms
+                record["platforms"] = platforms
+                data[uid] = record
                 f.seek(0)
                 f.truncate()
                 json.dump(data, f, indent=2)
@@ -138,6 +178,7 @@ def dashboard():
         youtube_client_id=os.getenv("YT_WEB_CLIENT_ID", ""),
         google_drive_client_id=os.getenv("YT_WEB_CLIENT_ID", ""),
         connected_platforms=connected,
+        drive_folder=get_drive_folder(uid),
     )
 
 
@@ -177,6 +218,18 @@ def oauth_disconnect():
             connected.remove(platform)
         session["connected_platforms"] = connected
     return redirect(url_for("dashboard"))
+
+
+@app.route("/drive/folder", methods=["POST"])
+def drive_folder():
+    if not session.get("user"):
+        return jsonify({"ok": False, "error": "Unauthorized"}), 401
+    data = request.get_json(silent=True) or {}
+    folder_name = data.get("folder_name", "").strip()
+    uid = session["user"]["uid"]
+    save_drive_folder(uid, folder_name)
+    log.info("Drive folder saved for %s: %s", uid, folder_name)
+    return jsonify({"ok": True})
 
 
 @app.route("/auth/verify", methods=["POST"])
