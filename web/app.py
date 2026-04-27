@@ -186,7 +186,13 @@ def dashboard():
 def publish():
     if not session.get("user"):
         return redirect(url_for("login"))
-    return render_template("publish.html")
+    uid = session["user"]["uid"]
+    connected = get_connected_platforms(uid)
+    return render_template(
+        "publish.html",
+        connected_platforms=connected,
+        drive_folder=get_drive_folder(uid),
+    )
 
 
 @app.route("/oauth/callback")

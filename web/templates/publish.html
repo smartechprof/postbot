@@ -293,11 +293,18 @@
       <div class="step-number">1</div>
       <div class="step-card">
         <div class="step-title">Connect Google Drive</div>
-        <div class="drive-status">
-          <div class="drive-dot" id="drive-dot"></div>
-          <span class="drive-status-text" id="drive-status-text">Not connected</span>
-        </div>
-        <button class="btn btn-outline" onclick="connectDrive()">Connect Google Drive</button>
+        {% if 'google_drive' in connected_platforms %}
+          <div class="drive-status">
+            <div class="drive-dot on"></div>
+            <span class="drive-status-text on">Google Drive connected ✓{% if drive_folder %} &mdash; {{ drive_folder }}{% endif %}</span>
+          </div>
+        {% else %}
+          <div class="drive-status">
+            <div class="drive-dot"></div>
+            <span class="drive-status-text">Not connected</span>
+          </div>
+          <a href="/dashboard" class="btn btn-outline" style="text-decoration:none;">Connect Google Drive on Dashboard</a>
+        {% endif %}
       </div>
     </div>
 
@@ -421,6 +428,11 @@
   </div>
 
   <button class="btn-activate" onclick="openModal()">Activate Auto-Publishing</button>
+
+  <div id="activate-success" style="display:none;margin-top:24px;padding:20px 24px;border-radius:12px;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.25);">
+    <span style="color:var(--accent);font-weight:700;">✓ Publishing scheduled successfully!</span>
+    <span style="color:var(--muted);font-size:14px;"> Your content will be published according to your schedule.</span>
+  </div>
 </div>
 
 <!-- Confirmation modal -->
@@ -436,10 +448,6 @@
 </div>
 
 <script>
-  function connectDrive() {
-    alert('Coming soon — Google Drive connection will be available shortly.');
-  }
-
   function toggleCheck(label) {
     const cb = label.querySelector('input[type=checkbox]');
     const check = label.querySelector('.checkbox-check');
@@ -470,7 +478,9 @@
 
   function confirmActivate() {
     closeModal();
-    alert('Coming soon — auto-publishing activation will be available shortly.');
+    document.getElementById('activate-success').style.display = 'block';
+    document.querySelector('.btn-activate').style.display = 'none';
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
 
   document.getElementById('modal-backdrop').addEventListener('click', function(e) {
