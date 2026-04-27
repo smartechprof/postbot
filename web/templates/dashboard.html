@@ -155,6 +155,22 @@
   font-size: 13px;
   color: var(--muted);
 }
+@media (max-width: 768px) {
+  .source-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .source-info { width: 100%; }
+  .source-desc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .source-card .platform-status { margin-right: 0 !important; }
+  .source-card .btn-connect { width: 100%; text-align: center; }
+}
 .publish-cta {
   text-align: center;
 }
