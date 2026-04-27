@@ -39,6 +39,7 @@
     background: rgba(10,10,15,0.85);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
   }
   .logo {
     font-family: 'Syne', sans-serif;
@@ -60,6 +61,54 @@
     text-decoration: none; transition: opacity .2s;
   }
   .btn-nav:hover { opacity: 0.85; }
+  /* Hamburger */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px; height: 36px;
+    background: none; border: none;
+    cursor: pointer; padding: 4px;
+    border-radius: 6px;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform .25s, opacity .25s;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-hamburger { display: flex; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      width: 100%;
+      margin-top: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      padding-bottom: 6px;
+    }
+    .nav-links.open { display: flex; }
+    nav a.nav-link {
+      padding: 10px 4px;
+      font-size: 15px;
+      width: 100%;
+    }
+    .btn-nav {
+      margin-top: 8px;
+      width: 100%;
+      text-align: center;
+      padding: 11px 22px;
+    }
+  }
   .main-content { padding-top: 80px; min-height: calc(100vh - 80px); }
   footer {
     background: var(--black); border-top: 1px solid var(--border);
@@ -76,7 +125,10 @@
 
 <nav>
   <a href="/" class="logo">Post<span>Bot</span></a>
-  <div class="nav-links">
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
     <a href="/#features" class="nav-link">Features</a>
     <a href="/#pricing" class="nav-link">Pricing</a>
     <a href="/tos.html" class="nav-link">Terms</a>
@@ -87,6 +139,21 @@
     {% endif %}
   </div>
 </nav>
+<script>
+  function toggleNav() {
+    var btn = document.getElementById('nav-hamburger');
+    var links = document.getElementById('nav-links');
+    btn.classList.toggle('open');
+    links.classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    var nav = document.querySelector('nav');
+    if (!nav.contains(e.target)) {
+      document.getElementById('nav-hamburger').classList.remove('open');
+      document.getElementById('nav-links').classList.remove('open');
+    }
+  });
+</script>
 
 <div class="main-content">
   {% block content %}{% endblock %}
