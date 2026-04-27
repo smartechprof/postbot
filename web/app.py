@@ -3,6 +3,8 @@ PostBot Web — Flask application for OAuth flows and dashboard.
 Reads credentials from /etc/igbot.env (same as PostBot CLI).
 """
 import os
+import json
+import fcntl
 import logging
 from pathlib import Path
 from dotenv import load_dotenv
@@ -35,6 +37,50 @@ except Exception as exc:
     log.warning("Firebase Admin init failed — /auth/verify will be unavailable: %s", exc)
 
 
+# ── User data storage ──────────────────────────────────────────────────────
+USER_DATA_PATH = os.getenv("USER_DATA_PATH", "user_data.json")
+
+
+def get_connected_platforms(uid: str) -> list:
+    path = Path(USER_DATA_PATH)
+    if not path.exists():
+        return []
+    try:
+        with open(path, "r") as f:
+            fcntl.flock(f, fcntl.LOCK_SH)
+            try:
+                data = json.load(f)
+            finally:
+                fcntl.flock(f, fcntl.LOCK_UN)
+        return data.get(uid, [])
+    except Exception as exc:
+        log.warning("get_connected_platforms failed: %s", exc)
+        return []
+
+
+def save_connected_platform(uid: str, platform: str) -> None:
+    path = Path(USER_DATA_PATH)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with open(path, "a+") as f:
+            fcntl.flock(f, fcntl.LOCK_EX)
+            try:
+                f.seek(0)
+                content = f.read()
+                data = json.loads(content) if content.strip() else {}
+                platforms = data.get(uid, [])
+                if platform not in platforms:
+                    platforms.append(platform)
+                data[uid] = platforms
+                f.seek(0)
+                f.truncate()
+                json.dump(data, f, indent=2)
+            finally:
+                fcntl.flock(f, fcntl.LOCK_UN)
+    except Exception as exc:
+        log.warning("save_connected_platform failed: %s", exc)
+
+
 # ── Routes ─────────────────────────────────────────────────────────────────
 
 @app.route("/apple-touch-icon.png")
@@ -59,11 +105,14 @@ def login():
 def dashboard():
     if not session.get("user"):
         return redirect(url_for("login"))
+    uid = session["user"]["uid"]
+    connected = get_connected_platforms(uid)
+    session["connected_platforms"] = connected
     return render_template(
         "dashboard.html",
         tiktok_client_key=os.getenv("TIKTOK_CLIENT_KEY", ""),
         youtube_client_id=os.getenv("YT_WEB_CLIENT_ID", ""),
-        connected_platforms=session.get("connected_platforms", []),
+        connected_platforms=connected,
     )
 
 
@@ -80,6 +129,9 @@ def oauth_callback():
     state = request.args.get("state")
     error = request.args.get("error")
     if code and state and not error:
+        uid = (session.get("user") or {}).get("uid")
+        if uid:
+            save_connected_platform(uid, state)
         connected = session.get("connected_platforms", [])
         if state not in connected:
             connected.append(state)

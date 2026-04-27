@@ -61,6 +61,14 @@
     text-decoration: none; transition: opacity .2s;
   }
   .btn-nav:hover { opacity: 0.85; }
+  .nav-user {
+    color: var(--muted);
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
   /* Hamburger */
   .nav-hamburger {
     display: none;
@@ -108,6 +116,10 @@
       text-align: center;
       padding: 11px 22px;
     }
+    .nav-user {
+      padding: 10px 4px 2px;
+      max-width: 100%;
+    }
   }
   .main-content { padding-top: 80px; min-height: calc(100vh - 80px); }
   footer {
@@ -133,6 +145,7 @@
     <a href="/#pricing" class="nav-link">Pricing</a>
     <a href="/tos.html" class="nav-link">Terms</a>
     {% if session.get('user') %}
+      <span class="nav-user">{{ session['user']['name'] or session['user']['email'] }}</span>
       <a href="/auth/logout" class="nav-link">Log Out</a>
       <a href="/dashboard" class="btn-nav">Dashboard</a>
     {% else %}
