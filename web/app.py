@@ -50,6 +50,8 @@ def index():
 
 @app.route("/login.html")
 def login():
+    if session.get("user"):
+        return redirect(url_for("dashboard"))
     return render_template("login.html")
 
 
