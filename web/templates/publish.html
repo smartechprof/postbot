@@ -1,7 +1,23 @@
 {% extends "base.html" %}
-{% block title %}Auto-Publishing Setup — PostBot{% endblock %}
+{% block title %}Publish Settings — PostBot{% endblock %}
 
 {% block extra_css %}
+/* ── Theme: light override (dark is default from base.html) ── */
+html.light-theme {
+  --black: #f5f5f7;
+  --surface: #eeeef0;
+  --card: #ffffff;
+  --border: #d5d5dc;
+  --accent: #00b87a;
+  --accent2: #4a5ae0;
+  --text: #2c2c3a;
+  --muted: #7a7a92;
+  --white: #1a1a2e;
+  --danger: #e03e56;
+  --warning: #d4922e;
+}
+
+/* ── Page layout ── */
 .publish-page {
   max-width: 720px;
   margin: 0 auto;
@@ -17,82 +33,102 @@
 .publish-page .page-subtitle {
   color: var(--muted);
   font-size: 15px;
-  margin-bottom: 52px;
+  margin-bottom: 48px;
 }
-/* Timeline */
-.timeline { position: relative; }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 19px;
-  top: 0; bottom: 0;
-  width: 2px;
-  background: var(--border);
-}
-.step {
-  position: relative;
-  padding-left: 60px;
-  margin-bottom: 40px;
-}
-.step:last-child { margin-bottom: 0; }
-.step-number {
-  position: absolute;
-  left: 0; top: 0;
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: var(--card);
-  border: 2px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 15px;
-  color: var(--muted);
-  z-index: 1;
-}
-.step.active .step-number {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: rgba(0,229,160,0.08);
-}
-.step-card {
+
+/* ── Section cards ── */
+.pub-section {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 28px 28px 32px;
+  padding: 28px;
+  margin-bottom: 20px;
 }
-.step-title {
+.pub-section-title {
   font-family: 'Syne', sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--white);
   margin-bottom: 20px;
-}
-/* Drive step */
-.drive-status {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 18px;
 }
-.drive-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--muted);
+.section-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Syne', sans-serif;
   flex-shrink: 0;
 }
-.drive-dot.on { background: var(--accent); }
-.drive-status-text { font-size: 14px; color: var(--muted); }
-.drive-status-text.on { color: var(--accent); }
-/* Form controls */
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
+
+/* ── Platform selector ── */
+.platform-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
-@media (max-width: 500px) {
-  .form-row { grid-template-columns: 1fr; }
+.platform-tab {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all .2s;
+  user-select: none;
 }
+.platform-tab:hover:not(.disabled) {
+  border-color: var(--muted);
+  color: var(--text);
+}
+.platform-tab.active {
+  border-color: var(--accent);
+  background: rgba(0,229,160,0.08);
+  color: var(--accent);
+}
+.platform-tab.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Account info ── */
+.account-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.account-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.account-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+}
+.account-status {
+  font-size: 13px;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+/* ── Form controls ── */
 .form-group { margin-bottom: 20px; }
 .form-group:last-child { margin-bottom: 0; }
 .form-label {
@@ -100,9 +136,25 @@
   font-size: 13px;
   color: var(--muted);
   margin-bottom: 8px;
+  font-weight: 500;
 }
+.form-label .req { color: var(--danger); margin-left: 2px; }
+.form-hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
 .form-select,
-.form-input {
+.form-input,
+.form-textarea {
   width: 100%;
   padding: 11px 14px;
   border-radius: 8px;
@@ -117,374 +169,697 @@
   -webkit-appearance: none;
 }
 .form-select:focus,
-.form-input:focus { border-color: var(--accent); }
+.form-input:focus,
+.form-textarea:focus { border-color: var(--accent); }
 .form-select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b6b88' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 36px;
 }
-/* Checkboxes */
-.checkbox-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 10px;
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
 }
-.checkbox-label {
+.char-count {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: right;
+  margin-top: 4px;
+}
+.char-count.over { color: var(--danger); }
+
+/* ── Toggle switches ── */
+.toggle-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  cursor: pointer;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.toggle-row:last-child { border-bottom: none; }
+.toggle-info { flex: 1; }
+.toggle-label {
   font-size: 14px;
   color: var(--text);
-  transition: border-color .2s;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.toggle-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: var(--border);
+  cursor: pointer;
+  transition: background .2s;
+}
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  left: 3px; top: 3px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform .2s, background .2s;
+}
+.toggle-switch input:checked + .toggle-slider {
+  background: rgba(0,229,160,0.25);
+}
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+  background: var(--accent);
+}
+.toggle-switch input:disabled + .toggle-slider {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Commercial content ── */
+.commercial-options {
+  display: none;
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.commercial-options.visible { display: block; }
+.commercial-cb {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  cursor: pointer;
   user-select: none;
 }
-.checkbox-label:hover { border-color: var(--muted); }
-.checkbox-label input[type=checkbox] { display: none; }
-.checkbox-label.checked {
-  border-color: var(--accent);
-  background: rgba(0,229,160,0.06);
-  color: var(--accent);
-}
-.checkbox-check {
-  width: 16px; height: 16px;
+.commercial-cb input[type=checkbox] {
+  width: 18px; height: 18px;
   border-radius: 4px;
   border: 2px solid var(--border);
+  background: var(--surface);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
   flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+  transition: all .2s;
 }
-.checkbox-label.checked .checkbox-check {
+.commercial-cb input[type=checkbox]:checked {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--black);
-  font-size: 10px;
-  font-weight: 800;
 }
-/* Queue table */
-.queue-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.queue-table th {
-  text-align: left;
-  font-size: 12px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  padding: 0 12px 12px;
-  border-bottom: 1px solid var(--border);
-}
-.queue-table td {
-  padding: 14px 12px;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-  vertical-align: middle;
-}
-.queue-table tr:last-child td { border-bottom: none; }
-.queue-table .file-name { color: var(--text); font-weight: 500; }
-.badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-}
-.badge.scheduled { background: rgba(91,106,240,0.15); color: #8b9af8; }
-.badge.published  { background: rgba(0,229,160,0.12); color: var(--accent); }
-.btn-skip {
-  padding: 5px 14px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--muted);
-  font-size: 12px;
-  cursor: pointer;
-  transition: border-color .2s, color .2s;
-}
-.btn-skip:hover { border-color: var(--danger); color: var(--danger); }
-/* Buttons */
-.btn {
-  padding: 10px 20px;
+.cb-text { font-size: 14px; color: var(--text); }
+.cb-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.com-warning {
+  display: none;
+  margin-top: 12px;
+  padding: 10px 14px;
   border-radius: 8px;
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
-  transition: opacity .2s;
-  text-decoration: none;
-  display: inline-block;
+  background: rgba(255,179,71,0.10);
+  color: var(--warning);
+  font-size: 13px;
+  line-height: 1.5;
 }
-.btn-outline {
+.com-warning.visible { display: block; }
+
+/* ── Video select ── */
+.video-select-area {
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.video-select-area:hover {
+  border-color: var(--muted);
   background: var(--surface);
-  color: var(--text);
+}
+.video-select-icon {
+  font-size: 28px;
+  color: var(--muted);
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.video-select-text {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.video-select-hint {
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.6;
+}
+.video-preview {
+  display: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
   border: 1px solid var(--border);
 }
-.btn-outline:hover { border-color: var(--muted); }
-.btn-activate {
+.video-preview.visible { display: block; }
+.video-preview video {
+  width: 100%;
+  max-height: 400px;
+  display: block;
+}
+.video-preview-bar {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.video-file-name {
+  font-size: 14px;
+  color: var(--text);
+  font-weight: 500;
+}
+.btn-change {
+  font-size: 13px;
+  color: var(--accent);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-change:hover { text-decoration: underline; }
+
+/* ── Consent ── */
+.consent-block {
+  padding: 16px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.consent-block a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.consent-block a:hover { text-decoration: underline; }
+
+/* ── Buttons ── */
+.btn-publish {
   width: 100%;
   padding: 16px;
   border-radius: 10px;
   border: none;
   background: var(--accent);
-  color: var(--black);
+  color: #0a0a0f;
   font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 16px;
   cursor: pointer;
   transition: opacity .2s;
-  margin-top: 48px;
 }
-.btn-activate:hover { opacity: 0.85; }
-/* Modal */
-.modal-backdrop {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(4px);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-.modal-backdrop.open { display: flex; }
-.modal {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 40px 36px;
-  max-width: 460px;
+html.light-theme .btn-publish { color: #ffffff; }
+.btn-publish:hover:not(:disabled) { opacity: 0.85; }
+.btn-publish:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-save {
   width: 100%;
-}
-.modal h3 {
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent2);
+  color: #ffffff;
   font-family: 'Syne', sans-serif;
-  font-size: 22px;
   font-weight: 800;
-  color: var(--white);
-  margin-bottom: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity .2s;
 }
-.modal p {
-  color: var(--muted);
+.btn-save:hover { opacity: 0.85; }
+
+/* ── Status messages ── */
+.status-msg {
+  display: none;
+  margin-top: 16px;
+  padding: 16px 20px;
+  border-radius: 12px;
   font-size: 14px;
-  line-height: 1.7;
-  margin-bottom: 32px;
+  line-height: 1.5;
 }
-.modal-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
+.status-msg.visible { display: block; }
+.status-msg.msg-success {
+  background: rgba(0,229,160,0.08);
+  border: 1px solid var(--accent);
+  color: var(--accent);
 }
+.status-msg.msg-processing {
+  background: rgba(91,106,240,0.10);
+  border: 1px solid var(--accent2);
+  color: var(--accent2);
+}
+.status-msg.msg-error {
+  background: rgba(255,77,106,0.08);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+}
+
+/* ── Platform visibility ── */
+.tiktok-only, .youtube-only { display: none; }
+.platform-tiktok .tiktok-only { display: block; }
+.platform-youtube .youtube-only { display: block; }
 {% endblock %}
 
 {% block content %}
-<div class="publish-page">
-  <h1>Auto-Publishing Setup</h1>
-  <p class="page-subtitle">Configure PostBot to publish your videos automatically on a schedule.</p>
+<div class="publish-page" id="publish-page">
+  <h1>Publish Settings</h1>
+  <p class="page-subtitle">Configure how PostBot publishes your content to each platform.</p>
 
-  <div class="timeline">
+  <!-- ═══ 1. Platform selector ═══ -->
+  <div class="pub-section">
+    <div class="pub-section-title">
+      <span class="section-icon" style="background:rgba(0,229,160,0.08);color:var(--accent);">1</span>
+      Select Platform
+    </div>
+    <div class="platform-tabs" id="platform-tabs">
+      <button class="platform-tab" data-platform="tiktok" onclick="selectPlatform('tiktok')">TikTok</button>
+      <button class="platform-tab" data-platform="youtube" onclick="selectPlatform('youtube')">YouTube</button>
+      <button class="platform-tab disabled" title="Coming soon">Instagram</button>
+      <button class="platform-tab disabled" title="Coming soon">Facebook</button>
+      <button class="platform-tab disabled" title="Coming soon">LinkedIn</button>
+      <button class="platform-tab disabled" title="Coming soon">Telegram</button>
+    </div>
+  </div>
 
-    <!-- Step 1: Google Drive -->
-    <div class="step active">
-      <div class="step-number">1</div>
-      <div class="step-card">
-        <div class="step-title">Connect Google Drive</div>
-        {% if 'google_drive' in connected_platforms %}
-          <div class="drive-status">
-            <div class="drive-dot on"></div>
-            <span class="drive-status-text on">Google Drive connected ✓{% if drive_folder %} &mdash; {{ drive_folder }}{% endif %}</span>
-          </div>
-        {% else %}
-          <div class="drive-status">
-            <div class="drive-dot"></div>
-            <span class="drive-status-text">Not connected</span>
-          </div>
-          <a href="/dashboard" class="btn btn-outline" style="text-decoration:none;">Connect Google Drive on Dashboard</a>
-        {% endif %}
+  <!-- ═══ Dynamic settings (visible after platform selected) ═══ -->
+  <div id="platform-settings" style="display:none;">
+
+    <!-- ═══ 2. Account ═══ -->
+    <div class="pub-section">
+      <div class="pub-section-title">
+        <span class="section-icon" style="background:rgba(91,106,240,0.12);color:var(--accent2);">2</span>
+        Account
+      </div>
+      <div class="tiktok-only">
+        <div class="account-bar">
+          <div class="account-dot"></div>
+          <span class="account-name" id="tt-user">@username</span>
+          <span class="account-status" id="tt-limits">Loading...</span>
+        </div>
+        <p class="form-hint" style="margin-top:10px;" id="tt-duration">Max video duration will be loaded from your account.</p>
+      </div>
+      <div class="youtube-only">
+        <div class="account-bar">
+          <div class="account-dot"></div>
+          <span class="account-name" id="yt-channel">Channel Name</span>
+          <span class="account-status">Connected</span>
+        </div>
       </div>
     </div>
 
-    <!-- Step 2: Schedule -->
-    <div class="step active">
-      <div class="step-number">2</div>
-      <div class="step-card">
-        <div class="step-title">Publishing Schedule</div>
-
-        <div class="form-row">
-          <div class="form-group" style="margin-bottom:0;">
-            <label class="form-label">Frequency</label>
-            <select class="form-select" id="frequency">
-              <option value="1">Every day</option>
-              <option value="2">Every 2 days</option>
-              <option value="3">Every 3 days</option>
-              <option value="7">Weekly</option>
-            </select>
-          </div>
-          <div class="form-group" style="margin-bottom:0;">
-            <label class="form-label">Publish time</label>
-            <input class="form-input" type="time" id="publish-time" value="17:00">
-          </div>
+    <!-- ═══ 3. Video ═══ -->
+    <div class="pub-section">
+      <div class="pub-section-title">
+        <span class="section-icon" style="background:rgba(0,229,160,0.08);color:var(--accent);">3</span>
+        Select Video
+      </div>
+      <div class="video-select-area" id="video-area" onclick="selectVideo()">
+        <div class="video-select-icon">&#9654;</div>
+        <div class="video-select-text">Choose video from Google Drive</div>
+        <div class="video-select-hint">or drag and drop a file here</div>
+      </div>
+      <div class="video-preview" id="video-preview">
+        <video id="vid-player" controls></video>
+        <div class="video-preview-bar">
+          <span class="video-file-name" id="vid-name">video.mp4</span>
+          <button class="btn-change" onclick="changeVideo()">Change</button>
         </div>
+      </div>
+    </div>
 
+    <!-- ═══ 4. Content details ═══ -->
+    <div class="pub-section">
+      <div class="pub-section-title">
+        <span class="section-icon" style="background:rgba(91,106,240,0.12);color:var(--accent2);">4</span>
+        Content Details
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Title<span class="req">*</span></label>
+        <input class="form-input" type="text" id="pub-title" placeholder="Enter a title for your video" maxlength="150" oninput="countChars('pub-title','title-count',150);validateForm();">
+        <div class="char-count" id="title-count">0 / 150</div>
+      </div>
+
+      <div class="youtube-only">
         <div class="form-group">
-          <label class="form-label" style="margin-bottom:12px;">Platforms</label>
-          <div class="checkbox-grid" id="platform-checkboxes">
-            <label class="checkbox-label checked" onclick="toggleCheck(this)">
-              <input type="checkbox" checked>
-              <span class="checkbox-check">✓</span>
-              TikTok
-            </label>
-            <label class="checkbox-label checked" onclick="toggleCheck(this)">
-              <input type="checkbox" checked>
-              <span class="checkbox-check">✓</span>
-              YouTube
-            </label>
-            <label class="checkbox-label checked" onclick="toggleCheck(this)">
-              <input type="checkbox" checked>
-              <span class="checkbox-check">✓</span>
-              Instagram
-            </label>
-            <label class="checkbox-label" onclick="toggleCheck(this)">
-              <input type="checkbox">
-              <span class="checkbox-check"></span>
-              Facebook
-            </label>
-            <label class="checkbox-label" onclick="toggleCheck(this)">
-              <input type="checkbox">
-              <span class="checkbox-check"></span>
-              LinkedIn
-            </label>
-            <label class="checkbox-label" onclick="toggleCheck(this)">
-              <input type="checkbox">
-              <span class="checkbox-check"></span>
-              Telegram
-            </label>
-            <label class="checkbox-label" onclick="toggleCheck(this)">
-              <input type="checkbox">
-              <span class="checkbox-check"></span>
-              Threads
-            </label>
-            <label class="checkbox-label" onclick="toggleCheck(this)">
-              <input type="checkbox">
-              <span class="checkbox-check"></span>
-              X (Twitter)
-            </label>
-            <label class="checkbox-label" onclick="toggleCheck(this)">
-              <input type="checkbox">
-              <span class="checkbox-check"></span>
-              Google Business
-            </label>
-          </div>
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="pub-desc" placeholder="Describe your video" maxlength="5000" oninput="countChars('pub-desc','desc-count',5000);"></textarea>
+          <div class="char-count" id="desc-count">0 / 5000</div>
         </div>
+      </div>
 
+      <div class="youtube-only">
         <div class="form-group">
-          <label class="form-label">Privacy level</label>
-          <select class="form-select" id="privacy-level">
+          <label class="form-label">Tags</label>
+          <input class="form-input" type="text" id="pub-tags" placeholder="Separate with commas (e.g. spray foam, insulation)" oninput="countTags();">
+          <p class="form-hint">Tags help viewers find your video. Total must stay under 460 characters (including quotes around multi-word tags).</p>
+          <div class="char-count" id="tags-count">0 / 460</div>
+        </div>
+      </div>
+
+      <div class="youtube-only">
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="pub-cat">
+            <option value="22">People &amp; Blogs</option>
+            <option value="28">Science &amp; Technology</option>
+            <option value="26">Howto &amp; Style</option>
+            <option value="27">Education</option>
+            <option value="24">Entertainment</option>
+            <option value="2">Autos &amp; Vehicles</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 5. Privacy ═══ -->
+    <div class="pub-section">
+      <div class="pub-section-title">
+        <span class="section-icon" style="background:rgba(0,229,160,0.08);color:var(--accent);">5</span>
+        Privacy
+      </div>
+
+      <div class="tiktok-only">
+        <div class="form-group">
+          <label class="form-label">Who can view this video<span class="req">*</span></label>
+          <select class="form-select" id="tt-privacy" onchange="onPrivacyChange();validateForm();">
+            <option value="" disabled selected>— Select privacy level —</option>
+            <option value="PUBLIC_TO_EVERYONE">Everyone</option>
+            <option value="MUTUAL_FOLLOW_FRIENDS">Friends</option>
+            <option value="FOLLOWER_OF_CREATOR">Followers</option>
+            <option value="SELF_ONLY">Only me</option>
+          </select>
+          <p class="form-hint">Options depend on your TikTok account settings.</p>
+        </div>
+      </div>
+
+      <div class="youtube-only">
+        <div class="form-group">
+          <label class="form-label">Visibility<span class="req">*</span></label>
+          <select class="form-select" id="yt-privacy" onchange="validateForm();">
+            <option value="" disabled selected>— Select visibility —</option>
             <option value="public">Public</option>
+            <option value="unlisted">Unlisted</option>
             <option value="private">Private</option>
           </select>
         </div>
       </div>
     </div>
 
-    <!-- Step 3: Queue -->
-    <div class="step active">
-      <div class="step-number">3</div>
-      <div class="step-card">
-        <div class="step-title">Publishing Queue</div>
-        <table class="queue-table">
-          <thead>
-            <tr>
-              <th>File</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="file-name">video_001.mp4</td>
-              <td><span class="badge scheduled">Scheduled</span></td>
-              <td><button class="btn-skip" onclick="skipVideo(this, 'video_001')">Skip</button></td>
-            </tr>
-            <tr>
-              <td class="file-name">video_002.mp4</td>
-              <td><span class="badge scheduled">Scheduled</span></td>
-              <td><button class="btn-skip" onclick="skipVideo(this, 'video_002')">Skip</button></td>
-            </tr>
-            <tr>
-              <td class="file-name">video_003.mp4</td>
-              <td><span class="badge published">Published</span></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- ═══ 6. Interaction (TikTok only) ═══ -->
+    <div class="pub-section tiktok-only">
+      <div class="pub-section-title">
+        <span class="section-icon" style="background:rgba(91,106,240,0.12);color:var(--accent2);">6</span>
+        Interaction Settings
+      </div>
+
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div class="toggle-label">Allow Comments</div>
+          <div class="toggle-desc">Let others comment on your video</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="allow-comment">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div class="toggle-label">Allow Duet</div>
+          <div class="toggle-desc">Let others create a side-by-side video with yours</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="allow-duet">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <div class="toggle-label">Allow Stitch</div>
+          <div class="toggle-desc">Let others use a clip from your video in theirs</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="allow-stitch">
+          <span class="toggle-slider"></span>
+        </label>
       </div>
     </div>
 
-  </div>
+    <!-- ═══ 7. Commercial content (TikTok only) ═══ -->
+    <div class="pub-section tiktok-only">
+      <div class="pub-section-title">
+        <span class="section-icon" style="background:rgba(255,179,71,0.10);color:var(--warning);">7</span>
+        Commercial Content Disclosure
+      </div>
 
-  <button class="btn-activate" onclick="openModal()">Activate Auto-Publishing</button>
+      <div class="toggle-row" style="border-bottom:none;">
+        <div class="toggle-info">
+          <div class="toggle-label">This content promotes a brand, product, or service</div>
+          <div class="toggle-desc">Turn on if your video is promotional or sponsored</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="com-toggle" onchange="toggleCommercial()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
 
-  <div id="activate-success" style="display:none;margin-top:24px;padding:20px 24px;border-radius:12px;background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.25);">
-    <span style="color:var(--accent);font-weight:700;">✓ Publishing scheduled successfully!</span>
-    <span style="color:var(--muted);font-size:14px;"> Your content will be published according to your schedule.</span>
-  </div>
-</div>
-
-<!-- Confirmation modal -->
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal">
-    <h3>Activate Auto-Publishing?</h3>
-    <p>PostBot will automatically publish videos from your Google Drive folder to selected platforms on your schedule. You can pause or stop at any time.</p>
-    <div class="modal-actions">
-      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
-      <button class="btn" style="background:var(--accent);color:var(--black);" onclick="confirmActivate()">Confirm &amp; Activate</button>
+      <div class="commercial-options" id="com-opts">
+        <label class="commercial-cb">
+          <input type="checkbox" id="cb-brand" onchange="updateCommercial()">
+          <div>
+            <div class="cb-text">Your brand</div>
+            <div class="cb-desc">You are promoting yourself or your own business</div>
+          </div>
+        </label>
+        <label class="commercial-cb">
+          <input type="checkbox" id="cb-branded" onchange="updateCommercial()">
+          <div>
+            <div class="cb-text">Branded content</div>
+            <div class="cb-desc">A third party is paying or compensating you for this promotion</div>
+          </div>
+        </label>
+        <div class="com-warning" id="warn-select">You must select at least one option above to publish.</div>
+        <div class="com-warning" id="warn-private">Branded content cannot be used when privacy is set to "Only me".</div>
+      </div>
     </div>
+
+    <!-- ═══ 8. Consent + Publish ═══ -->
+    <div class="pub-section">
+      <div class="pub-section-title">
+        <span class="section-icon" style="background:rgba(0,229,160,0.08);color:var(--accent);">8</span>
+        Publish
+      </div>
+
+      <div class="tiktok-only">
+        <div class="consent-block" id="tt-consent">
+          By clicking Publish, you agree to TikTok's
+          <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener">Music Usage Confirmation</a>.
+          <span id="branded-consent" style="display:none;">
+            You also agree to TikTok's
+            <a href="https://www.tiktok.com/legal/page/global/bc-policy/en" target="_blank" rel="noopener">Branded Content Policy</a>.
+          </span>
+        </div>
+      </div>
+
+      <div class="youtube-only">
+        <div class="consent-block">
+          By clicking Publish, you agree to
+          <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener">YouTube's Terms of Service</a>
+          and
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.
+        </div>
+      </div>
+
+      <button class="btn-publish" id="btn-pub" disabled onclick="doPublish()">Publish</button>
+
+      <div class="status-msg" id="st-processing">Publishing... It may take a few minutes for your content to be processed and visible on your profile.</div>
+      <div class="status-msg" id="st-success">Video published successfully! It may take a few minutes to appear on your profile.</div>
+      <div class="status-msg" id="st-error">Something went wrong. Please try again.</div>
+    </div>
+
+    <!-- ═══ Save defaults ═══ -->
+    <div class="pub-section" style="border-style:dashed;background:transparent;">
+      <div class="pub-section-title">
+        <span class="section-icon" style="background:rgba(91,106,240,0.12);color:var(--accent2);">&#10003;</span>
+        Default Settings
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
+        Save current settings as defaults for auto-publishing. PostBot will apply them to all scheduled videos on this platform.
+      </p>
+      <button class="btn-save" onclick="saveDefaults()">Save as Default Settings</button>
+      <div class="status-msg" id="st-saved"></div>
+    </div>
+
   </div>
 </div>
 
 <script>
-  function toggleCheck(label) {
-    const cb = label.querySelector('input[type=checkbox]');
-    const check = label.querySelector('.checkbox-check');
-    cb.checked = !cb.checked;
-    if (cb.checked) {
-      label.classList.add('checked');
-      check.textContent = '✓';
-    } else {
-      label.classList.remove('checked');
-      check.textContent = '';
+var curPlatform = null;
+var hasVideo = false;
+
+function selectPlatform(p) {
+  document.querySelectorAll('.platform-tab').forEach(function(t) { t.classList.remove('active'); });
+  var tab = document.querySelector('[data-platform="' + p + '"]');
+  if (!tab || tab.classList.contains('disabled')) return;
+  tab.classList.add('active');
+  curPlatform = p;
+  var pg = document.getElementById('publish-page');
+  pg.classList.remove('platform-tiktok', 'platform-youtube');
+  pg.classList.add('platform-' + p);
+  document.getElementById('platform-settings').style.display = 'block';
+  clearStatus();
+  validateForm();
+}
+
+function selectVideo() {
+  hasVideo = true;
+  document.getElementById('video-area').style.display = 'none';
+  document.getElementById('video-preview').classList.add('visible');
+  document.getElementById('vid-name').textContent = 'spray_foam_demo.mp4';
+  validateForm();
+}
+
+function changeVideo() {
+  hasVideo = false;
+  document.getElementById('video-area').style.display = '';
+  document.getElementById('video-preview').classList.remove('visible');
+  document.getElementById('vid-player').src = '';
+  validateForm();
+}
+
+function countChars(inputId, countId, max) {
+  var len = document.getElementById(inputId).value.length;
+  var el = document.getElementById(countId);
+  el.textContent = len + ' / ' + max;
+  el.classList.toggle('over', len > max);
+}
+
+function countTags() {
+  var val = document.getElementById('pub-tags').value;
+  var tags = val.split(',').map(function(t) { return t.trim(); }).filter(Boolean);
+  var len = 0;
+  tags.forEach(function(t) { len += t.length + (t.indexOf(' ') >= 0 ? 2 : 0); });
+  var el = document.getElementById('tags-count');
+  el.textContent = len + ' / 460';
+  el.classList.toggle('over', len > 460);
+}
+
+function onPrivacyChange() {
+  updateCommercial();
+  validateForm();
+}
+
+function toggleCommercial() {
+  var on = document.getElementById('com-toggle').checked;
+  var opts = document.getElementById('com-opts');
+  if (on) {
+    opts.classList.add('visible');
+  } else {
+    opts.classList.remove('visible');
+    document.getElementById('cb-brand').checked = false;
+    document.getElementById('cb-branded').checked = false;
+  }
+  updateCommercial();
+  validateForm();
+}
+
+function updateCommercial() {
+  var on = document.getElementById('com-toggle').checked;
+  var brand = document.getElementById('cb-brand').checked;
+  var branded = document.getElementById('cb-branded').checked;
+  var priv = document.getElementById('tt-privacy').value;
+  var wS = document.getElementById('warn-select');
+  var wP = document.getElementById('warn-private');
+  var bc = document.getElementById('branded-consent');
+
+  wS.classList.remove('visible');
+  wP.classList.remove('visible');
+
+  if (on) {
+    if (!brand && !branded) wS.classList.add('visible');
+    if (branded && priv === 'SELF_ONLY') {
+      wP.classList.add('visible');
+      document.getElementById('cb-branded').checked = false;
+      branded = false;
     }
   }
 
-  function skipVideo(btn, name) {
-    if (confirm('Skip ' + name + '? It will be moved to the end of the queue.')) {
-      btn.closest('tr').style.opacity = '0.4';
-      btn.disabled = true;
+  bc.style.display = (brand || branded) ? 'inline' : 'none';
+  validateForm();
+}
+
+function validateForm() {
+  var ok = true;
+  if (!document.getElementById('pub-title').value.trim()) ok = false;
+  if (!hasVideo) ok = false;
+
+  if (curPlatform === 'tiktok') {
+    if (!document.getElementById('tt-privacy').value) ok = false;
+    if (document.getElementById('com-toggle').checked) {
+      var b1 = document.getElementById('cb-brand').checked;
+      var b2 = document.getElementById('cb-branded').checked;
+      if (!b1 && !b2) ok = false;
     }
   }
-
-  function openModal() {
-    document.getElementById('modal-backdrop').classList.add('open');
+  if (curPlatform === 'youtube') {
+    if (!document.getElementById('yt-privacy').value) ok = false;
   }
+  document.getElementById('btn-pub').disabled = !ok;
+}
 
-  function closeModal() {
-    document.getElementById('modal-backdrop').classList.remove('open');
-  }
+function doPublish() {
+  document.getElementById('btn-pub').disabled = true;
+  clearStatus();
+  showStatus('st-processing', 'msg-processing');
+  setTimeout(function() {
+    hideStatus('st-processing');
+    showStatus('st-success', 'msg-success');
+  }, 3000);
+}
 
-  function confirmActivate() {
-    closeModal();
-    document.getElementById('activate-success').style.display = 'block';
-    document.querySelector('.btn-activate').style.display = 'none';
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  }
+function saveDefaults() {
+  var el = document.getElementById('st-saved');
+  var name = curPlatform === 'tiktok' ? 'TikTok' : 'YouTube';
+  el.textContent = 'Default settings saved for ' + name + '. PostBot will use these for all scheduled videos.';
+  el.className = 'status-msg visible msg-success';
+}
 
-  document.getElementById('modal-backdrop').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
+function showStatus(id, cls) {
+  var el = document.getElementById(id);
+  el.classList.add('visible', cls);
+}
+function hideStatus(id) {
+  document.getElementById(id).className = 'status-msg';
+}
+function clearStatus() {
+  ['st-processing','st-success','st-error'].forEach(function(id) {
+    document.getElementById(id).className = 'status-msg';
   });
+}
+
+document.addEventListener('DOMContentLoaded', function() { validateForm(); });
 </script>
 {% endblock %}
