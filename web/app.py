@@ -226,6 +226,50 @@ def oauth_disconnect():
     return redirect(url_for("dashboard"))
 
 
+
+@app.route("/bluesky/connect", methods=["POST"])
+def bluesky_connect():
+    if not session.get("user"):
+        return jsonify({"ok": False, "error": "Unauthorized"}), 401
+    data = request.get_json(silent=True) or {}
+    handle = data.get("handle", "").strip()
+    app_password = data.get("app_password", "").strip()
+    if not handle or not app_password:
+        return jsonify({"ok": False, "error": "Handle and App Password are required."}), 400
+    import requests as http_requests
+    try:
+        resp = http_requests.post(
+            "https://bsky.social/xrpc/com.atproto.server.createSession",
+            json={"identifier": handle, "password": app_password},
+            timeout=15,
+        )
+        if not resp.ok:
+            return jsonify({"ok": False, "error": "Invalid handle or app password."}), 401
+    except Exception:
+        return jsonify({"ok": False, "error": "Could not reach Bluesky. Try again later."}), 502
+    uid = session["user"]["uid"]
+    save_connected_platform(uid, "bluesky")
+    connected = session.get("connected_platforms", [])
+    if "bluesky" not in connected:
+        connected.append("bluesky")
+    session["connected_platforms"] = connected
+    log.info("Bluesky connected for user %s (handle: %s)", uid, handle)
+    return jsonify({"ok": True})
+
+
+@app.route("/bluesky/disconnect")
+def bluesky_disconnect():
+    if not session.get("user"):
+        return redirect(url_for("login"))
+    uid = session["user"]["uid"]
+    remove_connected_platform(uid, "bluesky")
+    connected = session.get("connected_platforms", [])
+    if "bluesky" in connected:
+        connected.remove("bluesky")
+    session["connected_platforms"] = connected
+    return redirect(url_for("dashboard"))
+
+
 @app.route("/drive/folder", methods=["POST"])
 def drive_folder():
     if not session.get("user"):
