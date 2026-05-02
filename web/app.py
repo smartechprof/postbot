@@ -150,7 +150,7 @@ def save_connected_platform(uid: str, platform: str) -> None:
 @app.route("/apple-touch-icon.png")
 @app.route("/apple-touch-icon-precomposed.png")
 def apple_touch_icon():
-    return send_from_directory(app.static_folder, "postbot_icon.png")
+    return send_from_directory(os.path.join(app.static_folder, "icons"), "postbot_icon.png")
 
 
 @app.route("/")
