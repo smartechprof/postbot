@@ -232,7 +232,7 @@ def bluesky_connect():
     if not session.get("user"):
         return jsonify({"ok": False, "error": "Unauthorized"}), 401
     data = request.get_json(silent=True) or {}
-    handle = data.get("handle", "").strip()
+    handle = data.get("handle", "").strip().lstrip("@")
     app_password = data.get("app_password", "").strip()
     if not handle or not app_password:
         return jsonify({"ok": False, "error": "Handle and App Password are required."}), 400

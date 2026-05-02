@@ -306,6 +306,13 @@ def publish(video_path: str, metadata: dict) -> dict:
 
     compressed_path = compress_for_platform(video_path)
 
+    # Guard: Bluesky video size limit (100 MB)
+    file_size = os.path.getsize(compressed_path)
+    if file_size > 100 * 1024 * 1024:
+        if compressed_path != video_path:
+            delete_temp(compressed_path)
+        return {"ok": False, "error": f"Video too large for Bluesky: {file_size // (1024*1024)} MB (limit 100 MB)"}
+
     try:
         last_error = "unknown error"
         for attempt in range(config.MAX_RETRY_ATTEMPTS):
