@@ -71,6 +71,7 @@
 }
 .platform-status.connected { color: var(--accent); }
 .platform-status.disconnected { color: var(--muted); }
+.platform-status.coming-soon-status { color: var(--warning); }
 .status-dot {
   width: 7px;
   height: 7px;
@@ -79,6 +80,10 @@
 }
 .connected .status-dot { background: var(--accent); }
 .disconnected .status-dot { background: var(--muted); }
+.coming-soon-status .status-dot { background: var(--warning); }
+.platform-card.coming-soon { opacity: 0.65; }
+.platform-card.coming-soon:hover { opacity: 1; border-color: var(--warning); background: var(--card); }
+.platform-card.coming-soon .platform-icon { filter: grayscale(0.4); }
 .btn-connect {
   padding: 8px 16px;
   border-radius: 7px;
@@ -391,21 +396,21 @@
   </div>
 
   <!-- Pinterest -->
-  <div class="platform-card">
+  <div class="platform-card coming-soon">
     <div class="platform-icon"><img src="/static/icons/pinterest-round-color-icon.svg" alt="Pinterest"></div>
     <div class="platform-info">
       <div class="platform-name">Pinterest</div>
-      <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      <div class="platform-status coming-soon-status"><span class="status-dot"></span>Coming Soon</div>
     </div>
     <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
   </div>
 
   <!-- Bluesky -->
-  <div class="platform-card">
+  <div class="platform-card coming-soon">
     <div class="platform-icon"><img src="/static/icons/bluesky-square-color-icon.svg" alt="Bluesky"></div>
     <div class="platform-info">
       <div class="platform-name">Bluesky</div>
-      <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      <div class="platform-status coming-soon-status"><span class="status-dot"></span>Coming Soon</div>
     </div>
     <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
   </div>
