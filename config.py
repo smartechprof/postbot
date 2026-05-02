@@ -60,6 +60,10 @@ X_ACCESS_TOKEN_SECRET  = os.getenv("X_ACCESS_TOKEN_SECRET")
 PINTEREST_ACCESS_TOKEN = os.getenv("PINTEREST_ACCESS_TOKEN")
 PINTEREST_BOARD_ID     = os.getenv("PINTEREST_BOARD_ID")
 
+# ── Bluesky ──────────────────────────────────────────────────────────────────
+BLUESKY_HANDLE       = os.getenv("BLUESKY_HANDLE")
+BLUESKY_APP_PASSWORD = os.getenv("BLUESKY_APP_PASSWORD")
+
 # ── General settings ──────────────────────────────────────────────────────────
 DRIVE_FOLDER_NAME = os.getenv("DRIVE_FOLDER_NAME", "reels for pb")
 STATE_FILE        = os.getenv("STATE_FILE", "state.txt")
@@ -92,6 +96,8 @@ _REQUIRED = {
     "TIKTOK_CLIENT_KEY":    TIKTOK_CLIENT_KEY,
     "TIKTOK_CLIENT_SECRET": TIKTOK_CLIENT_SECRET,
     "TIKTOK_REFRESH_TOKEN": TIKTOK_REFRESH_TOKEN,
+    "BLUESKY_HANDLE":       BLUESKY_HANDLE,
+    "BLUESKY_APP_PASSWORD": BLUESKY_APP_PASSWORD,
 }
 
 _missing = [name for name, value in _REQUIRED.items() if not value]

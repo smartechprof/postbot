@@ -25,6 +25,7 @@ PLATFORM_LIMITS = [
     ("threads",    "text",        440),
     ("x",          "post",        280),
     ("gmaps",      "summary",     1500),
+    ("bluesky",    "text",        300),
 ]
 
 
