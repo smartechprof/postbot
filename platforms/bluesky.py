@@ -55,9 +55,36 @@ def _create_session(handle: str, app_password: str) -> dict:
     return data
 
 
-def _get_service_auth(access_token: str, did: str) -> str:
+def _get_pds_did(did: str) -> str:
     """
-    Get a scoped service auth token for video upload.
+    Resolve the user's PDS service DID via plc.directory.
+
+    Returns the PDS DID string (e.g. did:web:stropharia.us-west.host.bsky.network).
+    Raises RuntimeError on failure.
+    """
+    resp = requests.get(f"https://plc.directory/{did}", timeout=15)
+    if not resp.ok:
+        raise RuntimeError(f"PLC directory lookup failed (HTTP {resp.status_code}): {resp.text[:200]}")
+    try:
+        data = resp.json()
+    except ValueError:
+        raise RuntimeError(f"PLC directory returned invalid JSON: {resp.text[:200]}")
+
+    for service in data.get("service", []):
+        if service.get("id") == "#atproto_pds":
+            endpoint = service.get("serviceEndpoint", "")
+            # Extract hostname from URL, build did:web:hostname
+            host = endpoint.replace("https://", "").replace("http://", "").rstrip("/")
+            pds_did = f"did:web:{host}"
+            log.info("Resolved PDS DID: %s", pds_did)
+            return pds_did
+
+    raise RuntimeError(f"No atproto_pds service found in DID document: {data}")
+
+
+def _get_service_auth(access_token: str, pds_did: str) -> str:
+    """
+    Get a scoped service auth token for video upload using PDS DID.
 
     Returns the auth token string.
     Raises RuntimeError on failure.
@@ -65,7 +92,7 @@ def _get_service_auth(access_token: str, did: str) -> str:
     resp = requests.get(
         f"{_PDS_HOST}/xrpc/com.atproto.server.getServiceAuth",
         params={
-            "aud": f"did:web:video.bsky.app",
+            "aud": pds_did,
             "lxm": "com.atproto.repo.uploadBlob",
             "exp": int(time.time()) + 1800,  # 30 minutes
         },
@@ -288,8 +315,9 @@ def publish(video_path: str, metadata: dict) -> dict:
                 access_token = session["accessJwt"]
                 did = session["did"]
 
-                # Step 2 — get service auth for video upload
-                service_token = _get_service_auth(access_token, did)
+                # Step 2 — resolve PDS DID and get service auth
+                pds_did = _get_pds_did(did)
+                service_token = _get_service_auth(access_token, pds_did)
 
                 # Step 3 — upload video
                 job_status = _upload_video(service_token, did, compressed_path)
