@@ -210,6 +210,93 @@ def get_youtube_channel_name(uid: str) -> str:
     return _user_record(_read_data(), uid).get("youtube_channel_name", "")
 
 
+def fetch_tiktok_username(code: str) -> str:
+    """Exchange OAuth code for token and fetch TikTok username."""
+    try:
+        token_resp = http_requests_mod.post(
+            "https://open.tiktokapis.com/v2/oauth/token/",
+            data={
+                "client_key": os.getenv("TIKTOK_CLIENT_KEY", ""),
+                "client_secret": os.getenv("TIKTOK_CLIENT_SECRET", ""),
+                "code": code,
+                "grant_type": "authorization_code",
+                "redirect_uri": "https://botshub.io/oauth/callback",
+            },
+            timeout=15,
+        )
+        if not token_resp.ok:
+            log.warning("TikTok token exchange failed: %s", token_resp.text[:200])
+            return ""
+        access_token = token_resp.json().get("access_token", "")
+        if not access_token:
+            return ""
+        info_resp = http_requests_mod.get(
+            "https://open.tiktokapis.com/v2/user/info/",
+            params={"fields": "display_name,username"},
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=15,
+        )
+        if not info_resp.ok:
+            log.warning("TikTok user.info failed: %s", info_resp.text[:200])
+            return ""
+        return info_resp.json().get("data", {}).get("user", {}).get("username", "")
+    except Exception as exc:
+        log.warning("fetch_tiktok_username error: %s", exc)
+        return ""
+
+
+def save_tiktok_username(uid: str, username: str) -> None:
+    path = Path(USER_DATA_PATH)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with open(path, "a+") as f:
+            fcntl.flock(f, fcntl.LOCK_EX)
+            try:
+                f.seek(0)
+                content = f.read()
+                data = json.loads(content) if content.strip() else {}
+                record = _user_record(data, uid)
+                record["tiktok_username"] = username
+                data[uid] = record
+                f.seek(0)
+                f.truncate()
+                json.dump(data, f, indent=2)
+            finally:
+                fcntl.flock(f, fcntl.LOCK_UN)
+    except Exception as exc:
+        log.warning("save_tiktok_username failed: %s", exc)
+
+
+def get_tiktok_username(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("tiktok_username", "")
+
+
+def save_bluesky_handle(uid: str, handle: str) -> None:
+    path = Path(USER_DATA_PATH)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with open(path, "a+") as f:
+            fcntl.flock(f, fcntl.LOCK_EX)
+            try:
+                f.seek(0)
+                content = f.read()
+                data = json.loads(content) if content.strip() else {}
+                record = _user_record(data, uid)
+                record["bluesky_handle"] = handle
+                data[uid] = record
+                f.seek(0)
+                f.truncate()
+                json.dump(data, f, indent=2)
+            finally:
+                fcntl.flock(f, fcntl.LOCK_UN)
+    except Exception as exc:
+        log.warning("save_bluesky_handle failed: %s", exc)
+
+
+def get_bluesky_handle(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("bluesky_handle", "")
+
+
 # ── Routes ─────────────────────────────────────────────────────────────────
 
 @app.route("/apple-touch-icon.png")
@@ -245,6 +332,8 @@ def dashboard():
         connected_platforms=connected,
         drive_folder=get_drive_folder(uid),
         youtube_channel_name=get_youtube_channel_name(uid),
+        tiktok_username=get_tiktok_username(uid),
+        bluesky_handle=get_bluesky_handle(uid),
     )
 
 
@@ -259,6 +348,7 @@ def publish():
         connected_platforms=connected,
         drive_folder=get_drive_folder(uid),
         youtube_channel_name=get_youtube_channel_name(uid),
+        tiktok_username=get_tiktok_username(uid),
     )
 
 
@@ -276,6 +366,11 @@ def oauth_callback():
                 if channel_name:
                     save_youtube_channel_name(uid, channel_name)
                     log.info("YouTube channel name saved: %s", channel_name)
+            if state == "tiktok":
+                tiktok_user = fetch_tiktok_username(code)
+                if tiktok_user:
+                    save_tiktok_username(uid, tiktok_user)
+                    log.info("TikTok username saved: %s", tiktok_user)
         connected = session.get("connected_platforms", [])
         if state not in connected:
             connected.append(state)
@@ -321,6 +416,7 @@ def bluesky_connect():
         return jsonify({"ok": False, "error": "Could not reach Bluesky. Try again later."}), 502
     uid = session["user"]["uid"]
     save_connected_platform(uid, "bluesky")
+    save_bluesky_handle(uid, handle)
     connected = session.get("connected_platforms", [])
     if "bluesky" not in connected:
         connected.append("bluesky")
