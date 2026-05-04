@@ -301,7 +301,7 @@
     <div class="platform-info">
       <div class="platform-name">TikTok</div>
       {% if 'tiktok' in connected_platforms %}
-        <div class="platform-status connected"><span class="status-dot"></span>{{ '@' + tiktok_username if tiktok_username else 'Connected' }}</div>
+        <div class="platform-status connected"><span class="status-dot"></span>{{ tiktok_username if tiktok_username else 'Connected' }}</div>
       {% else %}
         <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
       {% endif %}

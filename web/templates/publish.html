@@ -474,7 +474,7 @@ html.light-theme .btn-publish { color: #ffffff; }
       <div class="tiktok-only">
         <div class="account-bar">
           <div class="account-dot"></div>
-          <span class="account-name" id="tt-user">{{ '@' + tiktok_username if tiktok_username else '@username' }}</span>
+          <span class="account-name" id="tt-user">{{ tiktok_username if tiktok_username else 'TikTok Account' }}</span>
           <span class="account-status" id="tt-limits">Loading...</span>
         </div>
         <p class="form-hint" style="margin-top:10px;" id="tt-duration">Max video duration will be loaded from your account.</p>
