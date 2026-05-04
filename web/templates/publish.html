@@ -482,7 +482,7 @@ html.light-theme .btn-publish { color: #ffffff; }
       <div class="youtube-only">
         <div class="account-bar">
           <div class="account-dot"></div>
-          <span class="account-name" id="yt-channel">Channel Name</span>
+          <span class="account-name" id="yt-channel">{{ youtube_channel_name if youtube_channel_name else 'Channel Name' }}</span>
           <span class="account-status">Connected</span>
         </div>
       </div>

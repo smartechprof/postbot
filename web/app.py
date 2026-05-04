@@ -258,6 +258,7 @@ def publish():
         "publish.html",
         connected_platforms=connected,
         drive_folder=get_drive_folder(uid),
+        youtube_channel_name=get_youtube_channel_name(uid),
     )
 
 
