@@ -321,7 +321,7 @@
     <div class="platform-info">
       <div class="platform-name">YouTube</div>
       {% if 'youtube' in connected_platforms %}
-        <div class="platform-status connected"><span class="status-dot"></span>Connected{% if youtube_channel_name %} · {{ youtube_channel_name }}{% endif %}</div>
+        <div class="platform-status connected"><span class="status-dot"></span>{{ youtube_channel_name if youtube_channel_name else 'Connected' }}</div>
       {% else %}
         <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
       {% endif %}
