@@ -18,6 +18,7 @@ import firebase_admin
 import firebase_admin.auth
 import firebase_admin.credentials
 from flask import Flask, jsonify, render_template, redirect, request, send_from_directory, session, url_for
+import requests as http_requests_mod
 
 log = logging.getLogger("postbot-web")
 logging.basicConfig(level=logging.INFO)
@@ -145,6 +146,70 @@ def save_connected_platform(uid: str, platform: str) -> None:
         log.warning("save_connected_platform failed: %s", exc)
 
 
+def fetch_youtube_channel_name(code: str) -> str:
+    """Exchange OAuth code for token and fetch YouTube channel name."""
+    try:
+        token_resp = http_requests_mod.post(
+            "https://oauth2.googleapis.com/token",
+            data={
+                "code": code,
+                "client_id": os.getenv("YT_WEB_CLIENT_ID", ""),
+                "client_secret": os.getenv("YT_WEB_CLIENT_SECRET", ""),
+                "redirect_uri": "https://botshub.io/oauth/callback",
+                "grant_type": "authorization_code",
+            },
+            timeout=15,
+        )
+        if not token_resp.ok:
+            log.warning("YouTube token exchange failed: %s", token_resp.text[:200])
+            return ""
+        access_token = token_resp.json().get("access_token", "")
+        if not access_token:
+            return ""
+        ch_resp = http_requests_mod.get(
+            "https://www.googleapis.com/youtube/v3/channels",
+            params={"part": "snippet", "mine": "true"},
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=15,
+        )
+        if not ch_resp.ok:
+            log.warning("YouTube channels.list failed: %s", ch_resp.text[:200])
+            return ""
+        items = ch_resp.json().get("items", [])
+        if items:
+            return items[0].get("snippet", {}).get("title", "")
+        return ""
+    except Exception as exc:
+        log.warning("fetch_youtube_channel_name error: %s", exc)
+        return ""
+
+
+def save_youtube_channel_name(uid: str, channel_name: str) -> None:
+    path = Path(USER_DATA_PATH)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with open(path, "a+") as f:
+            fcntl.flock(f, fcntl.LOCK_EX)
+            try:
+                f.seek(0)
+                content = f.read()
+                data = json.loads(content) if content.strip() else {}
+                record = _user_record(data, uid)
+                record["youtube_channel_name"] = channel_name
+                data[uid] = record
+                f.seek(0)
+                f.truncate()
+                json.dump(data, f, indent=2)
+            finally:
+                fcntl.flock(f, fcntl.LOCK_UN)
+    except Exception as exc:
+        log.warning("save_youtube_channel_name failed: %s", exc)
+
+
+def get_youtube_channel_name(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("youtube_channel_name", "")
+
+
 # ── Routes ─────────────────────────────────────────────────────────────────
 
 @app.route("/apple-touch-icon.png")
@@ -179,6 +244,7 @@ def dashboard():
         google_drive_client_id=os.getenv("YT_WEB_CLIENT_ID", ""),
         connected_platforms=connected,
         drive_folder=get_drive_folder(uid),
+        youtube_channel_name=get_youtube_channel_name(uid),
     )
 
 
@@ -204,6 +270,11 @@ def oauth_callback():
         uid = (session.get("user") or {}).get("uid")
         if uid:
             save_connected_platform(uid, state)
+            if state == "youtube":
+                channel_name = fetch_youtube_channel_name(code)
+                if channel_name:
+                    save_youtube_channel_name(uid, channel_name)
+                    log.info("YouTube channel name saved: %s", channel_name)
         connected = session.get("connected_platforms", [])
         if state not in connected:
             connected.append(state)
