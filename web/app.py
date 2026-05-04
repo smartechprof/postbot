@@ -233,14 +233,23 @@ def fetch_tiktok_username(code: str) -> str:
             return ""
         info_resp = http_requests_mod.get(
             "https://open.tiktokapis.com/v2/user/info/",
-            params={"fields": "display_name,username"},
+            params={"fields": "display_name"},
             headers={"Authorization": f"Bearer {access_token}"},
             timeout=15,
         )
+        log.info("TikTok user.info full response: %s", info_resp.text[:300])
         if not info_resp.ok:
             log.warning("TikTok user.info failed: %s", info_resp.text[:200])
+            retry_resp = http_requests_mod.get(
+                "https://open.tiktokapis.com/v2/user/info/",
+                params={"fields": "avatar_url,open_id"},
+                headers={"Authorization": f"Bearer {access_token}"},
+                timeout=15,
+            )
+            log.info("TikTok user.info full response: %s", retry_resp.text[:300])
             return ""
-        return info_resp.json().get("data", {}).get("user", {}).get("username", "")
+        user_data = info_resp.json().get("data", {}).get("user", {})
+        return user_data.get("display_name", "") or user_data.get("username", "")
     except Exception as exc:
         log.warning("fetch_tiktok_username error: %s", exc)
         return ""
