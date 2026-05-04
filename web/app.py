@@ -228,7 +228,6 @@ def fetch_tiktok_username(code: str) -> str:
             log.warning("TikTok token exchange failed: %s", token_resp.text[:200])
             return ""
         access_token = token_resp.json().get("access_token", "")
-        log.info("TikTok token scopes: %s", token_resp.json().get("scope", ""))
         if not access_token:
             return ""
         info_resp = http_requests_mod.get(
@@ -237,16 +236,8 @@ def fetch_tiktok_username(code: str) -> str:
             headers={"Authorization": f"Bearer {access_token}"},
             timeout=15,
         )
-        log.info("TikTok user.info full response: %s", info_resp.text[:300])
         if not info_resp.ok:
             log.warning("TikTok user.info failed: %s", info_resp.text[:200])
-            retry_resp = http_requests_mod.get(
-                "https://open.tiktokapis.com/v2/user/info/",
-                params={"fields": "avatar_url,open_id"},
-                headers={"Authorization": f"Bearer {access_token}"},
-                timeout=15,
-            )
-            log.info("TikTok user.info full response: %s", retry_resp.text[:300])
             return ""
         user_data = info_resp.json().get("data", {}).get("user", {})
         return user_data.get("display_name", "") or user_data.get("username", "")
