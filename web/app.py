@@ -228,6 +228,7 @@ def fetch_tiktok_username(code: str) -> str:
             log.warning("TikTok token exchange failed: %s", token_resp.text[:200])
             return ""
         access_token = token_resp.json().get("access_token", "")
+        log.info("TikTok token scopes: %s", token_resp.json().get("scope", ""))
         if not access_token:
             return ""
         info_resp = http_requests_mod.get(
