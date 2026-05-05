@@ -340,9 +340,19 @@
     <div class="platform-icon"><img src="/static/icons/ig-instagram-icon.svg" alt="Instagram"></div>
     <div class="platform-info">
       <div class="platform-name">Instagram</div>
-      <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% if 'instagram' in connected_platforms %}
+        <div class="platform-status connected"><span class="status-dot"></span>{{ '@' + instagram_username if instagram_username else 'Connected' }}</div>
+      {% else %}
+        <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% endif %}
     </div>
-    <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% if 'instagram' in connected_platforms %}
+      <a class="btn-connect disconnect" href="/oauth/disconnect?platform=instagram">Disconnect</a>
+    {% elif meta_app_id %}
+      <a class="btn-connect active" href="https://www.facebook.com/v19.0/dialog/oauth?client_id={{ meta_app_id }}&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback&scope=instagram_basic,instagram_content_publish&state=instagram">Connect</a>
+    {% else %}
+      <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% endif %}
   </div>
 
   <!-- Facebook -->
@@ -350,9 +360,19 @@
     <div class="platform-icon"><img src="/static/icons/facebook-square-icon.svg" alt="Facebook"></div>
     <div class="platform-info">
       <div class="platform-name">Facebook</div>
-      <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% if 'facebook' in connected_platforms %}
+        <div class="platform-status connected"><span class="status-dot"></span>{{ facebook_name if facebook_name else 'Connected' }}</div>
+      {% else %}
+        <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% endif %}
     </div>
-    <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% if 'facebook' in connected_platforms %}
+      <a class="btn-connect disconnect" href="/oauth/disconnect?platform=facebook">Disconnect</a>
+    {% elif meta_app_id %}
+      <a class="btn-connect active" href="https://www.facebook.com/v19.0/dialog/oauth?client_id={{ meta_app_id }}&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback&scope=pages_manage_posts,pages_read_engagement&state=facebook">Connect</a>
+    {% else %}
+      <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% endif %}
   </div>
 
   <!-- Threads -->
@@ -360,9 +380,19 @@
     <div class="platform-icon"><img src="/static/icons/threads-app-icon.svg" alt="Threads"></div>
     <div class="platform-info">
       <div class="platform-name">Threads</div>
-      <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% if 'threads' in connected_platforms %}
+        <div class="platform-status connected"><span class="status-dot"></span>{{ '@' + threads_username if threads_username else 'Connected' }}</div>
+      {% else %}
+        <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% endif %}
     </div>
-    <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% if 'threads' in connected_platforms %}
+      <a class="btn-connect disconnect" href="/oauth/disconnect?platform=threads">Disconnect</a>
+    {% elif meta_app_id %}
+      <a class="btn-connect active" href="https://threads.net/oauth/authorize?client_id={{ meta_app_id }}&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback&scope=threads_basic,threads_content_publish&response_type=code&state=threads">Connect</a>
+    {% else %}
+      <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% endif %}
   </div>
 
   <!-- X (Twitter) -->
@@ -380,9 +410,19 @@
     <div class="platform-icon"><img src="/static/icons/linkedin-app-icon.svg" alt="LinkedIn"></div>
     <div class="platform-info">
       <div class="platform-name">LinkedIn</div>
-      <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% if 'linkedin' in connected_platforms %}
+        <div class="platform-status connected"><span class="status-dot"></span>{{ linkedin_name if linkedin_name else 'Connected' }}</div>
+      {% else %}
+        <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% endif %}
     </div>
-    <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% if 'linkedin' in connected_platforms %}
+      <a class="btn-connect disconnect" href="/oauth/disconnect?platform=linkedin">Disconnect</a>
+    {% elif li_client_id %}
+      <a class="btn-connect active" href="https://www.linkedin.com/oauth/v2/authorization?client_id={{ li_client_id }}&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback&response_type=code&scope=openid%20profile%20w_member_social&state=linkedin">Connect</a>
+    {% else %}
+      <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% endif %}
   </div>
 
   <!-- Google Business Profile -->
@@ -390,9 +430,19 @@
     <div class="platform-icon"><img src="/static/icons/google-map-icon.svg" alt="Google Business"></div>
     <div class="platform-info">
       <div class="platform-name">Google Business</div>
-      <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% if 'gbp' in connected_platforms %}
+        <div class="platform-status connected"><span class="status-dot"></span>{{ gbp_account_name if gbp_account_name else 'Connected' }}</div>
+      {% else %}
+        <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% endif %}
     </div>
-    <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% if 'gbp' in connected_platforms %}
+      <a class="btn-connect disconnect" href="/oauth/disconnect?platform=gbp">Disconnect</a>
+    {% elif youtube_client_id %}
+      <a class="btn-connect active" href="https://accounts.google.com/o/oauth2/v2/auth?client_id={{ youtube_client_id }}&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fbusiness.manage&access_type=offline&prompt=consent&state=gbp">Connect</a>
+    {% else %}
+      <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% endif %}
   </div>
 
   <!-- Pinterest -->

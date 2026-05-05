@@ -99,7 +99,8 @@ def remove_connected_platform(uid: str, platform: str) -> None:
         log.warning("remove_connected_platform failed: %s", exc)
 
 
-def save_drive_folder(uid: str, folder_name: str) -> None:
+def _save_user_field(uid: str, key: str, value: str) -> None:
+    """Save a single field to the user record in user_data.json."""
     path = Path(USER_DATA_PATH)
     path.parent.mkdir(parents=True, exist_ok=True)
     try:
@@ -110,7 +111,7 @@ def save_drive_folder(uid: str, folder_name: str) -> None:
                 content = f.read()
                 data = json.loads(content) if content.strip() else {}
                 record = _user_record(data, uid)
-                record["drive_folder"] = folder_name
+                record[key] = value
                 data[uid] = record
                 f.seek(0)
                 f.truncate()
@@ -118,7 +119,11 @@ def save_drive_folder(uid: str, folder_name: str) -> None:
             finally:
                 fcntl.flock(f, fcntl.LOCK_UN)
     except Exception as exc:
-        log.warning("save_drive_folder failed: %s", exc)
+        log.warning("_save_user_field(%s) failed: %s", key, exc)
+
+
+def save_drive_folder(uid: str, folder_name: str) -> None:
+    _save_user_field(uid, "drive_folder", folder_name)
 
 
 def save_connected_platform(uid: str, platform: str) -> None:
@@ -185,25 +190,7 @@ def fetch_youtube_channel_name(code: str) -> str:
 
 
 def save_youtube_channel_name(uid: str, channel_name: str) -> None:
-    path = Path(USER_DATA_PATH)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    try:
-        with open(path, "a+") as f:
-            fcntl.flock(f, fcntl.LOCK_EX)
-            try:
-                f.seek(0)
-                content = f.read()
-                data = json.loads(content) if content.strip() else {}
-                record = _user_record(data, uid)
-                record["youtube_channel_name"] = channel_name
-                data[uid] = record
-                f.seek(0)
-                f.truncate()
-                json.dump(data, f, indent=2)
-            finally:
-                fcntl.flock(f, fcntl.LOCK_UN)
-    except Exception as exc:
-        log.warning("save_youtube_channel_name failed: %s", exc)
+    _save_user_field(uid, "youtube_channel_name", channel_name)
 
 
 def get_youtube_channel_name(uid: str) -> str:
@@ -247,25 +234,7 @@ def fetch_tiktok_username(code: str) -> str:
 
 
 def save_tiktok_username(uid: str, username: str) -> None:
-    path = Path(USER_DATA_PATH)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    try:
-        with open(path, "a+") as f:
-            fcntl.flock(f, fcntl.LOCK_EX)
-            try:
-                f.seek(0)
-                content = f.read()
-                data = json.loads(content) if content.strip() else {}
-                record = _user_record(data, uid)
-                record["tiktok_username"] = username
-                data[uid] = record
-                f.seek(0)
-                f.truncate()
-                json.dump(data, f, indent=2)
-            finally:
-                fcntl.flock(f, fcntl.LOCK_UN)
-    except Exception as exc:
-        log.warning("save_tiktok_username failed: %s", exc)
+    _save_user_field(uid, "tiktok_username", username)
 
 
 def get_tiktok_username(uid: str) -> str:
@@ -273,29 +242,235 @@ def get_tiktok_username(uid: str) -> str:
 
 
 def save_bluesky_handle(uid: str, handle: str) -> None:
-    path = Path(USER_DATA_PATH)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    try:
-        with open(path, "a+") as f:
-            fcntl.flock(f, fcntl.LOCK_EX)
-            try:
-                f.seek(0)
-                content = f.read()
-                data = json.loads(content) if content.strip() else {}
-                record = _user_record(data, uid)
-                record["bluesky_handle"] = handle
-                data[uid] = record
-                f.seek(0)
-                f.truncate()
-                json.dump(data, f, indent=2)
-            finally:
-                fcntl.flock(f, fcntl.LOCK_UN)
-    except Exception as exc:
-        log.warning("save_bluesky_handle failed: %s", exc)
+    _save_user_field(uid, "bluesky_handle", handle)
 
 
 def get_bluesky_handle(uid: str) -> str:
     return _user_record(_read_data(), uid).get("bluesky_handle", "")
+
+
+# ── Instagram ──────────────────────────────────────────────────────────────
+
+def fetch_instagram_username(code: str) -> str:
+    """Exchange OAuth code for token and fetch Instagram username."""
+    try:
+        token_resp = http_requests_mod.post(
+            "https://graph.facebook.com/v19.0/oauth/access_token",
+            data={
+                "client_id": os.getenv("META_APP_ID", ""),
+                "client_secret": os.getenv("META_APP_SECRET", ""),
+                "code": code,
+                "redirect_uri": "https://botshub.io/oauth/callback",
+            },
+            timeout=15,
+        )
+        if not token_resp.ok:
+            log.warning("Instagram token exchange failed: %s", token_resp.text[:200])
+            return ""
+        access_token = token_resp.json().get("access_token", "")
+        if not access_token:
+            return ""
+        user_resp = http_requests_mod.get(
+            "https://graph.instagram.com/me",
+            params={"fields": "username"},
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=15,
+        )
+        if not user_resp.ok:
+            log.warning("Instagram user info failed: %s", user_resp.text[:200])
+            return ""
+        return user_resp.json().get("username", "")
+    except Exception as exc:
+        log.warning("fetch_instagram_username error: %s", exc)
+        return ""
+
+
+def save_instagram_username(uid: str, username: str) -> None:
+    _save_user_field(uid, "instagram_username", username)
+
+
+def get_instagram_username(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("instagram_username", "")
+
+
+# ── Facebook ───────────────────────────────────────────────────────────────
+
+def fetch_facebook_name(code: str) -> str:
+    """Exchange OAuth code for token and fetch Facebook user/page name."""
+    try:
+        token_resp = http_requests_mod.post(
+            "https://graph.facebook.com/v19.0/oauth/access_token",
+            data={
+                "client_id": os.getenv("META_APP_ID", ""),
+                "client_secret": os.getenv("META_APP_SECRET", ""),
+                "code": code,
+                "redirect_uri": "https://botshub.io/oauth/callback",
+            },
+            timeout=15,
+        )
+        if not token_resp.ok:
+            log.warning("Facebook token exchange failed: %s", token_resp.text[:200])
+            return ""
+        access_token = token_resp.json().get("access_token", "")
+        if not access_token:
+            return ""
+        user_resp = http_requests_mod.get(
+            "https://graph.facebook.com/me",
+            params={"fields": "name"},
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=15,
+        )
+        if not user_resp.ok:
+            log.warning("Facebook user info failed: %s", user_resp.text[:200])
+            return ""
+        return user_resp.json().get("name", "")
+    except Exception as exc:
+        log.warning("fetch_facebook_name error: %s", exc)
+        return ""
+
+
+def save_facebook_name(uid: str, name: str) -> None:
+    _save_user_field(uid, "facebook_name", name)
+
+
+def get_facebook_name(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("facebook_name", "")
+
+
+# ── Threads ────────────────────────────────────────────────────────────────
+
+def fetch_threads_username(code: str) -> str:
+    """Exchange OAuth code for token and fetch Threads username."""
+    try:
+        token_resp = http_requests_mod.post(
+            "https://graph.threads.net/oauth/access_token",
+            data={
+                "client_id": os.getenv("META_APP_ID", ""),
+                "client_secret": os.getenv("META_APP_SECRET", ""),
+                "code": code,
+                "grant_type": "authorization_code",
+                "redirect_uri": "https://botshub.io/oauth/callback",
+            },
+            timeout=15,
+        )
+        if not token_resp.ok:
+            log.warning("Threads token exchange failed: %s", token_resp.text[:200])
+            return ""
+        access_token = token_resp.json().get("access_token", "")
+        if not access_token:
+            return ""
+        user_resp = http_requests_mod.get(
+            "https://graph.threads.net/v1.0/me",
+            params={"fields": "username"},
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=15,
+        )
+        if not user_resp.ok:
+            log.warning("Threads user info failed: %s", user_resp.text[:200])
+            return ""
+        return user_resp.json().get("username", "")
+    except Exception as exc:
+        log.warning("fetch_threads_username error: %s", exc)
+        return ""
+
+
+def save_threads_username(uid: str, username: str) -> None:
+    _save_user_field(uid, "threads_username", username)
+
+
+def get_threads_username(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("threads_username", "")
+
+
+# ── LinkedIn ───────────────────────────────────────────────────────────────
+
+def fetch_linkedin_name(code: str) -> str:
+    """Exchange OAuth code for token and fetch LinkedIn user name."""
+    try:
+        token_resp = http_requests_mod.post(
+            "https://www.linkedin.com/oauth/v2/accessToken",
+            data={
+                "client_id": os.getenv("LI_CLIENT_ID", ""),
+                "client_secret": os.getenv("LI_CLIENT_SECRET", ""),
+                "code": code,
+                "grant_type": "authorization_code",
+                "redirect_uri": "https://botshub.io/oauth/callback",
+            },
+            timeout=15,
+        )
+        if not token_resp.ok:
+            log.warning("LinkedIn token exchange failed: %s", token_resp.text[:200])
+            return ""
+        access_token = token_resp.json().get("access_token", "")
+        if not access_token:
+            return ""
+        user_resp = http_requests_mod.get(
+            "https://api.linkedin.com/v2/userinfo",
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=15,
+        )
+        if not user_resp.ok:
+            log.warning("LinkedIn user info failed: %s", user_resp.text[:200])
+            return ""
+        return user_resp.json().get("name", "")
+    except Exception as exc:
+        log.warning("fetch_linkedin_name error: %s", exc)
+        return ""
+
+
+def save_linkedin_name(uid: str, name: str) -> None:
+    _save_user_field(uid, "linkedin_name", name)
+
+
+def get_linkedin_name(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("linkedin_name", "")
+
+
+# ── Google Business Profile ───────────────────────────────────────────────
+
+def fetch_gbp_account_name(code: str) -> str:
+    """Exchange OAuth code for token and fetch GBP business name."""
+    try:
+        token_resp = http_requests_mod.post(
+            "https://oauth2.googleapis.com/token",
+            data={
+                "code": code,
+                "client_id": os.getenv("YT_WEB_CLIENT_ID", ""),
+                "client_secret": os.getenv("YT_WEB_CLIENT_SECRET", ""),
+                "redirect_uri": "https://botshub.io/oauth/callback",
+                "grant_type": "authorization_code",
+            },
+            timeout=15,
+        )
+        if not token_resp.ok:
+            log.warning("GBP token exchange failed: %s", token_resp.text[:200])
+            return ""
+        access_token = token_resp.json().get("access_token", "")
+        if not access_token:
+            return ""
+        acct_resp = http_requests_mod.get(
+            "https://mybusinessaccountmanagement.googleapis.com/v1/accounts",
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=15,
+        )
+        if not acct_resp.ok:
+            log.warning("GBP accounts.list failed: %s", acct_resp.text[:200])
+            return ""
+        accounts = acct_resp.json().get("accounts", [])
+        if accounts:
+            return accounts[0].get("accountName", "")
+        return ""
+    except Exception as exc:
+        log.warning("fetch_gbp_account_name error: %s", exc)
+        return ""
+
+
+def save_gbp_account_name(uid: str, name: str) -> None:
+    _save_user_field(uid, "gbp_account_name", name)
+
+
+def get_gbp_account_name(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("gbp_account_name", "")
 
 
 # ── Routes ─────────────────────────────────────────────────────────────────
@@ -335,6 +510,13 @@ def dashboard():
         youtube_channel_name=get_youtube_channel_name(uid),
         tiktok_username=get_tiktok_username(uid),
         bluesky_handle=get_bluesky_handle(uid),
+        instagram_username=get_instagram_username(uid),
+        facebook_name=get_facebook_name(uid),
+        threads_username=get_threads_username(uid),
+        linkedin_name=get_linkedin_name(uid),
+        gbp_account_name=get_gbp_account_name(uid),
+        meta_app_id=os.getenv("META_APP_ID", ""),
+        li_client_id=os.getenv("LI_CLIENT_ID", ""),
     )
 
 
@@ -350,6 +532,12 @@ def publish():
         drive_folder=get_drive_folder(uid),
         youtube_channel_name=get_youtube_channel_name(uid),
         tiktok_username=get_tiktok_username(uid),
+        bluesky_handle=get_bluesky_handle(uid),
+        instagram_username=get_instagram_username(uid),
+        facebook_name=get_facebook_name(uid),
+        threads_username=get_threads_username(uid),
+        linkedin_name=get_linkedin_name(uid),
+        gbp_account_name=get_gbp_account_name(uid),
     )
 
 
@@ -372,6 +560,31 @@ def oauth_callback():
                 if tiktok_user:
                     save_tiktok_username(uid, tiktok_user)
                     log.info("TikTok username saved: %s", tiktok_user)
+            if state == "instagram":
+                ig_user = fetch_instagram_username(code)
+                if ig_user:
+                    save_instagram_username(uid, ig_user)
+                    log.info("Instagram username saved: %s", ig_user)
+            if state == "facebook":
+                fb_name = fetch_facebook_name(code)
+                if fb_name:
+                    save_facebook_name(uid, fb_name)
+                    log.info("Facebook name saved: %s", fb_name)
+            if state == "threads":
+                threads_user = fetch_threads_username(code)
+                if threads_user:
+                    save_threads_username(uid, threads_user)
+                    log.info("Threads username saved: %s", threads_user)
+            if state == "linkedin":
+                li_name = fetch_linkedin_name(code)
+                if li_name:
+                    save_linkedin_name(uid, li_name)
+                    log.info("LinkedIn name saved: %s", li_name)
+            if state == "gbp":
+                gbp_name = fetch_gbp_account_name(code)
+                if gbp_name:
+                    save_gbp_account_name(uid, gbp_name)
+                    log.info("GBP account name saved: %s", gbp_name)
         connected = session.get("connected_platforms", [])
         if state not in connected:
             connected.append(state)
