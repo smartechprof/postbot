@@ -484,12 +484,13 @@ def fetch_twitter_username(code: str, code_verifier: str) -> str:
         token_resp = http_requests_mod.post(
             "https://api.x.com/2/oauth2/token",
             data={
-                "client_id": os.getenv("X_CLIENT_ID", ""),
                 "code": code,
                 "grant_type": "authorization_code",
                 "redirect_uri": "https://botshub.io/oauth/callback",
                 "code_verifier": code_verifier,
+                "client_id": os.getenv("X_CLIENT_ID", ""),
             },
+            auth=(os.getenv("X_CLIENT_ID", ""), os.getenv("X_CLIENT_SECRET", "")),
             headers={"Content-Type": "application/x-www-form-urlencoded"},
             timeout=15,
         )
