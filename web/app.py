@@ -3,6 +3,9 @@ PostBot Web — Flask application for OAuth flows and dashboard.
 Reads credentials from /etc/igbot.env (same as PostBot CLI).
 """
 import os
+import hashlib
+import base64
+import secrets
 import json
 import fcntl
 import logging
@@ -473,6 +476,51 @@ def get_gbp_account_name(uid: str) -> str:
     return _user_record(_read_data(), uid).get("gbp_account_name", "")
 
 
+# ── X (Twitter) ────────────────────────────────────────────────────────────
+
+def fetch_twitter_username(code: str, code_verifier: str) -> str:
+    """Exchange OAuth code + PKCE verifier for token and fetch X username."""
+    try:
+        token_resp = http_requests_mod.post(
+            "https://api.x.com/2/oauth2/token",
+            data={
+                "client_id": os.getenv("X_CLIENT_ID", ""),
+                "code": code,
+                "grant_type": "authorization_code",
+                "redirect_uri": "https://botshub.io/oauth/callback",
+                "code_verifier": code_verifier,
+            },
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            timeout=15,
+        )
+        if not token_resp.ok:
+            log.warning("X token exchange failed: %s", token_resp.text[:200])
+            return ""
+        access_token = token_resp.json().get("access_token", "")
+        if not access_token:
+            return ""
+        user_resp = http_requests_mod.get(
+            "https://api.x.com/2/users/me",
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=15,
+        )
+        if not user_resp.ok:
+            log.warning("X user info failed: %s", user_resp.text[:200])
+            return ""
+        return user_resp.json().get("data", {}).get("username", "")
+    except Exception as exc:
+        log.warning("fetch_twitter_username error: %s", exc)
+        return ""
+
+
+def save_twitter_username(uid: str, username: str) -> None:
+    _save_user_field(uid, "twitter_username", username)
+
+
+def get_twitter_username(uid: str) -> str:
+    return _user_record(_read_data(), uid).get("twitter_username", "")
+
+
 # ── Routes ─────────────────────────────────────────────────────────────────
 
 @app.route("/apple-touch-icon.png")
@@ -515,6 +563,7 @@ def dashboard():
         threads_username=get_threads_username(uid),
         linkedin_name=get_linkedin_name(uid),
         gbp_account_name=get_gbp_account_name(uid),
+        twitter_username=get_twitter_username(uid),
         meta_app_id=os.getenv("META_APP_ID", ""),
         li_client_id=os.getenv("LI_CLIENT_ID", ""),
     )
@@ -538,10 +587,33 @@ def publish():
         threads_username=get_threads_username(uid),
         linkedin_name=get_linkedin_name(uid),
         gbp_account_name=get_gbp_account_name(uid),
+        twitter_username=get_twitter_username(uid),
     )
 
 
 @app.route("/oauth/callback")
+
+@app.route("/oauth/x/start")
+def oauth_x_start():
+    if not session.get("user"):
+        return redirect(url_for("login"))
+    code_verifier = secrets.token_urlsafe(64)
+    session["x_code_verifier"] = code_verifier
+    digest = hashlib.sha256(code_verifier.encode()).digest()
+    code_challenge = base64.urlsafe_b64encode(digest).rstrip(b"=").decode()
+    client_id = os.getenv("X_CLIENT_ID", "")
+    auth_url = (
+        "https://x.com/i/oauth2/authorize"
+        f"?response_type=code"
+        f"&client_id={client_id}"
+        f"&redirect_uri=https%3A%2F%2Fbotshub.io%2Foauth%2Fcallback"
+        f"&scope=tweet.read%20tweet.write%20users.read%20offline.access"
+        f"&state=twitter"
+        f"&code_challenge={code_challenge}"
+        f"&code_challenge_method=S256"
+    )
+    return redirect(auth_url)
+
 def oauth_callback():
     code = request.args.get("code")
     state = request.args.get("state")
@@ -585,6 +657,13 @@ def oauth_callback():
                 if gbp_name:
                     save_gbp_account_name(uid, gbp_name)
                     log.info("GBP account name saved: %s", gbp_name)
+            if state == "twitter":
+                code_verifier = session.pop("x_code_verifier", "")
+                if code_verifier:
+                    x_user = fetch_twitter_username(code, code_verifier)
+                    if x_user:
+                        save_twitter_username(uid, x_user)
+                        log.info("X username saved: %s", x_user)
         connected = session.get("connected_platforms", [])
         if state not in connected:
             connected.append(state)

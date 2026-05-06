@@ -400,9 +400,17 @@
     <div class="platform-icon"><img src="/static/icons/x-social-media-logo-icon.svg" alt="X"></div>
     <div class="platform-info">
       <div class="platform-name">X (Twitter)</div>
-      <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% if 'twitter' in connected_platforms %}
+        <div class="platform-status connected"><span class="status-dot"></span>{{ '@' + twitter_username if twitter_username else 'Connected' }}</div>
+      {% else %}
+        <div class="platform-status disconnected"><span class="status-dot"></span>Not connected</div>
+      {% endif %}
     </div>
-    <button class="btn-connect inactive" onclick="comingSoon()">Connect</button>
+    {% if 'twitter' in connected_platforms %}
+      <a class="btn-connect disconnect" href="/oauth/disconnect?platform=twitter">Disconnect</a>
+    {% else %}
+      <a class="btn-connect active" href="/oauth/x/start">Connect</a>
+    {% endif %}
   </div>
 
   <!-- LinkedIn -->
