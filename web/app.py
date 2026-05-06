@@ -591,7 +591,6 @@ def publish():
     )
 
 
-@app.route("/oauth/callback")
 
 @app.route("/oauth/x/start")
 def oauth_x_start():
@@ -614,6 +613,7 @@ def oauth_x_start():
     )
     return redirect(auth_url)
 
+@app.route("/oauth/callback")
 def oauth_callback():
     code = request.args.get("code")
     state = request.args.get("state")
